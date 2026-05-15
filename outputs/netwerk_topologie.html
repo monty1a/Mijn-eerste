@@ -2,56 +2,68 @@
 <html lang="nl">
 <head>
 <meta charset="utf-8">
-<title>Netwerk Topologie — M. Montanus, Rijnsburg</title>
+<title>Netwerk topologie — M. Montanus, Rijnsburg</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
   :root{
-    --bg:#0f1117; --panel:#161a23; --line:#252b3a; --text:#e8e8e8;
-    --muted:#8b94a8; --accent:#00d4aa; --rood:#e74c3c; --blauw:#3498db;
-    --paars:#9b59b6; --geel:#f1c40f;
+    --bg:#0f1117; --panel:#161a23; --panel2:#1d2230; --line:#252b3a;
+    --text:#e8e8e8; --muted:#8b94a8;
+    --accent:#00d4aa; --rood:#e74c3c; --blauw:#3498db; --paars:#9b59b6;
+    --groen:#2ecc71; --geel:#f1c40f; --grijs:#7f8c98; --oranje:#e67e22; --teal:#1abc9c;
   }
   *{box-sizing:border-box}
-  html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',system-ui,sans-serif}
-  header{padding:28px 36px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:end;flex-wrap:wrap;gap:16px}
-  header h1{font-size:22px;margin:0 0 4px;font-weight:600;letter-spacing:-.01em}
+  html,body{margin:0;background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',system-ui,sans-serif}
+  header{padding:24px 32px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;align-items:end}
+  header h1{margin:0 0 4px;font-size:22px;font-weight:600;letter-spacing:-.01em}
   header .sub{color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:13px}
   header .meta{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);text-align:right}
-  main{padding:24px 36px 80px}
-  .legend{display:flex;gap:24px;flex-wrap:wrap;font-size:13px;font-family:'IBM Plex Mono',monospace;color:var(--muted);margin-bottom:14px}
-  .legend span{display:inline-flex;align-items:center;gap:8px}
-  .legend i{display:inline-block;width:28px;height:3px;border-radius:2px}
-  .canvas{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:8px;overflow:auto}
-  svg{display:block;width:100%;height:auto;min-width:1100px}
-  .node rect{fill:#1d2230;stroke:var(--line);stroke-width:1.5;rx:10;cursor:pointer;transition:stroke .12s,filter .12s}
-  .node:hover rect{stroke:var(--accent);filter:drop-shadow(0 0 8px rgba(0,212,170,.35))}
-  .node.modem rect{fill:#1a2940;stroke:#3498db}
-  .node.bottleneck rect{stroke:#e74c3c}
+  main{padding:18px 32px 60px}
+  .legend{display:flex;flex-wrap:wrap;gap:18px;font-size:12px;font-family:'IBM Plex Mono',monospace;color:var(--muted);margin-bottom:12px;align-items:center}
+  .legend i{display:inline-block;width:22px;height:3px;border-radius:2px;margin-right:6px;vertical-align:middle}
+  .legend .zone{display:inline-flex;align-items:center;gap:6px;padding:2px 10px;border-radius:999px;font-size:11px;font-weight:500}
+  .canvas{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:6px;overflow:auto}
+  svg{display:block;width:100%;height:auto;min-width:1300px}
+  .zone-bg{fill-opacity:.08;stroke-opacity:.55;stroke-width:1.5;stroke-dasharray:6 4;rx:18}
+  .zone-lbl{font-family:'IBM Plex Mono';font-size:12px;font-weight:600}
+  .node rect{fill:#1d2230;stroke:var(--line);stroke-width:1.5;rx:9;cursor:pointer;transition:stroke .12s,filter .12s}
+  .node:hover rect{stroke:var(--accent);filter:drop-shadow(0 0 8px rgba(0,212,170,.4))}
+  .node.modem rect{fill:#1a2940;stroke:var(--blauw)}
+  .node.managed rect{stroke:var(--teal)}
+  .node.bottleneck rect{stroke:var(--rood)}
   .node text.title{font-family:'IBM Plex Sans';font-weight:600;font-size:13px;fill:var(--text)}
   .node text.sub{font-family:'IBM Plex Mono';font-size:11px;fill:var(--muted)}
-  .node text.ports{font-family:'IBM Plex Mono';font-size:11px;fill:var(--accent)}
-  .node.bottleneck text.ports{fill:var(--rood)}
+  .node text.meta{font-family:'IBM Plex Mono';font-size:11px;fill:var(--accent)}
+  .node.bottleneck text.meta{fill:var(--rood)}
   .edge{fill:none;stroke-width:2.4}
   .edge.buiten{stroke:var(--rood)}
   .edge.binnen{stroke:var(--blauw)}
+  .edge.coax {stroke:#e67e22;stroke-dasharray:5 4}
   .edge-lbl{font-family:'IBM Plex Mono';font-size:11px;fill:var(--muted)}
-  .edge-lbl tspan.k{fill:var(--accent)}
-  .popup{position:fixed;background:var(--panel);border:1px solid var(--accent);border-radius:10px;padding:14px 16px;font-size:13px;max-width:340px;box-shadow:0 12px 32px rgba(0,0,0,.45);display:none;z-index:30}
-  .popup h3{margin:0 0 6px;color:var(--accent);font-size:14px}
-  .popup dl{margin:6px 0 0;display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-family:'IBM Plex Mono',monospace;font-size:12px}
+  .edge-lbl tspan.k{fill:var(--accent);font-weight:600}
+  .popup{position:fixed;background:var(--panel);border:1px solid var(--accent);border-radius:10px;padding:16px 18px;font-size:13px;max-width:380px;box-shadow:0 12px 32px rgba(0,0,0,.5);display:none;z-index:30}
+  .popup h3{margin:0 0 4px;color:var(--accent);font-size:14px}
+  .popup .zone-label{font-size:11px;color:var(--muted);font-family:'IBM Plex Mono';margin-bottom:10px}
+  .popup dl{margin:0 0 10px;display:grid;grid-template-columns:auto 1fr;gap:3px 14px;font-family:'IBM Plex Mono',monospace;font-size:12px}
   .popup dt{color:var(--muted)}
+  .popup h4{margin:8px 0 4px;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;font-weight:500}
+  .popup ul{margin:0;padding:0;list-style:none;font-size:12px}
+  .popup li{padding:4px 0;border-bottom:1px solid var(--line);font-family:'IBM Plex Mono',monospace}
+  .popup li:last-child{border:0}
+  .popup li .ip{color:var(--accent)}
+  .popup li .nm{color:var(--text)}
   .popup .close{position:absolute;top:8px;right:10px;cursor:pointer;color:var(--muted);font-size:18px;background:none;border:0}
-  .popup .warn{margin-top:10px;padding:6px 10px;background:rgba(231,76,60,.12);border:1px solid var(--rood);border-radius:6px;color:#ffc4bd;font-size:12px}
-  footer{padding:18px 36px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);border-top:1px solid var(--line)}
+  .popup .warn{margin-top:6px;padding:6px 10px;background:rgba(231,76,60,.12);border:1px solid var(--rood);border-radius:6px;color:#ffc4bd;font-size:12px}
+  footer{padding:16px 32px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);border-top:1px solid var(--line)}
   @media print{
-    @page{size:A3 landscape;margin:12mm}
+    @page{size:A3 landscape;margin:10mm}
     body{background:#fff;color:#111}
     header,footer{border-color:#ddd}
     .canvas{background:#fff;border-color:#ddd}
     .node rect{fill:#fff;stroke:#333}
-    .node text.title,.node text.sub,.node text.ports,.edge-lbl{fill:#111}
-    .legend{color:#333}
-    .popup{display:none!important}
+    .node text.title,.node text.sub,.node text.meta,.edge-lbl,.zone-lbl{fill:#111}
+    .legend,.popup{display:none}
+    .zone-bg{fill-opacity:.05}
   }
 </style>
 </head>
@@ -59,27 +71,48 @@
 <header>
   <div>
     <h1>Netwerk topologie</h1>
-    <div class="sub">M. Montanus · Rijnsburg · Ziggo-scenario</div>
+    <div class="sub">M. Montanus · Rijnsburg · op basis van PDF + IP-tabel (15-05-2026)</div>
   </div>
-  <div class="meta">
-    Rapport · 15-05-2026<br>
-    Smart Home &amp; Netwerk Consultant<br>
-    Bron: KAbels_netwerk.xlsx
-  </div>
+  <div class="meta">Cascade vanuit woonkamer · 6 switches · 26 apparaten<br>Klik op een switch voor inhoud</div>
 </header>
 
 <main>
   <div class="legend">
-    <span><i style="background:var(--rood)"></i> Buitenkabel Cat7 S/FTP</span>
-    <span><i style="background:var(--blauw)"></i> Binnenkabel Cat7 S/FTP</span>
-    <span><i style="background:var(--accent)"></i> Vrije poort</span>
-    <span><i style="background:var(--rood)"></i> Knelpunt: poort tekort</span>
-    <span style="font-size:11px;color:var(--muted)">Klik op een switch voor details</span>
+    <span><i style="background:#e67e22"></i>Coax (Ziggo)</span>
+    <span><i style="background:var(--rood)"></i>Buitenkabel Cat7 S/FTP</span>
+    <span><i style="background:var(--blauw)"></i>Binnenkabel Cat7 S/FTP</span>
+    <span>·</span>
+    <span class="zone" style="background:rgba(46,204,113,.18);color:#7ee0a0">Woonkamer</span>
+    <span class="zone" style="background:rgba(241,196,15,.18);color:#ffe48a">Slaapk. Marcel</span>
+    <span class="zone" style="background:rgba(127,140,152,.22);color:#cfd5dc">Slaapk. Nick</span>
+    <span class="zone" style="background:rgba(230,126,34,.18);color:#ffb888">Slaapk. Melissa</span>
+    <span class="zone" style="background:rgba(52,152,219,.18);color:#8fc6ed">Kastenkamer</span>
+    <span class="zone" style="background:rgba(26,188,156,.18);color:#86e2cc">Elektrakast</span>
   </div>
 
   <div class="canvas">
-    <svg viewBox="0 0 1400 720" xmlns="http://www.w3.org/2000/svg" id="topology">
-      <!-- Edges first so nodes draw on top -->
+    <svg viewBox="0 0 1500 920" xmlns="http://www.w3.org/2000/svg" id="topology">
+      <!-- Color zones from PDF -->
+      <g id="zones">
+        <rect class="zone-bg" x="500"  y="40"  width="500" height="220" fill="var(--groen)"  stroke="var(--groen)" />
+        <text class="zone-lbl" x="510" y="62" fill="var(--groen)">Woonkamer</text>
+
+        <rect class="zone-bg" x="40"   y="280" width="380" height="380" fill="var(--geel)"   stroke="var(--geel)" />
+        <text class="zone-lbl" x="50"  y="302" fill="var(--geel)">Slaapkamer Marcel</text>
+
+        <rect class="zone-bg" x="450"  y="280" width="380" height="540" fill="var(--grijs)"  stroke="var(--grijs)" />
+        <text class="zone-lbl" x="460" y="302" fill="var(--grijs)">Slaapkamer Nick</text>
+
+        <rect class="zone-bg" x="860"  y="660" width="380" height="220" fill="var(--oranje)" stroke="var(--oranje)" />
+        <text class="zone-lbl" x="870" y="682" fill="var(--oranje)">Slaapkamer Melissa</text>
+
+        <rect class="zone-bg" x="1080" y="280" width="380" height="180" fill="var(--teal)"   stroke="var(--teal)" />
+        <text class="zone-lbl" x="1090" y="302" fill="var(--teal)">Elektrakast</text>
+
+        <rect class="zone-bg" x="1080" y="480" width="380" height="180" fill="var(--blauw)"  stroke="var(--blauw)" />
+        <text class="zone-lbl" x="1090" y="502" fill="var(--blauw)">Kastenkamer</text>
+      </g>
+
       <g id="edges"></g>
       <g id="nodes"></g>
     </svg>
@@ -88,115 +121,200 @@
   <div id="popup" class="popup">
     <button class="close" onclick="document.getElementById('popup').style.display='none'">×</button>
     <h3 id="pop-title"></h3>
-    <div id="pop-sub" style="color:var(--muted);font-size:12px"></div>
+    <div class="zone-label" id="pop-zone"></div>
     <dl id="pop-dl"></dl>
+    <h4>Aangesloten apparaten</h4>
+    <ul id="pop-list"></ul>
     <div id="pop-warn" class="warn" style="display:none"></div>
   </div>
 </main>
 
 <footer>
-  Internet: Ziggo (kabel) · Glasvezel-scenario beschikbaar in v2 Excel · Topologie: ster met cascade via huiskamer en kastenkamer · Alle kabels Cat7 S/FTP
+  Cascade: Ziggo coax → Switch huiskamer → 3 downstream switches (Marcel, Nick, Elektrakast) → 2 sub-switches (Melissa, Kastenkamer).
+  Bron: PDF "netwerk.pdf" + IP-tabel uit chat. Kabelnummers volgens KAbels_netwerk.xlsx. Sommige interne kabel-toewijzingen zijn geïnterpreteerd uit de PDF en moeten door eigenaar geverifieerd worden.
 </footer>
 
 <script>
-const DATA = {
-  switches: [
-    { id:"modem", naam:"Binnenkomst — Modem / Hoofdrouter", locatie:"Meterkast / Entree", x:700, y:90, w:260, h:78, type:"modem",
-      poorten_totaal:24, poorten_gebruikt:6, model:"Ziggo Connectbox + hoofdswitch 24p" },
-    { id:"sw-electra-kast", naam:"Switch Elektrakast", locatie:"Meterkast — elektrakast", x:160, y:300, w:230, h:78,
-      poorten_totaal:9, poorten_gebruikt:3, model:"Onbeheerd 8p + uplink",
-      bewoners:["Home Assistant server","Zigbee coördinator","P1-meter"] },
-    { id:"sw-huiskamer", naam:"Switch Huiskamer", locatie:"Huiskamer (TV-meubel)", x:585, y:300, w:230, h:78,
-      poorten_totaal:4, poorten_gebruikt:6, model:"Onbeheerd 4p · 1× buitenkabel 20m", bottleneck:true,
-      bewoners:["TV","Sonos Arc","Apple TV","Hue Bridge","uplink Marcel","uplink Nick"] },
-    { id:"sw-kastenkamer", naam:"Switch Kastenkamer", locatie:"Kastenkamer / berging", x:1010, y:300, w:230, h:78,
-      poorten_totaal:4, poorten_gebruikt:3, model:"Onbeheerd 4p · 1× buitenkabel 30m",
-      bewoners:["NAS (gepland)","uplink Melissa"] },
-    { id:"sw-marcel", naam:"Switch Marcel", locatie:"Werkkamer Marcel", x:380, y:540, w:200, h:78,
-      poorten_totaal:4, poorten_gebruikt:3, model:"Onbeheerd 4p",
-      bewoners:["PC + monitor + printer"] },
-    { id:"sw-nick", naam:"Switch Nick", locatie:"Slaapkamer Nick", x:670, y:540, w:200, h:78,
-      poorten_totaal:6, poorten_gebruikt:2, model:"Onbeheerd 5p + uplink · 2× Cat7 5m",
-      bewoners:["PC + console"] },
-    { id:"sw-melissa", naam:"Switch Melissa", locatie:"Slaapkamer Melissa", x:1015, y:540, w:200, h:78,
-      poorten_totaal:3, poorten_gebruikt:2, model:"Onbeheerd 3p",
-      bewoners:["Laptop / iPad dock"] }
-  ],
-  edges: [
-    { van:"modem", naar:"sw-electra-kast", kabel:5,  m:10, buiten:true  },
-    { van:"modem", naar:"sw-huiskamer",    kabel:1,  m:20, buiten:true  },
-    { van:"modem", naar:"sw-kastenkamer",  kabel:14, m:30, buiten:true  },
-    { van:"sw-huiskamer",   naar:"sw-marcel",  kabel:4,  m:10,  buiten:false },
-    { van:"sw-huiskamer",   naar:"sw-nick",    kabel:6,  m:7.5, buiten:false },
-    { van:"sw-kastenkamer", naar:"sw-melissa", kabel:13, m:7.5, buiten:false }
-  ]
-};
+// === Switches (klikbare nodes) ===
+const SWITCHES = [
+  { id:"modem", naam:"Ziggo Modem/Router", zone:"Woonkamer", x:680, y:90,  w:240, h:70, type:"modem",
+    ip:"192.168.178.1", mac:"38:17:B1:95:87:ED",
+    info:"Coax-binnenkomst · Gateway", clients:[] },
 
-function nodeCenter(n){ return { x:n.x + n.w/2, y:n.y + n.h/2 }; }
-function nodeBottom(n){ return { x:n.x + n.w/2, y:n.y + n.h }; }
-function nodeTop(n){ return { x:n.x + n.w/2, y:n.y }; }
+  { id:"sw-hk", naam:"Switch huiskamer", zone:"Woonkamer", x:680, y:185, w:240, h:70, type:"switch",
+    poorten_totaal:4, poorten_gebruikt:6, bottleneck:true,
+    info:"Onbeheerd · centrale hub onder modem",
+    clients:[
+      {ip:"192.168.178.115", naam:"Archer AX55 (Hk voor)"},
+      {ip:"192.168.178.125", naam:"Archer AX23 (Hk achter)"},
+      {ip:null, naam:"→ Switch Marcel (kabel #14, 30m buiten)"},
+      {ip:null, naam:"→ Switch Nick (kabel #1, 15m buiten)"},
+      {ip:null, naam:"→ Switch elektrakast (kabel #5, 10m buiten)"}
+    ] },
 
-const edgesEl = document.getElementById('edges');
-const nodesEl = document.getElementById('nodes');
-const byId = Object.fromEntries(DATA.switches.map(s=>[s.id,s]));
+  { id:"sw-marcel", naam:"Switch Marcel", zone:"Slaapkamer Marcel", x:120, y:380, w:220, h:70, type:"switch",
+    poorten_totaal:4, poorten_gebruikt:4,
+    info:"Onbeheerd · 4p",
+    clients:[
+      {ip:null,                naam:"IPTV Marcel"},
+      {ip:"192.168.178.139",   naam:"Archer AX73 (Marcel) — WiFi"},
+      {ip:null,                naam:"Printer Marcel"},
+      {ip:null,                naam:"← uplink van Switch huiskamer"}
+    ] },
 
-DATA.edges.forEach((e,i)=>{
+  { id:"sw-nick", naam:"Switch Nick", zone:"Slaapkamer Nick", x:540, y:380, w:220, h:70, type:"switch",
+    poorten_totaal:6, poorten_gebruikt:6,
+    info:"Onbeheerd · 6p",
+    clients:[
+      {ip:null,                naam:"PC Nick"},
+      {ip:null,                naam:"IPTV Nick"},
+      {ip:null,                naam:"Spelcomputer Nick"},
+      {ip:"192.168.178.105",   naam:"Archer AX55 (Nick) — WiFi"},
+      {ip:null,                naam:"→ Switch Melissa (kabel #16, 10m)"},
+      {ip:null,                naam:"← uplink van Switch huiskamer"}
+    ] },
+
+  { id:"sw-elektra", naam:"Switch in elektrakast", zone:"Elektrakast", x:1160, y:380, w:240, h:70, type:"switch",
+    poorten_totaal:9, poorten_gebruikt:8,
+    info:"Onbeheerd · 9p · centraal in elektrakast",
+    clients:[
+      {ip:"192.168.178.21",  naam:"Home Assistant (Intel NUC)"},
+      {ip:null,              naam:"TV huiskamer (kabel #7, 5m)"},
+      {ip:null,              naam:"IPTV huiskamer (kabel #8, 5m)"},
+      {ip:null,              naam:"PC Marcel (lange kabel #4, 10m terug)"},
+      {ip:"192.168.178.15",  naam:"Archer AX55 (Extra) — locatie te bevestigen"},
+      {ip:null,              naam:"→ TP-Link Switch kastenkamer (kabel #9, 3m)"},
+      {ip:null,              naam:"← uplink van Switch huiskamer"}
+    ] },
+
+  { id:"sw-melissa", naam:"Switch Melissa", zone:"Slaapkamer Melissa", x:950, y:740, w:220, h:70, type:"switch",
+    poorten_totaal:3, poorten_gebruikt:3,
+    info:"Onbeheerd · 3p (vol)",
+    clients:[
+      {ip:null,                naam:"IPTV Melissa"},
+      {ip:"192.168.178.143",   naam:"Archer AX55 (Melissa) — WiFi"},
+      {ip:null,                naam:"← uplink van Switch Nick"}
+    ] },
+
+  { id:"sw-kasten", naam:"TP-Link Switch (kastenkamer)", zone:"Kastenkamer", x:1160, y:560, w:240, h:70, type:"switch", managed:true,
+    poorten_totaal:8, poorten_gebruikt:4,
+    ip:"192.168.178.20", mac:"B0:95:75:B3:3B:89",
+    info:"Managed · enige switch met IP",
+    clients:[
+      {ip:"192.168.178.22", naam:"WD MyCloud (1)"},
+      {ip:"192.168.178.23", naam:"WD MyCloud (2)"},
+      {ip:null,             naam:"KlikAanKlikUit ICS-2000 (433 MHz)"},
+      {ip:null,             naam:"← uplink van Switch elektrakast"}
+    ] },
+];
+
+// === Edges (switch ↔ switch) ===
+const EDGES = [
+  { van:"modem",    naar:"sw-hk",       type:"coax",   label:"coax" },
+  { van:"sw-hk",    naar:"sw-marcel",   type:"buiten", kabel:14, m:30 },
+  { van:"sw-hk",    naar:"sw-nick",     type:"buiten", kabel:1,  m:15 },
+  { van:"sw-hk",    naar:"sw-elektra",  type:"buiten", kabel:5,  m:10 },
+  { van:"sw-elektra", naar:"sw-kasten", type:"binnen", kabel:9,  m:3  },
+  { van:"sw-nick",  naar:"sw-melissa",  type:"binnen", kabel:16, m:10 },
+];
+
+const byId = Object.fromEntries(SWITCHES.map(s=>[s.id,s]));
+const edgesG = document.getElementById('edges');
+const nodesG = document.getElementById('nodes');
+
+function center(n){ return { x:n.x + n.w/2, y:n.y + n.h/2 }; }
+
+EDGES.forEach(e=>{
   const a = byId[e.van], b = byId[e.naar];
-  const p1 = nodeBottom(a), p2 = nodeTop(b);
-  const mx = (p1.x+p2.x)/2, my = (p1.y+p2.y)/2;
+  const p1 = center(a), p2 = center(b);
+  // bend the line a bit through control points so curves look organic
+  const dy = p2.y - p1.y;
+  const c1 = {x:p1.x, y:p1.y + Math.max(40, dy/2)};
+  const c2 = {x:p2.x, y:p2.y - Math.max(40, dy/2)};
   const path = document.createElementNS('http://www.w3.org/2000/svg','path');
-  path.setAttribute('class','edge '+(e.buiten?'buiten':'binnen'));
-  // Curved Bezier from p1 down/right to p2
-  const cy1 = p1.y + 40, cy2 = p2.y - 40;
-  path.setAttribute('d',`M${p1.x},${p1.y} C${p1.x},${cy1} ${p2.x},${cy2} ${p2.x},${p2.y}`);
-  edgesEl.appendChild(path);
+  path.setAttribute('class','edge '+e.type);
+  path.setAttribute('d',`M${p1.x},${p1.y + a.h/2} C${c1.x},${c1.y} ${c2.x},${c2.y} ${p2.x},${p2.y - b.h/2}`);
+  edgesG.appendChild(path);
 
-  const lbl = document.createElementNS('http://www.w3.org/2000/svg','text');
-  lbl.setAttribute('class','edge-lbl');
-  lbl.setAttribute('text-anchor','middle');
-  lbl.setAttribute('x',mx);
-  lbl.setAttribute('y',my-4);
-  lbl.innerHTML = `<tspan class="k">#${e.kabel}</tspan>  ${e.m} m`;
-  edgesEl.appendChild(lbl);
+  if (e.kabel){
+    const lbl = document.createElementNS('http://www.w3.org/2000/svg','text');
+    lbl.setAttribute('class','edge-lbl');
+    lbl.setAttribute('text-anchor','middle');
+    lbl.setAttribute('x', (p1.x+p2.x)/2);
+    lbl.setAttribute('y', (p1.y+p2.y)/2 - 4);
+    lbl.innerHTML = `<tspan class="k">#${e.kabel}</tspan>  ${e.m} m`;
+    edgesG.appendChild(lbl);
+  } else if (e.label){
+    const lbl = document.createElementNS('http://www.w3.org/2000/svg','text');
+    lbl.setAttribute('class','edge-lbl');
+    lbl.setAttribute('text-anchor','middle');
+    lbl.setAttribute('x', (p1.x+p2.x)/2 + 24);
+    lbl.setAttribute('y', (p1.y+p2.y)/2);
+    lbl.textContent = e.label;
+    edgesG.appendChild(lbl);
+  }
 });
 
-DATA.switches.forEach(s=>{
+SWITCHES.forEach(s=>{
   const g = document.createElementNS('http://www.w3.org/2000/svg','g');
-  let cls = 'node' + (s.type==='modem'?' modem':'') + (s.bottleneck?' bottleneck':'');
+  let cls = 'node';
+  if (s.type==='modem') cls += ' modem';
+  if (s.managed) cls += ' managed';
+  if (s.bottleneck) cls += ' bottleneck';
   g.setAttribute('class', cls);
   g.setAttribute('data-id', s.id);
+
+  const portInfo = s.poorten_totaal
+    ? `${s.poorten_gebruikt}/${s.poorten_totaal} poorten${s.bottleneck?' ⚠':''}`
+    : (s.ip || '');
+
   g.innerHTML = `
     <rect x="${s.x}" y="${s.y}" width="${s.w}" height="${s.h}"></rect>
     <text class="title" x="${s.x+14}" y="${s.y+22}">${s.naam}</text>
-    <text class="sub"   x="${s.x+14}" y="${s.y+42}">${s.locatie}</text>
-    <text class="ports" x="${s.x+14}" y="${s.y+62}">${s.poorten_gebruikt}/${s.poorten_totaal} poorten ${s.bottleneck?' ⚠ overbezet':''}</text>
+    <text class="sub"   x="${s.x+14}" y="${s.y+40}">${s.info}</text>
+    <text class="meta"  x="${s.x+14}" y="${s.y+58}">${portInfo}${s.managed?' · managed':''}</text>
   `;
   g.addEventListener('click', ev=>showPopup(s, ev));
-  nodesEl.appendChild(g);
+  nodesG.appendChild(g);
 });
 
 function showPopup(s, ev){
   const pop = document.getElementById('popup');
   document.getElementById('pop-title').textContent = s.naam;
-  document.getElementById('pop-sub').textContent = s.locatie + ' · ' + (s.model || '');
+  document.getElementById('pop-zone').textContent = s.zone;
   const dl = document.getElementById('pop-dl');
-  dl.innerHTML = `
-    <dt>Poorten totaal</dt><dd>${s.poorten_totaal}</dd>
-    <dt>Gebruikt</dt><dd>${s.poorten_gebruikt}</dd>
-    <dt>Vrij</dt><dd>${Math.max(s.poorten_totaal - s.poorten_gebruikt, 0)}</dd>
-    ${s.bewoners ? `<dt>Op deze switch</dt><dd>${s.bewoners.join('<br>')}</dd>` : ''}
-  `;
+  let dlHtml = '';
+  if (s.ip)  dlHtml += `<dt>IP</dt><dd>${s.ip}</dd>`;
+  if (s.mac) dlHtml += `<dt>MAC</dt><dd>${s.mac}</dd>`;
+  if (s.poorten_totaal){
+    dlHtml += `<dt>Poorten</dt><dd>${s.poorten_gebruikt}/${s.poorten_totaal}</dd>`;
+  }
+  if (s.managed) dlHtml += `<dt>Type</dt><dd>managed</dd>`;
+  dl.innerHTML = dlHtml;
+
+  const ul = document.getElementById('pop-list');
+  if (s.clients && s.clients.length){
+    ul.innerHTML = s.clients.map(c=>`<li>${c.ip?`<span class="ip">${c.ip}</span> · `:''}<span class="nm">${c.naam}</span></li>`).join('');
+  } else {
+    ul.innerHTML = '<li style="color:var(--muted)">— geen apparaten —</li>';
+  }
+
   const warn = document.getElementById('pop-warn');
   if (s.bottleneck){
     warn.style.display='block';
-    warn.textContent = `Overbezet: ${s.poorten_gebruikt} apparaten op ${s.poorten_totaal} poorten. Vervang door 8p PoE switch (zie verbeterplan fase 1).`;
+    warn.textContent = `Overbezet: ${s.poorten_gebruikt} aansluitingen op ${s.poorten_totaal} poorten. Vervang door 8p switch (bv. TP-Link TL-SG108E managed of UniFi USW Flex Mini 8).`;
+  } else if (s.poorten_totaal && s.poorten_gebruikt === s.poorten_totaal){
+    warn.style.display='block';
+    warn.textContent = `Geen vrije poort meer — bij elke uitbreiding moet eerst iets eraf.`;
   } else {
     warn.style.display='none';
   }
+
   pop.style.display='block';
-  pop.style.left = Math.min(ev.clientX + 14, window.innerWidth - 360) + 'px';
-  pop.style.top  = Math.min(ev.clientY + 14, window.innerHeight - 260) + 'px';
+  pop.style.left = Math.min(ev.clientX + 14, window.innerWidth - 410) + 'px';
+  pop.style.top  = Math.min(ev.clientY + 14, window.innerHeight - 380) + 'px';
 }
+
 document.addEventListener('click', e=>{
   if (!e.target.closest('.node') && !e.target.closest('.popup')) {
     document.getElementById('popup').style.display='none';
