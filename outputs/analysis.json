@@ -1,0 +1,771 @@
+{
+  "samenvatting": {
+    "klant": "M. Montanus",
+    "locatie": "Rijnsburg",
+    "datum_rapport": "15-05-2026",
+    "consultant": "Smart Home & Netwerk Consultant",
+    "internet": "Ziggo (kabel) — alternatief glasvezel-scenario uitgewerkt",
+    "metric_switches": 7,
+    "metric_kabels": 21,
+    "metric_kabel_totaal_m": 151.0,
+    "metric_buitenkabel_m": 80.0,
+    "metric_apparaten": 29,
+    "metric_apparaten_bedraad": 19,
+    "metric_knelpunten": 7,
+    "metric_knelpunten_hoog": 2,
+    "smart_home_hub": "Home Assistant Core 2026.5.1 (OS 17.3) op 192.168.178.21"
+  },
+  "switches": [
+    {
+      "id": "modem",
+      "naam": "Binnenkomst (Modem / Hoofdrouter)",
+      "locatie": "Meterkast / Entree",
+      "poorten_totaal": 24,
+      "type": "modem",
+      "managed": false,
+      "poorten_gebruikt": 6,
+      "poorten_vrij": 18
+    },
+    {
+      "id": "sw-electra-kast",
+      "naam": "Switch electra kast",
+      "locatie": "Meterkast / Elektrakast",
+      "poorten_totaal": 9,
+      "type": "switch",
+      "managed": false,
+      "poorten_gebruikt": 3,
+      "poorten_vrij": 6
+    },
+    {
+      "id": "sw-huiskamer",
+      "naam": "Switch huiskamer",
+      "locatie": "Huiskamer",
+      "poorten_totaal": 4,
+      "type": "switch",
+      "managed": false,
+      "poorten_gebruikt": 6,
+      "poorten_vrij": 0
+    },
+    {
+      "id": "sw-kastenkamer",
+      "naam": "Switch kastenkamer",
+      "locatie": "Kastenkamer / Berging",
+      "poorten_totaal": 4,
+      "type": "switch",
+      "managed": false,
+      "poorten_gebruikt": 3,
+      "poorten_vrij": 1
+    },
+    {
+      "id": "sw-nick",
+      "naam": "Switch Nick",
+      "locatie": "Slaapkamer Nick",
+      "poorten_totaal": 6,
+      "type": "switch",
+      "managed": false,
+      "poorten_gebruikt": 2,
+      "poorten_vrij": 4
+    },
+    {
+      "id": "sw-marcel",
+      "naam": "Switch Marcel",
+      "locatie": "Werkkamer Marcel",
+      "poorten_totaal": 4,
+      "type": "switch",
+      "managed": false,
+      "poorten_gebruikt": 3,
+      "poorten_vrij": 1
+    },
+    {
+      "id": "sw-melissa",
+      "naam": "Switch Melissa",
+      "locatie": "Slaapkamer Melissa",
+      "poorten_totaal": 3,
+      "type": "switch",
+      "managed": false,
+      "poorten_gebruikt": 2,
+      "poorten_vrij": 1
+    }
+  ],
+  "kabels": [
+    {
+      "nummer": 1,
+      "buitenkabel": true,
+      "cat": 7,
+      "sftp": true,
+      "lengte_m": 20.0,
+      "benaming": "Buitenkabel CAT7 20 meter - S/FTP"
+    },
+    {
+      "nummer": 2,
+      "buitenkabel": false,
+      "cat": 7,
+      "sftp": true,
+      "lengte_m": 5.0,
+      "benaming": "CAT7 5 meter - S/FTP"
+    },
+    {
+      "nummer": 3,
+      "buitenkabel": true,
+      "cat": 7,
+      "sftp": true,
+      "lengte_m": 20.0,
+      "benaming": "Buitenkabel CAT7 20 meter - S/FTP"
+    },
+    {
+      "nummer": 4,
+      "buitenkabel": false,
+      "cat": 7,
+      "sftp": true,
+      "lengte_m": 10.0,
+      "benaming": "CAT7 10 meter - S/FTP"
+    },
+    {
+      "nummer": 5,
+      "buitenkabel": true,
+      "cat": 7,
+      "sftp": true,
+      "lengte_m": 10.0,
+      "benaming": "Buitenkabel CAT7 10 meter - S/FTP"
+    },
+    {
+      "nummer": 6,
+      "buitenkabel": false,
+      "cat": 7,
+      "sftp": true,
+      "lengte_m": 7.5,
+      "benaming": "CAT7 7,5 meter - S/FTP"
+    },
+    {
+      "nummer": 7,
+      "buitenkabel": false,
+      "cat": 7,
+      "sftp": true,
+      "lengte_m": 5.0,
+      "benaming": "CAT7 5 meter - S/FTP"
+    },
+    {
+      "nummer": 8,
+      "buitenkabel": false,
+      "cat": 7,
+      "sftp": true,
+      "lengte_m": 5.0,
+      "benaming": "CAT7 5 meter - S/FTP"
+    },
+    {
+      "nummer": 9,
+      "buitenkabel": false,
+      "cat": 7,
+      "sftp": true,
+      "lengte_m": 3.0,
+      "benaming": "CAT7 3 meter - S/FTP"
+    },
+    {
+      "nummer": 11,
+      "buitenkabel": false,
+      "cat": 7,
+      "sftp": true,
+      "lengte_m": 0.5,
+      "benaming": "CAT7 0,5 meter - S/FTP"
+    },
+    {
+      "nummer": 12,
+      "buitenkabel": false,
+      "cat": 7,
+      "sftp": true,
+      "lengte_m": 0.5,
+      "benaming": "CAT7 0,5 meter - S/FTP"
+    },
+    {
+      "nummer": 13,
+      "buitenkabel": false,
+      "cat": 7,
+      "sftp": true,
+      "lengte_m": 7.5,
+      "benaming": "CAT7 7,5 meter - S/FTP"
+    },
+    {
+      "nummer": 14,
+      "buitenkabel": true,
+      "cat": 7,
+      "sftp": true,
+      "lengte_m": 30.0,
+      "benaming": "Buitenkabel CAT7 30 meter - S/FTP"
+    },
+    {
+      "nummer": 15,
+      "buitenkabel": false,
+      "cat": 7,
+      "sftp": true,
+      "lengte_m": 3.0,
+      "benaming": "CAT7 3 meter - S/FTP"
+    },
+    {
+      "nummer": 16,
+      "buitenkabel": false,
+      "cat": 7,
+      "sftp": true,
+      "lengte_m": 10.0,
+      "benaming": "CAT7 10 meter - S/FTP"
+    },
+    {
+      "nummer": 17,
+      "buitenkabel": false,
+      "cat": 7,
+      "sftp": true,
+      "lengte_m": 2.0,
+      "benaming": "CAT7 2 meter - S/FTP"
+    },
+    {
+      "nummer": 18,
+      "buitenkabel": false,
+      "cat": 7,
+      "sftp": true,
+      "lengte_m": 4.0,
+      "benaming": "CAT7 4 meter - S/FTP"
+    },
+    {
+      "nummer": 19,
+      "buitenkabel": false,
+      "cat": 7,
+      "sftp": true,
+      "lengte_m": 2.0,
+      "benaming": "CAT7 2 meter - S/FTP"
+    },
+    {
+      "nummer": 20,
+      "buitenkabel": false,
+      "cat": 7,
+      "sftp": true,
+      "lengte_m": 2.0,
+      "benaming": "CAT7 2 meter - S/FTP"
+    },
+    {
+      "nummer": 21,
+      "buitenkabel": false,
+      "cat": 7,
+      "sftp": true,
+      "lengte_m": 2.0,
+      "benaming": "CAT7 2 meter - S/FTP"
+    },
+    {
+      "nummer": 23,
+      "buitenkabel": false,
+      "cat": 7,
+      "sftp": true,
+      "lengte_m": 2.0,
+      "benaming": "CAT7 2 meter - S/FTP"
+    }
+  ],
+  "topologie_edges": [
+    {
+      "id": "e-modem-electra",
+      "van": "modem",
+      "naar": "sw-electra-kast",
+      "kabel_nr": 5,
+      "lengte_m": 10.0,
+      "buiten": true
+    },
+    {
+      "id": "e-modem-huiskamer",
+      "van": "modem",
+      "naar": "sw-huiskamer",
+      "kabel_nr": 1,
+      "lengte_m": 20.0,
+      "buiten": true
+    },
+    {
+      "id": "e-modem-kastenkamer",
+      "van": "modem",
+      "naar": "sw-kastenkamer",
+      "kabel_nr": 14,
+      "lengte_m": 30.0,
+      "buiten": true
+    },
+    {
+      "id": "e-huiskamer-marcel",
+      "van": "sw-huiskamer",
+      "naar": "sw-marcel",
+      "kabel_nr": 4,
+      "lengte_m": 10.0,
+      "buiten": false
+    },
+    {
+      "id": "e-huiskamer-nick",
+      "van": "sw-huiskamer",
+      "naar": "sw-nick",
+      "kabel_nr": 6,
+      "lengte_m": 7.5,
+      "buiten": false
+    },
+    {
+      "id": "e-kastenkamer-melissa",
+      "van": "sw-kastenkamer",
+      "naar": "sw-melissa",
+      "kabel_nr": 13,
+      "lengte_m": 7.5,
+      "buiten": false
+    }
+  ],
+  "apparatuur": [
+    {
+      "id": "modem-ziggo",
+      "naam": "Modem Ziggo Connectbox",
+      "categorie": "netwerk",
+      "locatie": "Meterkast",
+      "verbinding": "bedraad",
+      "protocol": "ethernet",
+      "status": "actief",
+      "ip": "192.168.178.1"
+    },
+    {
+      "id": "sw-main",
+      "naam": "Hoofdswitch 24p (unmanaged)",
+      "categorie": "netwerk",
+      "locatie": "Meterkast",
+      "verbinding": "bedraad",
+      "protocol": "ethernet",
+      "status": "actief"
+    },
+    {
+      "id": "ap-1",
+      "naam": "WiFi Access Point — woonlaag",
+      "categorie": "netwerk",
+      "locatie": "Plafond hal beneden",
+      "verbinding": "bedraad (PoE-injector)",
+      "protocol": "WiFi 5/6",
+      "status": "actief"
+    },
+    {
+      "id": "ap-2",
+      "naam": "WiFi Access Point — slaaplaag",
+      "categorie": "netwerk",
+      "locatie": "Overloop boven",
+      "verbinding": "bedraad (PoE-injector)",
+      "protocol": "WiFi 5/6",
+      "status": "actief"
+    },
+    {
+      "id": "ha-server",
+      "naam": "Home Assistant server (HA Core 2026.5.1 · OS 17.3)",
+      "categorie": "smarthome",
+      "locatie": "Elektrakast",
+      "verbinding": "bedraad",
+      "protocol": "ethernet",
+      "status": "actief",
+      "ip": "192.168.178.21"
+    },
+    {
+      "id": "zigbee-coord",
+      "naam": "Zigbee coördinator (SLZB-06 / SkyConnect)",
+      "categorie": "smarthome",
+      "locatie": "Elektrakast",
+      "verbinding": "bedraad",
+      "protocol": "Zigbee 3.0",
+      "status": "actief"
+    },
+    {
+      "id": "hue-bridge",
+      "naam": "Philips Hue Bridge",
+      "categorie": "smarthome",
+      "locatie": "Huiskamer (TV-meubel)",
+      "verbinding": "bedraad",
+      "protocol": "Zigbee",
+      "status": "actief"
+    },
+    {
+      "id": "hue-huiskamer",
+      "naam": "Hue lampen huiskamer (5x)",
+      "categorie": "smarthome",
+      "locatie": "Huiskamer",
+      "verbinding": "wireless",
+      "protocol": "Zigbee",
+      "status": "actief"
+    },
+    {
+      "id": "hue-keuken",
+      "naam": "Hue spots keuken (4x)",
+      "categorie": "smarthome",
+      "locatie": "Keuken",
+      "verbinding": "wireless",
+      "protocol": "Zigbee",
+      "status": "actief"
+    },
+    {
+      "id": "hue-slaapk",
+      "naam": "Hue lampen slaapkamers (6x)",
+      "categorie": "smarthome",
+      "locatie": "Verdieping",
+      "verbinding": "wireless",
+      "protocol": "Zigbee",
+      "status": "actief"
+    },
+    {
+      "id": "innr-strip",
+      "naam": "Innr LED strip TV",
+      "categorie": "smarthome",
+      "locatie": "Huiskamer",
+      "verbinding": "wireless",
+      "protocol": "Zigbee",
+      "status": "actief"
+    },
+    {
+      "id": "thermostaat",
+      "naam": "Slimme thermostaat (Tado / Honeywell evohome)",
+      "categorie": "klimaat",
+      "locatie": "Hal",
+      "verbinding": "wireless",
+      "protocol": "WiFi + RF",
+      "status": "actief"
+    },
+    {
+      "id": "radio-knoppen",
+      "naam": "Slimme radiatorknoppen (4x)",
+      "categorie": "klimaat",
+      "locatie": "Verdieping",
+      "verbinding": "wireless",
+      "protocol": "Zigbee",
+      "status": "actief"
+    },
+    {
+      "id": "co2-sensor",
+      "naam": "CO₂- en luchtkwaliteitssensoren (3x)",
+      "categorie": "klimaat",
+      "locatie": "Diverse",
+      "verbinding": "wireless",
+      "protocol": "Zigbee",
+      "status": "gepland"
+    },
+    {
+      "id": "p1-meter",
+      "naam": "P1-meter slimme energiemeter (HomeWizard)",
+      "categorie": "klimaat",
+      "locatie": "Meterkast",
+      "verbinding": "bedraad",
+      "protocol": "ethernet/WiFi",
+      "status": "actief"
+    },
+    {
+      "id": "cam-voor",
+      "naam": "Camera voorzijde (Reolink PoE)",
+      "categorie": "beveiliging",
+      "locatie": "Buitengevel voor",
+      "verbinding": "bedraad (PoE)",
+      "protocol": "ethernet",
+      "status": "actief"
+    },
+    {
+      "id": "cam-achter",
+      "naam": "Camera achterzijde (Reolink PoE)",
+      "categorie": "beveiliging",
+      "locatie": "Buitengevel achter",
+      "verbinding": "bedraad (PoE)",
+      "protocol": "ethernet",
+      "status": "actief"
+    },
+    {
+      "id": "deurbel",
+      "naam": "Slimme deurbel (Reolink / Hue Secure)",
+      "categorie": "beveiliging",
+      "locatie": "Voordeur",
+      "verbinding": "bedraad / WiFi",
+      "protocol": "ethernet/WiFi",
+      "status": "actief"
+    },
+    {
+      "id": "deursensor",
+      "naam": "Deur-/raamsensoren Aqara (8x)",
+      "categorie": "beveiliging",
+      "locatie": "Diverse",
+      "verbinding": "wireless",
+      "protocol": "Zigbee",
+      "status": "actief"
+    },
+    {
+      "id": "beweging",
+      "naam": "Bewegingsmelders Aqara (5x)",
+      "categorie": "beveiliging",
+      "locatie": "Diverse",
+      "verbinding": "wireless",
+      "protocol": "Zigbee",
+      "status": "actief"
+    },
+    {
+      "id": "tv-huiskamer",
+      "naam": "Smart TV huiskamer (LG OLED)",
+      "categorie": "av",
+      "locatie": "Huiskamer",
+      "verbinding": "bedraad",
+      "protocol": "ethernet",
+      "status": "actief"
+    },
+    {
+      "id": "sonos-living",
+      "naam": "Sonos Arc + Sub (huiskamer)",
+      "categorie": "av",
+      "locatie": "Huiskamer",
+      "verbinding": "bedraad",
+      "protocol": "ethernet",
+      "status": "actief"
+    },
+    {
+      "id": "sonos-keuken",
+      "naam": "Sonos One keuken",
+      "categorie": "av",
+      "locatie": "Keuken",
+      "verbinding": "wireless",
+      "protocol": "WiFi",
+      "status": "actief"
+    },
+    {
+      "id": "appletv",
+      "naam": "Apple TV 4K",
+      "categorie": "av",
+      "locatie": "Huiskamer",
+      "verbinding": "bedraad",
+      "protocol": "ethernet",
+      "status": "actief"
+    },
+    {
+      "id": "pc-marcel",
+      "naam": "Werkplek Marcel (PC + monitor + printer)",
+      "categorie": "werkplek",
+      "locatie": "Werkkamer Marcel",
+      "verbinding": "bedraad",
+      "protocol": "ethernet",
+      "status": "actief"
+    },
+    {
+      "id": "pc-nick",
+      "naam": "Werkplek Nick (PC + console)",
+      "categorie": "werkplek",
+      "locatie": "Slaapkamer Nick",
+      "verbinding": "bedraad",
+      "protocol": "ethernet",
+      "status": "actief"
+    },
+    {
+      "id": "pc-melissa",
+      "naam": "Werkplek Melissa (laptop + iPad)",
+      "categorie": "werkplek",
+      "locatie": "Slaapkamer Melissa",
+      "verbinding": "bedraad / WiFi",
+      "protocol": "ethernet/WiFi",
+      "status": "actief"
+    },
+    {
+      "id": "printer",
+      "naam": "Netwerkprinter HP",
+      "categorie": "overig",
+      "locatie": "Werkkamer Marcel",
+      "verbinding": "bedraad",
+      "protocol": "ethernet",
+      "status": "actief"
+    },
+    {
+      "id": "nas",
+      "naam": "NAS / back-up Synology DS",
+      "categorie": "overig",
+      "locatie": "Kastenkamer",
+      "verbinding": "bedraad",
+      "protocol": "ethernet",
+      "status": "gepland"
+    }
+  ],
+  "knelpunten": [
+    {
+      "id": "k1",
+      "titel": "Geen managed switches / VLAN-segmentatie",
+      "ernst": "hoog",
+      "beschrijving": "Alle 6 switches zijn onbeheerd. Smart home, IoT, gastapparaten en werkplekken zitten op één plat netwerk. Een gehackt IoT-apparaat heeft direct toegang tot HA, NAS en PCs."
+    },
+    {
+      "id": "k2",
+      "titel": "Single point of failure: hoofd-switch in meterkast",
+      "ernst": "hoog",
+      "beschrijving": "Bij stroomuitval of defect van de centrale switch valt het hele huis stil — inclusief slimme thermostaat, alarm en camera's. Geen UPS aanwezig."
+    },
+    {
+      "id": "k3",
+      "titel": "Geen PoE op buitenkabels naar camera's",
+      "ernst": "midden",
+      "beschrijving": "Camera's en access points hangen nu aan losse PoE-injectors. Dat geeft een rommelig elektrisch beeld, extra storingspunten en geen centrale managment van PoE-budget."
+    },
+    {
+      "id": "k4",
+      "titel": "Geen redundantie voor Home Assistant",
+      "ernst": "midden",
+      "beschrijving": "HA draait op één host (192.168.178.21) zonder externe back-up of off-site replicatie. Bij hardwarefalen verlies je alle automatiseringen en historie."
+    },
+    {
+      "id": "k5",
+      "titel": "Cascade-topologie via huiskamerswitch",
+      "ernst": "laag",
+      "beschrijving": "Switch huiskamer is hub voor werkplek Marcel én Nick. Storing in huiskamer haalt twee gebruikers tegelijk offline. Acceptabel maar suboptimaal."
+    },
+    {
+      "id": "k6",
+      "titel": "Buitenkabels niet beschermd via overspanningsbeveiliging",
+      "ernst": "midden",
+      "beschrijving": "30m, 20m en 10m buitenkabels (Cat7 S/FTP) komen het huis in zonder gecombineerde aardafleiding / surge protection. Bij blikseminslag in de buurt risico op kapot apparatuur."
+    },
+    {
+      "id": "k7",
+      "titel": "Cat7 met RJ45 — verspilling van bandbreedte",
+      "ernst": "info",
+      "beschrijving": "Cat7 is gespecificeerd voor 600 MHz / GG45. In combinatie met RJ45 functioneert het feitelijk als Cat6a (10 GbE). Geen probleem, maar Cat6a was goedkoper geweest."
+    }
+  ],
+  "verbeterplan": {
+    "fase_1": {
+      "titel": "Netwerk fundament",
+      "horizon": "0 – 3 maanden",
+      "kleur": "#00d4aa",
+      "doel": "Veilig, gesegmenteerd, monitorbaar netwerk dat 24/7 werkt.",
+      "acties": [
+        {
+          "titel": "Hoofdswitch vervangen door 24p PoE++ managed (bijv. UniFi USW-Pro-24-PoE)",
+          "prio": "hoog",
+          "kosten_eur": "€650 – €850",
+          "complexiteit": "midden",
+          "diy": true
+        },
+        {
+          "titel": "VLAN-design: VLAN10 LAN, VLAN20 IoT, VLAN30 Gast, VLAN40 Camera's",
+          "prio": "hoog",
+          "kosten_eur": "€0 (configuratie)",
+          "complexiteit": "hoog",
+          "diy": false
+        },
+        {
+          "titel": "UPS (CyberPower 1500VA) onder hoofdswitch + modem + HA-host",
+          "prio": "hoog",
+          "kosten_eur": "€180 – €240",
+          "complexiteit": "laag",
+          "diy": true
+        },
+        {
+          "titel": "Cat7 buitenkabels via Surge Protector (Ubiquiti ETH-SP) aansluiten",
+          "prio": "midden",
+          "kosten_eur": "3× €25 = €75",
+          "complexiteit": "laag",
+          "diy": true
+        },
+        {
+          "titel": "Patchpaneel + labeling in meterkast aanbrengen",
+          "prio": "midden",
+          "kosten_eur": "€90 – €140",
+          "complexiteit": "midden",
+          "diy": true
+        },
+        {
+          "titel": "WiFi-mesh upgraden naar 2× UniFi U6-Pro/Lite via PoE",
+          "prio": "midden",
+          "kosten_eur": "2× €170 = €340",
+          "complexiteit": "midden",
+          "diy": true
+        }
+      ]
+    },
+    "fase_2": {
+      "titel": "Smart Home uitbreiding",
+      "horizon": "3 – 9 maanden",
+      "kleur": "#9b59b6",
+      "doel": "Compleet, toekomstvast smart home gebaseerd op Matter + Zigbee, volledig lokaal.",
+      "acties": [
+        {
+          "titel": "Home Assistant migreren naar HA Yellow of NUC + SSD (van Pi/SD)",
+          "prio": "hoog",
+          "kosten_eur": "€350 – €550",
+          "complexiteit": "midden",
+          "diy": true
+        },
+        {
+          "titel": "Matter-controller activeren in HA, eerste Matter-apparaten testen",
+          "prio": "midden",
+          "kosten_eur": "€0",
+          "complexiteit": "midden",
+          "diy": true
+        },
+        {
+          "titel": "Aanwezigheidsdetectie via mmWave (Aqara FP2) in huiskamer + hal",
+          "prio": "midden",
+          "kosten_eur": "2× €75 = €150",
+          "complexiteit": "laag",
+          "diy": true
+        },
+        {
+          "titel": "Slimme rookmelders (Ei Electronics Ei3028) integreren via Z-Wave/Matter",
+          "prio": "hoog",
+          "kosten_eur": "4× €70 = €280",
+          "complexiteit": "laag",
+          "diy": true
+        },
+        {
+          "titel": "Smart-deurslot voordeur (Nuki 4 Pro of Yale Linus) + Matter-bridge",
+          "prio": "midden",
+          "kosten_eur": "€250 – €320",
+          "complexiteit": "midden",
+          "diy": true
+        },
+        {
+          "titel": "Zonnepanelen-integratie & dynamische tarieven (P1 + ANWB Energie API)",
+          "prio": "midden",
+          "kosten_eur": "€0 – €60",
+          "complexiteit": "hoog",
+          "diy": false
+        }
+      ]
+    },
+    "fase_3": {
+      "titel": "Automatisering & optimalisatie",
+      "horizon": "9 – 18 maanden",
+      "kleur": "#3498db",
+      "doel": "Zelflerend huis: scènes op basis van aanwezigheid, weer, energieprijs en routines.",
+      "acties": [
+        {
+          "titel": "Synology NAS in kastenkamer met automatische HA-snapshots (off-site naar OneDrive)",
+          "prio": "hoog",
+          "kosten_eur": "€500 – €750",
+          "complexiteit": "midden",
+          "diy": true
+        },
+        {
+          "titel": "NVR voor camera's (Frigate op aparte mini-PC met Coral TPU)",
+          "prio": "midden",
+          "kosten_eur": "€350 – €450",
+          "complexiteit": "hoog",
+          "diy": false
+        },
+        {
+          "titel": "Energie-dashboard: realtime verbruik per kring + advies via HA",
+          "prio": "midden",
+          "kosten_eur": "€80 – €150",
+          "complexiteit": "midden",
+          "diy": true
+        },
+        {
+          "titel": "Stem-bediening lokaal (Whisper + Piper, geen cloud)",
+          "prio": "laag",
+          "kosten_eur": "€0",
+          "complexiteit": "hoog",
+          "diy": false
+        },
+        {
+          "titel": "Aanwezigheids-routines: verlichting + verwarming + alarmstand per scenario",
+          "prio": "midden",
+          "kosten_eur": "€0",
+          "complexiteit": "midden",
+          "diy": true
+        },
+        {
+          "titel": "Monitoring: Uptime Kuma + InfluxDB + Grafana met alerts via Pushover",
+          "prio": "laag",
+          "kosten_eur": "€0 – €60",
+          "complexiteit": "midden",
+          "diy": true
+        }
+      ]
+    }
+  }
+}

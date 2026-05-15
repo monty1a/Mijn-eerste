@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<title>Netwerk Topologie — M. Montanus, Rijnsburg</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
+  :root{
+    --bg:#0f1117; --panel:#161a23; --line:#252b3a; --text:#e8e8e8;
+    --muted:#8b94a8; --accent:#00d4aa; --rood:#e74c3c; --blauw:#3498db;
+    --paars:#9b59b6; --geel:#f1c40f;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',system-ui,sans-serif}
+  header{padding:28px 36px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:end;flex-wrap:wrap;gap:16px}
+  header h1{font-size:22px;margin:0 0 4px;font-weight:600;letter-spacing:-.01em}
+  header .sub{color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:13px}
+  header .meta{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);text-align:right}
+  main{padding:24px 36px 80px}
+  .legend{display:flex;gap:24px;flex-wrap:wrap;font-size:13px;font-family:'IBM Plex Mono',monospace;color:var(--muted);margin-bottom:14px}
+  .legend span{display:inline-flex;align-items:center;gap:8px}
+  .legend i{display:inline-block;width:28px;height:3px;border-radius:2px}
+  .canvas{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:8px;overflow:auto}
+  svg{display:block;width:100%;height:auto;min-width:1100px}
+  .node rect{fill:#1d2230;stroke:var(--line);stroke-width:1.5;rx:10;cursor:pointer;transition:stroke .12s,filter .12s}
+  .node:hover rect{stroke:var(--accent);filter:drop-shadow(0 0 8px rgba(0,212,170,.35))}
+  .node.modem rect{fill:#1a2940;stroke:#3498db}
+  .node.bottleneck rect{stroke:#e74c3c}
+  .node text.title{font-family:'IBM Plex Sans';font-weight:600;font-size:13px;fill:var(--text)}
+  .node text.sub{font-family:'IBM Plex Mono';font-size:11px;fill:var(--muted)}
+  .node text.ports{font-family:'IBM Plex Mono';font-size:11px;fill:var(--accent)}
+  .node.bottleneck text.ports{fill:var(--rood)}
+  .edge{fill:none;stroke-width:2.4}
+  .edge.buiten{stroke:var(--rood)}
+  .edge.binnen{stroke:var(--blauw)}
+  .edge-lbl{font-family:'IBM Plex Mono';font-size:11px;fill:var(--muted)}
+  .edge-lbl tspan.k{fill:var(--accent)}
+  .popup{position:fixed;background:var(--panel);border:1px solid var(--accent);border-radius:10px;padding:14px 16px;font-size:13px;max-width:340px;box-shadow:0 12px 32px rgba(0,0,0,.45);display:none;z-index:30}
+  .popup h3{margin:0 0 6px;color:var(--accent);font-size:14px}
+  .popup dl{margin:6px 0 0;display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-family:'IBM Plex Mono',monospace;font-size:12px}
+  .popup dt{color:var(--muted)}
+  .popup .close{position:absolute;top:8px;right:10px;cursor:pointer;color:var(--muted);font-size:18px;background:none;border:0}
+  .popup .warn{margin-top:10px;padding:6px 10px;background:rgba(231,76,60,.12);border:1px solid var(--rood);border-radius:6px;color:#ffc4bd;font-size:12px}
+  footer{padding:18px 36px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);border-top:1px solid var(--line)}
+  @media print{
+    @page{size:A3 landscape;margin:12mm}
+    body{background:#fff;color:#111}
+    header,footer{border-color:#ddd}
+    .canvas{background:#fff;border-color:#ddd}
+    .node rect{fill:#fff;stroke:#333}
+    .node text.title,.node text.sub,.node text.ports,.edge-lbl{fill:#111}
+    .legend{color:#333}
+    .popup{display:none!important}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>Netwerk topologie</h1>
+    <div class="sub">M. Montanus · Rijnsburg · Ziggo-scenario</div>
+  </div>
+  <div class="meta">
+    Rapport · 15-05-2026<br>
+    Smart Home &amp; Netwerk Consultant<br>
+    Bron: KAbels_netwerk.xlsx
+  </div>
+</header>
+
+<main>
+  <div class="legend">
+    <span><i style="background:var(--rood)"></i> Buitenkabel Cat7 S/FTP</span>
+    <span><i style="background:var(--blauw)"></i> Binnenkabel Cat7 S/FTP</span>
+    <span><i style="background:var(--accent)"></i> Vrije poort</span>
+    <span><i style="background:var(--rood)"></i> Knelpunt: poort tekort</span>
+    <span style="font-size:11px;color:var(--muted)">Klik op een switch voor details</span>
+  </div>
+
+  <div class="canvas">
+    <svg viewBox="0 0 1400 720" xmlns="http://www.w3.org/2000/svg" id="topology">
+      <!-- Edges first so nodes draw on top -->
+      <g id="edges"></g>
+      <g id="nodes"></g>
+    </svg>
+  </div>
+
+  <div id="popup" class="popup">
+    <button class="close" onclick="document.getElementById('popup').style.display='none'">×</button>
+    <h3 id="pop-title"></h3>
+    <div id="pop-sub" style="color:var(--muted);font-size:12px"></div>
+    <dl id="pop-dl"></dl>
+    <div id="pop-warn" class="warn" style="display:none"></div>
+  </div>
+</main>
+
+<footer>
+  Internet: Ziggo (kabel) · Glasvezel-scenario beschikbaar in v2 Excel · Topologie: ster met cascade via huiskamer en kastenkamer · Alle kabels Cat7 S/FTP
+</footer>
+
+<script>
+const DATA = {
+  switches: [
+    { id:"modem", naam:"Binnenkomst — Modem / Hoofdrouter", locatie:"Meterkast / Entree", x:700, y:90, w:260, h:78, type:"modem",
+      poorten_totaal:24, poorten_gebruikt:6, model:"Ziggo Connectbox + hoofdswitch 24p" },
+    { id:"sw-electra-kast", naam:"Switch Elektrakast", locatie:"Meterkast — elektrakast", x:160, y:300, w:230, h:78,
+      poorten_totaal:9, poorten_gebruikt:3, model:"Onbeheerd 8p + uplink",
+      bewoners:["Home Assistant server","Zigbee coördinator","P1-meter"] },
+    { id:"sw-huiskamer", naam:"Switch Huiskamer", locatie:"Huiskamer (TV-meubel)", x:585, y:300, w:230, h:78,
+      poorten_totaal:4, poorten_gebruikt:6, model:"Onbeheerd 4p · 1× buitenkabel 20m", bottleneck:true,
+      bewoners:["TV","Sonos Arc","Apple TV","Hue Bridge","uplink Marcel","uplink Nick"] },
+    { id:"sw-kastenkamer", naam:"Switch Kastenkamer", locatie:"Kastenkamer / berging", x:1010, y:300, w:230, h:78,
+      poorten_totaal:4, poorten_gebruikt:3, model:"Onbeheerd 4p · 1× buitenkabel 30m",
+      bewoners:["NAS (gepland)","uplink Melissa"] },
+    { id:"sw-marcel", naam:"Switch Marcel", locatie:"Werkkamer Marcel", x:380, y:540, w:200, h:78,
+      poorten_totaal:4, poorten_gebruikt:3, model:"Onbeheerd 4p",
+      bewoners:["PC + monitor + printer"] },
+    { id:"sw-nick", naam:"Switch Nick", locatie:"Slaapkamer Nick", x:670, y:540, w:200, h:78,
+      poorten_totaal:6, poorten_gebruikt:2, model:"Onbeheerd 5p + uplink · 2× Cat7 5m",
+      bewoners:["PC + console"] },
+    { id:"sw-melissa", naam:"Switch Melissa", locatie:"Slaapkamer Melissa", x:1015, y:540, w:200, h:78,
+      poorten_totaal:3, poorten_gebruikt:2, model:"Onbeheerd 3p",
+      bewoners:["Laptop / iPad dock"] }
+  ],
+  edges: [
+    { van:"modem", naar:"sw-electra-kast", kabel:5,  m:10, buiten:true  },
+    { van:"modem", naar:"sw-huiskamer",    kabel:1,  m:20, buiten:true  },
+    { van:"modem", naar:"sw-kastenkamer",  kabel:14, m:30, buiten:true  },
+    { van:"sw-huiskamer",   naar:"sw-marcel",  kabel:4,  m:10,  buiten:false },
+    { van:"sw-huiskamer",   naar:"sw-nick",    kabel:6,  m:7.5, buiten:false },
+    { van:"sw-kastenkamer", naar:"sw-melissa", kabel:13, m:7.5, buiten:false }
+  ]
+};
+
+function nodeCenter(n){ return { x:n.x + n.w/2, y:n.y + n.h/2 }; }
+function nodeBottom(n){ return { x:n.x + n.w/2, y:n.y + n.h }; }
+function nodeTop(n){ return { x:n.x + n.w/2, y:n.y }; }
+
+const edgesEl = document.getElementById('edges');
+const nodesEl = document.getElementById('nodes');
+const byId = Object.fromEntries(DATA.switches.map(s=>[s.id,s]));
+
+DATA.edges.forEach((e,i)=>{
+  const a = byId[e.van], b = byId[e.naar];
+  const p1 = nodeBottom(a), p2 = nodeTop(b);
+  const mx = (p1.x+p2.x)/2, my = (p1.y+p2.y)/2;
+  const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+  path.setAttribute('class','edge '+(e.buiten?'buiten':'binnen'));
+  // Curved Bezier from p1 down/right to p2
+  const cy1 = p1.y + 40, cy2 = p2.y - 40;
+  path.setAttribute('d',`M${p1.x},${p1.y} C${p1.x},${cy1} ${p2.x},${cy2} ${p2.x},${p2.y}`);
+  edgesEl.appendChild(path);
+
+  const lbl = document.createElementNS('http://www.w3.org/2000/svg','text');
+  lbl.setAttribute('class','edge-lbl');
+  lbl.setAttribute('text-anchor','middle');
+  lbl.setAttribute('x',mx);
+  lbl.setAttribute('y',my-4);
+  lbl.innerHTML = `<tspan class="k">#${e.kabel}</tspan>  ${e.m} m`;
+  edgesEl.appendChild(lbl);
+});
+
+DATA.switches.forEach(s=>{
+  const g = document.createElementNS('http://www.w3.org/2000/svg','g');
+  let cls = 'node' + (s.type==='modem'?' modem':'') + (s.bottleneck?' bottleneck':'');
+  g.setAttribute('class', cls);
+  g.setAttribute('data-id', s.id);
+  g.innerHTML = `
+    <rect x="${s.x}" y="${s.y}" width="${s.w}" height="${s.h}"></rect>
+    <text class="title" x="${s.x+14}" y="${s.y+22}">${s.naam}</text>
+    <text class="sub"   x="${s.x+14}" y="${s.y+42}">${s.locatie}</text>
+    <text class="ports" x="${s.x+14}" y="${s.y+62}">${s.poorten_gebruikt}/${s.poorten_totaal} poorten ${s.bottleneck?' ⚠ overbezet':''}</text>
+  `;
+  g.addEventListener('click', ev=>showPopup(s, ev));
+  nodesEl.appendChild(g);
+});
+
+function showPopup(s, ev){
+  const pop = document.getElementById('popup');
+  document.getElementById('pop-title').textContent = s.naam;
+  document.getElementById('pop-sub').textContent = s.locatie + ' · ' + (s.model || '');
+  const dl = document.getElementById('pop-dl');
+  dl.innerHTML = `
+    <dt>Poorten totaal</dt><dd>${s.poorten_totaal}</dd>
+    <dt>Gebruikt</dt><dd>${s.poorten_gebruikt}</dd>
+    <dt>Vrij</dt><dd>${Math.max(s.poorten_totaal - s.poorten_gebruikt, 0)}</dd>
+    ${s.bewoners ? `<dt>Op deze switch</dt><dd>${s.bewoners.join('<br>')}</dd>` : ''}
+  `;
+  const warn = document.getElementById('pop-warn');
+  if (s.bottleneck){
+    warn.style.display='block';
+    warn.textContent = `Overbezet: ${s.poorten_gebruikt} apparaten op ${s.poorten_totaal} poorten. Vervang door 8p PoE switch (zie verbeterplan fase 1).`;
+  } else {
+    warn.style.display='none';
+  }
+  pop.style.display='block';
+  pop.style.left = Math.min(ev.clientX + 14, window.innerWidth - 360) + 'px';
+  pop.style.top  = Math.min(ev.clientY + 14, window.innerHeight - 260) + 'px';
+}
+document.addEventListener('click', e=>{
+  if (!e.target.closest('.node') && !e.target.closest('.popup')) {
+    document.getElementById('popup').style.display='none';
+  }
+});
+</script>
+</body>
+</html>

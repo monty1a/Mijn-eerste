@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<title>Verbeterplan — M. Montanus, Rijnsburg</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
+  :root{
+    --bg:#0f1117; --panel:#161a23; --line:#252b3a; --text:#e8e8e8;
+    --muted:#8b94a8; --accent:#00d4aa; --paars:#9b59b6; --blauw:#3498db; --rood:#e74c3c;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',system-ui,sans-serif}
+  header{padding:26px 36px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px}
+  header h1{margin:0 0 4px;font-size:22px;font-weight:600}
+  header .sub{color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:13px}
+  header .meta{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);text-align:right}
+  main{padding:28px 36px 80px;max-width:1100px;margin:0 auto}
+  .intro{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin-bottom:24px;font-size:14px;line-height:1.6}
+  .intro b{color:var(--accent)}
+  .summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:18px 0}
+  .summary div{background:#1d2230;border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+  .summary .v{font-family:'IBM Plex Mono',monospace;color:var(--accent);font-size:22px;font-weight:600}
+  .summary .l{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-top:2px}
+  .tabs{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap}
+  .tab{background:var(--panel);border:1px solid var(--line);color:var(--muted);padding:10px 18px;border-radius:10px;cursor:pointer;font-size:13px;font-weight:500;font-family:inherit;transition:all .12s}
+  .tab:hover{color:var(--text)}
+  .tab.active{background:var(--accent);border-color:var(--accent);color:#0f1117}
+  .timeline{position:relative;padding-left:32px}
+  .timeline::before{content:'';position:absolute;left:11px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--accent),var(--paars),var(--blauw))}
+  .phase{display:none;position:relative;margin-bottom:14px}
+  .phase.active{display:block}
+  .phase .dot{position:absolute;left:-28px;top:8px;width:24px;height:24px;border-radius:50%;background:var(--accent);border:4px solid var(--bg);box-shadow:0 0 0 2px var(--accent)}
+  .phase.f2 .dot{background:var(--paars);box-shadow:0 0 0 2px var(--paars)}
+  .phase.f3 .dot{background:var(--blauw);box-shadow:0 0 0 2px var(--blauw)}
+  .phase h2{margin:0 0 4px;font-size:18px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .phase h2 .horizon{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);background:#1d2230;padding:3px 10px;border-radius:6px;border:1px solid var(--line)}
+  .phase .doel{color:var(--muted);font-size:14px;margin-bottom:18px;font-style:italic}
+  .acties{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px}
+  .actie{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;gap:8px;transition:border-color .12s}
+  .actie:hover{border-color:var(--accent)}
+  .actie .top{display:flex;justify-content:space-between;align-items:start;gap:10px}
+  .actie label{display:flex;gap:10px;cursor:pointer;font-weight:500;font-size:14px;line-height:1.45;flex:1}
+  .actie input[type=checkbox]{margin-top:3px;width:16px;height:16px;cursor:pointer;accent-color:var(--accent)}
+  .actie label.done{text-decoration:line-through;color:var(--muted)}
+  .badges{display:flex;flex-wrap:wrap;gap:6px;font-family:'IBM Plex Mono',monospace;font-size:11px}
+  .badges span{padding:2px 8px;border-radius:6px;border:1px solid var(--line);background:#1d2230;color:var(--muted)}
+  .badges .prio-hoog{border-color:var(--rood);color:#ffbcb4}
+  .badges .prio-midden{border-color:var(--accent);color:var(--accent)}
+  .badges .prio-laag{border-color:var(--blauw);color:#a8d3ff}
+  .badges .kosten{color:#ffd86b;border-color:#553f00}
+  .badges .diy{color:#8aff9c;border-color:#244a2e}
+  .badges .spec{color:#f0a8ff;border-color:#502b62}
+  .totaal-fase{margin-top:18px;font-size:13px;font-family:'IBM Plex Mono',monospace;color:var(--muted);text-align:right}
+  .totaal-fase b{color:var(--accent)}
+  footer{padding:20px 36px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);border-top:1px solid var(--line);text-align:center}
+  .print-btn{position:fixed;bottom:24px;right:24px;background:var(--accent);color:#0f1117;border:0;padding:12px 18px;border-radius:30px;cursor:pointer;font-weight:600;box-shadow:0 8px 24px rgba(0,212,170,.25)}
+  @media print{
+    @page{size:A4;margin:14mm}
+    body{background:#fff;color:#111}
+    header,footer{border-color:#ddd}
+    .intro,.actie,.summary div,.tab,.totaal-fase{background:#fff;border-color:#ccc;color:#111}
+    .timeline::before{background:#888}
+    .phase{display:block!important;page-break-inside:avoid;margin-bottom:24px}
+    .tabs,.print-btn{display:none}
+    .phase.f1 .dot{background:#00b894}
+    .phase.f2 .dot{background:#9b59b6}
+    .phase.f3 .dot{background:#3498db}
+    .badges span{color:#333}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>Smart Home Verbeterplan — 3 fasen</h1>
+    <div class="sub">M. Montanus · Rijnsburg · van fundament naar zelflerend huis</div>
+  </div>
+  <div class="meta">Rapport · 15-05-2026<br>Smart Home &amp; Netwerk Consultant</div>
+</header>
+
+<main>
+  <div class="intro">
+    Het huidige netwerk is robuust qua kabelinfrastructuur — <b>21 Cat7 S/FTP kabels</b> en zes distributieswitches — maar werkt vandaag nog
+    onbeheerd, ongesegmenteerd en zonder UPS. Home Assistant draait stabiel op <b>192.168.178.21</b>, maar zonder back-up. Dit plan brengt
+    het huis in drie etappes naar een veilig, toekomstvast en bijna volledig lokaal smart home.
+    <div class="summary">
+      <div><div class="v">~€2.0k</div><div class="l">Fase 1 indicatief</div></div>
+      <div><div class="v">~€1.3k</div><div class="l">Fase 2 indicatief</div></div>
+      <div><div class="v">~€1.4k</div><div class="l">Fase 3 indicatief</div></div>
+      <div><div class="v">18&nbsp;mnd</div><div class="l">Doorlooptijd totaal</div></div>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" data-tab="f1">Fase 1 · Netwerk fundament</button>
+    <button class="tab" data-tab="f2">Fase 2 · Smart Home uitbreiding</button>
+    <button class="tab" data-tab="f3">Fase 3 · Automatisering &amp; optimalisatie</button>
+    <button class="tab" data-tab="all">Alles tegelijk</button>
+  </div>
+
+  <div class="timeline" id="timeline"></div>
+</main>
+
+<button class="print-btn" onclick="window.print()">⬇ Print / PDF</button>
+
+<footer>Voortgang wordt lokaal opgeslagen in je browser (localStorage) · alle prijzen incl. btw, exclusief installatie tenzij anders vermeld</footer>
+
+<script>
+const PLAN = {
+  f1: { titel:"Fase 1 — Netwerk fundament", horizon:"0 – 3 maanden",
+        doel:"Veilig, gesegmenteerd, monitorbaar netwerk dat 24/7 werkt.",
+        acties:[
+          {t:"Hoofdswitch vervangen door 24p PoE++ managed (UniFi USW-Pro-Max-24-PoE)", prio:"hoog", k:"€650 – €850", c:"midden", diy:true},
+          {t:"Switch Huiskamer 4p → 8p PoE (overbezet: 6 apparaten op 4 poorten)", prio:"hoog", k:"€140 – €190", c:"laag", diy:true},
+          {t:"VLAN-design implementeren: V10 LAN · V20 IoT · V30 Gast · V40 Camera's", prio:"hoog", k:"configuratie", c:"hoog", diy:false},
+          {t:"UPS (CyberPower CP1500) onder hoofdswitch, modem en HA-host", prio:"hoog", k:"€180 – €240", c:"laag", diy:true},
+          {t:"3× Cat7 buitenkabels aansluiten via Surge Protector (Ubiquiti ETH-SP)", prio:"midden", k:"€75", c:"laag", diy:true},
+          {t:"Patchpaneel 24p + labeling alle kabels conform Excel-nummering", prio:"midden", k:"€90 – €140", c:"midden", diy:true},
+          {t:"WiFi-mesh upgraden: 2× UniFi U6-Pro via PoE op managed switch", prio:"midden", k:"€340", c:"midden", diy:true},
+          {t:"Monitoring activeren: UniFi Network Application + uptime alerts", prio:"laag", k:"€0", c:"midden", diy:true},
+        ]},
+  f2: { titel:"Fase 2 — Smart Home uitbreiding", horizon:"3 – 9 maanden",
+        doel:"Compleet, toekomstvast smart home op basis van Matter + Zigbee, volledig lokaal.",
+        acties:[
+          {t:"Home Assistant migreren naar HA Yellow of NUC + SSD (van SD-kaart af)", prio:"hoog", k:"€350 – €550", c:"midden", diy:true},
+          {t:"Slimme rookmelders (4× Ei Electronics Ei3028) via Zigbee/Matter", prio:"hoog", k:"€280", c:"laag", diy:true},
+          {t:"Matter-controller activeren in HA, eerste Matter-apparaten testen", prio:"midden", k:"€0", c:"midden", diy:true},
+          {t:"Aanwezigheidsdetectie via mmWave Aqara FP2 (huiskamer + hal)", prio:"midden", k:"€150", c:"laag", diy:true},
+          {t:"Smart deurslot voordeur (Nuki 4 Pro of Yale Linus L2) met Matter", prio:"midden", k:"€250 – €320", c:"midden", diy:true},
+          {t:"P1-integratie + dynamische tarieven (ANWB Energie / Frank Energie API)", prio:"midden", k:"€0 – €60", c:"hoog", diy:false},
+        ]},
+  f3: { titel:"Fase 3 — Automatisering & optimalisatie", horizon:"9 – 18 maanden",
+        doel:"Zelflerend huis: scènes op basis van aanwezigheid, weer, energieprijs en routines.",
+        acties:[
+          {t:"NAS Synology in kastenkamer + auto HA-snapshots naar OneDrive off-site", prio:"hoog", k:"€500 – €750", c:"midden", diy:true},
+          {t:"NVR voor camera's: Frigate op mini-PC + Coral TPU (lokale AI-detectie)", prio:"midden", k:"€350 – €450", c:"hoog", diy:false},
+          {t:"Energie-dashboard: realtime verbruik per kring + dynamisch advies", prio:"midden", k:"€80 – €150", c:"midden", diy:true},
+          {t:"Lokale stem-bediening: Whisper + Piper add-on (geen cloud)", prio:"laag", k:"€0", c:"hoog", diy:false},
+          {t:"Aanwezigheids-routines: licht + verwarming + alarm per scenario", prio:"midden", k:"€0", c:"midden", diy:true},
+          {t:"Monitoring stack: Uptime Kuma + InfluxDB + Grafana + Pushover alerts", prio:"laag", k:"€0 – €60", c:"midden", diy:true},
+        ]},
+};
+
+const tl = document.getElementById('timeline');
+const phases = ['f1','f2','f3'];
+
+function renderPhase(id){
+  const p = PLAN[id];
+  const html = `
+    <div class="phase ${id} active" data-id="${id}">
+      <span class="dot"></span>
+      <h2>${p.titel} <span class="horizon">${p.horizon}</span></h2>
+      <div class="doel">${p.doel}</div>
+      <div class="acties">
+        ${p.acties.map((a,i)=>{
+          const key = `${id}-${i}`;
+          const done = localStorage.getItem('vbp-'+key)==='1';
+          return `
+            <div class="actie">
+              <label class="${done?'done':''}">
+                <input type="checkbox" data-key="${key}" ${done?'checked':''}>
+                <span>${a.t}</span>
+              </label>
+              <div class="badges">
+                <span class="prio-${a.prio}">prio ${a.prio}</span>
+                <span class="kosten">${a.k}</span>
+                <span>complexiteit ${a.c}</span>
+                <span class="${a.diy?'diy':'spec'}">${a.diy?'DIY':'specialist'}</span>
+              </div>
+            </div>`;
+        }).join('')}
+      </div>
+    </div>`;
+  return html;
+}
+
+function setView(view){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active', t.dataset.tab===view));
+  tl.innerHTML = (view==='all' ? phases : [view]).map(renderPhase).join('');
+  tl.querySelectorAll('input[type=checkbox]').forEach(cb=>{
+    cb.addEventListener('change',()=>{
+      localStorage.setItem('vbp-'+cb.dataset.key, cb.checked?'1':'0');
+      cb.closest('label').classList.toggle('done', cb.checked);
+    });
+  });
+}
+
+document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>setView(t.dataset.tab)));
+setView('f1');
+</script>
+</body>
+</html>

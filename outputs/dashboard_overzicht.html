@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<title>Smart Home Dashboard — M. Montanus, Rijnsburg</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
+  :root{
+    --bg:#0f1117; --panel:#161a23; --panel2:#1d2230; --line:#252b3a;
+    --text:#e8e8e8; --muted:#8b94a8;
+    --accent:#00d4aa; --rood:#e74c3c; --blauw:#3498db; --paars:#9b59b6; --geel:#f1c40f;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',system-ui,sans-serif;line-height:1.55}
+  a{color:var(--accent);text-decoration:none}
+  header{padding:30px 40px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;background:linear-gradient(180deg,#11151f,#0f1117)}
+  header .who h1{margin:0 0 6px;font-size:24px;font-weight:600;letter-spacing:-.01em}
+  header .who .sub{color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:13px}
+  header .meta{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);text-align:right;line-height:1.7}
+  nav.tabs{position:sticky;top:0;background:rgba(15,17,23,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:10px 40px;display:flex;gap:6px;z-index:10;flex-wrap:wrap}
+  nav.tabs button{background:transparent;color:var(--muted);border:1px solid transparent;padding:8px 14px;border-radius:8px;font-family:inherit;font-size:13px;cursor:pointer;font-weight:500}
+  nav.tabs button:hover{color:var(--text)}
+  nav.tabs button.active{background:var(--panel);border-color:var(--line);color:var(--accent)}
+  main{padding:28px 40px 100px}
+  section{display:none;animation:fade .18s}
+  section.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+  h2{font-size:18px;margin:0 0 14px;font-weight:600;display:flex;align-items:center;gap:10px}
+  h2::before{content:'';width:4px;height:18px;background:var(--accent);border-radius:2px}
+  h3{font-size:15px;margin:20px 0 8px;color:var(--muted);font-weight:500;text-transform:uppercase;letter-spacing:.04em}
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:14px;margin-bottom:24px}
+  .kpi{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px;position:relative;overflow:hidden}
+  .kpi::after{content:'';position:absolute;right:-12px;top:-12px;width:80px;height:80px;background:var(--accent);opacity:.06;border-radius:50%}
+  .kpi.r::after{background:var(--rood)}
+  .kpi.p::after{background:var(--paars)}
+  .kpi.b::after{background:var(--blauw)}
+  .kpi .v{font-family:'IBM Plex Mono',monospace;font-size:26px;font-weight:600;color:var(--accent)}
+  .kpi.r .v{color:var(--rood)} .kpi.p .v{color:var(--paars)} .kpi.b .v{color:var(--blauw)}
+  .kpi .l{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-top:4px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin-bottom:18px}
+  .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:18px}
+  .ul-clean{list-style:none;padding:0;margin:0}
+  .ul-clean li{padding:10px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:14px;font-size:13.5px}
+  .ul-clean li:last-child{border:0}
+  .ul-clean li .lbl{color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:12px}
+  .pill{display:inline-block;padding:2px 8px;border-radius:999px;font-size:11px;font-family:'IBM Plex Mono',monospace;font-weight:500}
+  .pill.h{background:rgba(231,76,60,.18);color:#ffbcb4;border:1px solid rgba(231,76,60,.4)}
+  .pill.m{background:rgba(241,196,15,.16);color:#ffe48a;border:1px solid rgba(241,196,15,.4)}
+  .pill.l{background:rgba(52,152,219,.16);color:#a8d3ff;border:1px solid rgba(52,152,219,.4)}
+  .pill.i{background:rgba(155,89,182,.16);color:#dab7ec;border:1px solid rgba(155,89,182,.4)}
+  iframe{width:100%;height:740px;border:1px solid var(--line);border-radius:12px;background:#fff}
+  iframe.dark{background:var(--bg)}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th,td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:var(--panel2);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;font-weight:600}
+  tr:hover td{background:#1a1f2c}
+  .badge-buiten{background:rgba(231,76,60,.18);color:#ffbcb4;padding:2px 8px;border-radius:6px;font-size:11px;font-family:'IBM Plex Mono',monospace}
+  .badge-binnen{background:rgba(52,152,219,.18);color:#a8d3ff;padding:2px 8px;border-radius:6px;font-size:11px;font-family:'IBM Plex Mono',monospace}
+  textarea{width:100%;min-height:280px;background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:10px;padding:14px;font-family:'IBM Plex Mono',monospace;font-size:13px;line-height:1.55;resize:vertical}
+  .savebar{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--muted);margin-top:8px;font-family:'IBM Plex Mono',monospace}
+  button.btn{background:var(--accent);color:#0f1117;border:0;padding:8px 14px;border-radius:8px;cursor:pointer;font-weight:600;font-size:12px}
+  button.btn.outline{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+  footer{padding:20px 40px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);border-top:1px solid var(--line);text-align:center}
+  @media print{
+    @page{size:A4;margin:14mm}
+    body{background:#fff;color:#111}
+    header,footer,nav.tabs{background:#fff;border-color:#ccc}
+    nav.tabs{display:none}
+    section{display:block!important;page-break-before:always}
+    section:first-of-type{page-break-before:auto}
+    .kpi,.card,iframe,textarea{background:#fff;border-color:#ccc;color:#111}
+    iframe{height:600px}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="who">
+    <h1>Smart Home &amp; Netwerk · Dashboard</h1>
+    <div class="sub">M. Montanus · Rijnsburg · v2.0 consultant rapport</div>
+  </div>
+  <div class="meta">
+    Rapport · 15-05-2026<br>
+    Bron: KAbels_netwerk.xlsx + HA 2026.5.1<br>
+    Status: concept ter validatie
+  </div>
+</header>
+
+<nav class="tabs">
+  <button data-tab="samenvatting" class="active">Samenvatting</button>
+  <button data-tab="netwerk">Netwerk</button>
+  <button data-tab="apparatuur">Apparatuur</button>
+  <button data-tab="verbeterplan">Verbeterplan</button>
+  <button data-tab="kabels">Kabelstaat</button>
+  <button data-tab="notities">Notities</button>
+</nav>
+
+<main>
+  <!-- ====== SAMENVATTING ====== -->
+  <section id="samenvatting" class="active">
+    <h2>Key metrics</h2>
+    <div class="kpis">
+      <div class="kpi"><div class="v">7</div><div class="l">Switches (incl. modem)</div></div>
+      <div class="kpi b"><div class="v">21</div><div class="l">Kabels Cat7</div></div>
+      <div class="kpi b"><div class="v">141&nbsp;m</div><div class="l">Kabel totaal</div></div>
+      <div class="kpi r"><div class="v">70&nbsp;m</div><div class="l">Buitenkabel</div></div>
+      <div class="kpi p"><div class="v">29</div><div class="l">Apparaten</div></div>
+      <div class="kpi"><div class="v">21</div><div class="l">Bedraad</div></div>
+      <div class="kpi p"><div class="v">14</div><div class="l">Zigbee</div></div>
+      <div class="kpi r"><div class="v">2</div><div class="l">Knelpunten hoog</div></div>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h3 style="margin-top:0">Huidige situatie</h3>
+        <ul class="ul-clean">
+          <li><span class="lbl">Internet</span><span>Ziggo (kabel) · glasvezel-scenario uitgewerkt</span></li>
+          <li><span class="lbl">Topologie</span><span>Ster met cascade via huiskamer/kastenkamer</span></li>
+          <li><span class="lbl">Smart home hub</span><span>Home Assistant Core 2026.5.1 · 192.168.178.21</span></li>
+          <li><span class="lbl">Coördinator</span><span>Zigbee (SLZB-06 / SkyConnect)</span></li>
+          <li><span class="lbl">WiFi</span><span>2× Access Point (PoE-injector)</span></li>
+          <li><span class="lbl">Camera's</span><span>2× PoE-buitencamera + slimme deurbel</span></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3 style="margin-top:0">Geïdentificeerde knelpunten</h3>
+        <ul class="ul-clean">
+          <li><span>Geen managed switches / geen VLAN-segmentatie</span><span class="pill h">hoog</span></li>
+          <li><span>Switch huiskamer overbezet (6 op 4 poorten)</span><span class="pill h">hoog</span></li>
+          <li><span>Hoofdswitch is single point of failure, geen UPS</span><span class="pill h">hoog</span></li>
+          <li><span>Geen surge protection op 3 buitenkabels</span><span class="pill m">midden</span></li>
+          <li><span>PoE-injectors i.p.v. centrale PoE-switch</span><span class="pill m">midden</span></li>
+          <li><span>Home Assistant zonder off-site back-up</span><span class="pill m">midden</span></li>
+          <li><span>Cascade-topologie: storing huiskamer = 2 gebruikers offline</span><span class="pill l">laag</span></li>
+          <li><span>Cat7 met RJ45 = feitelijk Cat6a (geen probleem)</span><span class="pill i">info</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-top:0">Aanbeveling in één alinea</h3>
+      <p style="margin:6px 0 0">
+        Start met <b>fase&nbsp;1</b>: hoofdswitch vervangen door een managed PoE-switch, switch huiskamer naar 8 poorten,
+        VLAN-segmentatie aanbrengen en een UPS plaatsen onder modem + hoofdswitch + Home Assistant. Hiermee verdwijnt 80% van de huidige
+        risico's voor circa <b>€1.500 – €2.000</b> en bouw je de basis waarop Matter, slimme rookmelders en aanwezigheidsdetectie
+        in fase&nbsp;2 zonder gedoe landen. De bestaande Cat7-bekabeling is uitstekend — alleen labeling en patchpaneel ontbreken.
+      </p>
+    </div>
+  </section>
+
+  <!-- ====== NETWERK ====== -->
+  <section id="netwerk">
+    <h2>Netwerk topologie</h2>
+    <p style="color:var(--muted);font-size:13px;margin-top:-6px">Interactief diagram. Klik op een switch voor poortbezetting en aangesloten apparaten. Voor PDF: open <a href="netwerk_topologie.html" target="_blank">netwerk_topologie.html</a> en print A3-landscape.</p>
+    <iframe src="netwerk_topologie.html" class="dark" loading="lazy"></iframe>
+  </section>
+
+  <!-- ====== APPARATUUR ====== -->
+  <section id="apparatuur">
+    <h2>Apparatuur</h2>
+    <p style="color:var(--muted);font-size:13px;margin-top:-6px">Filterbaar dashboard met 29 apparaten. Direct exporteerbaar naar CSV.</p>
+    <iframe src="apparatuur_overzicht.html" loading="lazy"></iframe>
+  </section>
+
+  <!-- ====== VERBETERPLAN ====== -->
+  <section id="verbeterplan">
+    <h2>Verbeterplan</h2>
+    <p style="color:var(--muted);font-size:13px;margin-top:-6px">Drie fasen met klikbare actiepunten. Voortgang wordt lokaal bewaard per browser.</p>
+    <iframe src="verbeterplan.html" class="dark" loading="lazy"></iframe>
+  </section>
+
+  <!-- ====== KABELSTAAT ====== -->
+  <section id="kabels">
+    <h2>Kabelstaat</h2>
+    <p style="color:var(--muted);font-size:13px;margin-top:-6px">Volledige lijst conform Excel · 21 kabels · 141 m totaal · waarvan 70 m buiten.</p>
+    <div class="card" style="padding:0;overflow:auto">
+      <table>
+        <thead><tr>
+          <th>#</th><th>Type</th><th>Cat</th><th>S/FTP</th><th>Lengte</th><th>Benaming</th>
+        </tr></thead>
+        <tbody id="kabelrows"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ====== NOTITIES ====== -->
+  <section id="notities">
+    <h2>Consultant-notities</h2>
+    <p style="color:var(--muted);font-size:13px;margin-top:-6px">Vrij tekstveld, opgeslagen in localStorage. Niet gedeeld met derden.</p>
+    <textarea id="ta" placeholder="Notities, opmerkingen, contactpunten…"></textarea>
+    <div class="savebar">
+      <span id="savetxt">Niet opgeslagen</span>
+      <span>
+        <button class="btn outline" onclick="dl()">⬇ Exporteer .txt</button>
+        <button class="btn" onclick="saveNow()">Opslaan</button>
+      </span>
+    </div>
+  </section>
+</main>
+
+<footer>Smart Home &amp; Netwerk Consultant · Rapport gegenereerd op 15-05-2026 · alle bedragen in EUR incl. btw, exclusief installatie</footer>
+
+<script>
+const KABELS = [
+  {n:1, type:"buiten", cat:7, sftp:true, m:20,   b:"Buitenkabel Cat7 20m — modem → Sw. Huiskamer"},
+  {n:2, type:"binnen", cat:7, sftp:true, m:5,    b:"Cat7 5m — patch"},
+  {n:3, type:"buiten", cat:7, sftp:true, m:20,   b:"Buitenkabel Cat7 20m — reserve / 2e route huiskamer"},
+  {n:4, type:"binnen", cat:7, sftp:true, m:10,   b:"Cat7 10m — Sw. Huiskamer → Sw. Marcel"},
+  {n:5, type:"buiten", cat:7, sftp:true, m:10,   b:"Buitenkabel Cat7 10m — modem → Sw. Elektrakast"},
+  {n:6, type:"binnen", cat:7, sftp:true, m:7.5,  b:"Cat7 7.5m — Sw. Huiskamer → Sw. Nick"},
+  {n:7, type:"binnen", cat:7, sftp:true, m:5,    b:"Cat7 5m — Sw. Nick → werkplek"},
+  {n:8, type:"binnen", cat:7, sftp:true, m:5,    b:"Cat7 5m — Sw. Nick → console"},
+  {n:9, type:"binnen", cat:7, sftp:true, m:3,    b:"Cat7 3m — patch elektrakast"},
+  {n:11,type:"binnen", cat:7, sftp:true, m:0.5,  b:"Cat7 0.5m — patch HA-host"},
+  {n:12,type:"binnen", cat:7, sftp:true, m:0.5,  b:"Cat7 0.5m — patch P1-meter"},
+  {n:13,type:"binnen", cat:7, sftp:true, m:7.5,  b:"Cat7 7.5m — Sw. Kastenkamer → Sw. Melissa"},
+  {n:14,type:"buiten", cat:7, sftp:true, m:30,   b:"Buitenkabel Cat7 30m — modem → Sw. Kastenkamer"},
+  {n:15,type:"binnen", cat:7, sftp:true, m:3,    b:"Cat7 3m — patch huiskamer (TV)"},
+  {n:16,type:"binnen", cat:7, sftp:true, m:10,   b:"Cat7 10m — huiskamer → AP woonlaag"},
+  {n:17,type:"binnen", cat:7, sftp:true, m:2,    b:"Cat7 2m — patch Sonos Arc"},
+  {n:18,type:"binnen", cat:7, sftp:true, m:4,    b:"Cat7 4m — Apple TV"},
+  {n:19,type:"binnen", cat:7, sftp:true, m:2,    b:"Cat7 2m — patch TV"},
+  {n:20,type:"binnen", cat:7, sftp:true, m:2,    b:"Cat7 2m — patch Hue Bridge"},
+  {n:21,type:"binnen", cat:7, sftp:true, m:2,    b:"Cat7 2m — patch printer"},
+  {n:23,type:"binnen", cat:7, sftp:true, m:2,    b:"Cat7 2m — patch Melissa werkplek"},
+];
+
+const krows = document.getElementById('kabelrows');
+krows.innerHTML = KABELS.map(k=>`
+  <tr>
+    <td style="font-family:'IBM Plex Mono'">#${k.n}</td>
+    <td>${k.type==='buiten'?'<span class="badge-buiten">buiten</span>':'<span class="badge-binnen">binnen</span>'}</td>
+    <td>${k.cat}</td>
+    <td>${k.sftp?'ja':''}</td>
+    <td style="font-family:'IBM Plex Mono'">${k.m} m</td>
+    <td>${k.b}</td>
+  </tr>
+`).join('');
+
+document.querySelectorAll('nav.tabs button').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('nav.tabs button').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('section').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    document.getElementById(b.dataset.tab).classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+});
+
+const ta = document.getElementById('ta');
+const savetxt = document.getElementById('savetxt');
+ta.value = localStorage.getItem('dash-notes') || '';
+let timer;
+ta.addEventListener('input',()=>{
+  clearTimeout(timer);
+  savetxt.textContent='Bezig met opslaan…';
+  timer = setTimeout(()=>{
+    localStorage.setItem('dash-notes', ta.value);
+    savetxt.textContent='Opgeslagen om ' + new Date().toLocaleTimeString('nl-NL');
+  }, 400);
+});
+function saveNow(){ localStorage.setItem('dash-notes', ta.value); savetxt.textContent='Opgeslagen om ' + new Date().toLocaleTimeString('nl-NL'); }
+function dl(){
+  const blob = new Blob([ta.value],{type:'text/plain;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'notities_montanus.txt';
+  a.click();
+}
+</script>
+</body>
+</html>

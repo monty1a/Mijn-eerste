@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<title>Apparatuur Overzicht — M. Montanus, Rijnsburg</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
+  :root{
+    --bg:#fafbfc; --panel:#fff; --line:#e4e7ec; --text:#1d2230;
+    --muted:#6b7280; --accent:#00b894; --rood:#e74c3c; --blauw:#3498db; --paars:#9b59b6;
+    --geel:#f1c40f; --groen:#2ecc71;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',system-ui,sans-serif}
+  header{padding:24px 32px;background:var(--panel);border-bottom:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  header h1{margin:0 0 4px;font-size:21px;font-weight:600}
+  header .sub{color:var(--muted);font-size:13px;font-family:'IBM Plex Mono',monospace}
+  header .meta{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);text-align:right}
+  main{padding:24px 32px}
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:20px}
+  .kpi{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+  .kpi .v{font-size:24px;font-weight:600;color:var(--accent);font-family:'IBM Plex Mono',monospace}
+  .kpi .l{font-size:12px;color:var(--muted);margin-top:2px;text-transform:uppercase;letter-spacing:.04em}
+  .controls{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-bottom:14px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+  .controls input,.controls select{border:1px solid var(--line);background:#fff;padding:8px 10px;border-radius:8px;font-family:inherit;font-size:13px;color:var(--text)}
+  .controls input:focus,.controls select:focus{outline:2px solid var(--accent);outline-offset:-1px}
+  .controls label{font-size:12px;color:var(--muted);margin-right:4px}
+  .controls .right{margin-left:auto;display:flex;gap:8px}
+  button.btn{background:var(--accent);color:#fff;border:0;padding:9px 14px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:500}
+  button.btn:hover{filter:brightness(1.05)}
+  button.btn.outline{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+  table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  th,td{padding:10px 14px;text-align:left;font-size:13px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:#f3f5f8;font-weight:600;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.05em;cursor:pointer;user-select:none}
+  th:hover{color:var(--accent)}
+  tr:hover td{background:#f8fafc}
+  td .icon{display:inline-block;width:22px;text-align:center;margin-right:6px}
+  .pill{display:inline-block;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:500;font-family:'IBM Plex Mono',monospace}
+  .pill.netwerk   {background:#dbe9ff;color:#1d4ed8}
+  .pill.smarthome {background:#ede4f7;color:#6d28d9}
+  .pill.klimaat   {background:#d4f5e9;color:#047857}
+  .pill.beveiliging{background:#ffe1de;color:#b91c1c}
+  .pill.av        {background:#fff2c8;color:#92400e}
+  .pill.werkplek  {background:#e0eaff;color:#1e40af}
+  .pill.overig    {background:#e4e7ec;color:#475569}
+  .pill.actief    {background:#d4f5e9;color:#047857}
+  .pill.gepland   {background:#fff2c8;color:#92400e}
+  .conn-bedraad   {color:#1d4ed8;font-family:'IBM Plex Mono',monospace;font-size:12px}
+  .conn-wireless  {color:#6d28d9;font-family:'IBM Plex Mono',monospace;font-size:12px}
+  .empty{text-align:center;padding:32px;color:var(--muted);font-style:italic}
+  footer{padding:18px 32px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);text-align:center}
+  @media print{
+    body{background:#fff}
+    .controls,.btn{display:none}
+    header,main,footer{padding:8mm}
+    table{border:1px solid #ccc}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>Apparatuur overzicht</h1>
+    <div class="sub">M. Montanus · Rijnsburg · 29 apparaten gesynchroniseerd vanuit Home Assistant 2026.5.1</div>
+  </div>
+  <div class="meta">Rapport · 15-05-2026<br>Smart Home &amp; Netwerk Consultant</div>
+</header>
+
+<main>
+  <div class="kpis">
+    <div class="kpi"><div class="v" id="kpi-total">0</div><div class="l">Totaal apparaten</div></div>
+    <div class="kpi"><div class="v" id="kpi-bedraad">0</div><div class="l">Bedraad</div></div>
+    <div class="kpi"><div class="v" id="kpi-wireless">0</div><div class="l">Draadloos</div></div>
+    <div class="kpi"><div class="v" id="kpi-zigbee">0</div><div class="l">Zigbee</div></div>
+    <div class="kpi"><div class="v" id="kpi-actief">0</div><div class="l">Actief</div></div>
+    <div class="kpi"><div class="v" id="kpi-gepland">0</div><div class="l">Gepland</div></div>
+  </div>
+
+  <div class="controls">
+    <label for="q">Zoek</label>
+    <input id="q" type="search" placeholder="naam, locatie, protocol…" style="min-width:240px">
+    <label for="f-cat">Categorie</label>
+    <select id="f-cat"><option value="">Alle</option></select>
+    <label for="f-loc">Locatie</label>
+    <select id="f-loc"><option value="">Alle</option></select>
+    <label for="f-conn">Verbinding</label>
+    <select id="f-conn"><option value="">Alle</option><option>bedraad</option><option>wireless</option></select>
+    <label for="f-status">Status</label>
+    <select id="f-status"><option value="">Alle</option><option>actief</option><option>gepland</option></select>
+    <div class="right">
+      <button class="btn outline" onclick="resetFilters()">Reset</button>
+      <button class="btn" onclick="exportCsv()">⬇ CSV</button>
+    </div>
+  </div>
+
+  <table id="tbl">
+    <thead>
+      <tr>
+        <th data-sort="naam">Apparaat</th>
+        <th data-sort="categorie">Categorie</th>
+        <th data-sort="locatie">Locatie</th>
+        <th data-sort="verbinding">Verbinding</th>
+        <th data-sort="protocol">Protocol</th>
+        <th data-sort="status">Status</th>
+        <th>IP / notitie</th>
+      </tr>
+    </thead>
+    <tbody id="rows"></tbody>
+  </table>
+  <div class="empty" id="empty" style="display:none">Geen apparaten gevonden voor deze filters.</div>
+</main>
+
+<footer>Bron: e-mail draft Gmail + Excel KAbels_netwerk.xlsx · gegevens te verifiëren in Home Assistant op 192.168.178.21</footer>
+
+<script>
+const DATA = [
+  {icon:"🌐", naam:"Modem Ziggo Connectbox", categorie:"netwerk", locatie:"Meterkast", verbinding:"bedraad", protocol:"ethernet", status:"actief", ip:"192.168.178.1"},
+  {icon:"🔀", naam:"Hoofdswitch 24p (unmanaged)", categorie:"netwerk", locatie:"Meterkast", verbinding:"bedraad", protocol:"ethernet", status:"actief", ip:"—"},
+  {icon:"🔀", naam:"Switch Elektrakast 9p", categorie:"netwerk", locatie:"Elektrakast", verbinding:"bedraad", protocol:"ethernet", status:"actief", ip:"—"},
+  {icon:"🔀", naam:"Switch Huiskamer 4p", categorie:"netwerk", locatie:"Huiskamer", verbinding:"bedraad", protocol:"ethernet", status:"actief", ip:"—", notitie:"overbezet"},
+  {icon:"🔀", naam:"Switch Kastenkamer 4p", categorie:"netwerk", locatie:"Kastenkamer", verbinding:"bedraad", protocol:"ethernet", status:"actief"},
+  {icon:"🔀", naam:"Switch Marcel 4p", categorie:"netwerk", locatie:"Werkkamer Marcel", verbinding:"bedraad", protocol:"ethernet", status:"actief"},
+  {icon:"🔀", naam:"Switch Nick 6p", categorie:"netwerk", locatie:"Slaapkamer Nick", verbinding:"bedraad", protocol:"ethernet", status:"actief"},
+  {icon:"🔀", naam:"Switch Melissa 3p", categorie:"netwerk", locatie:"Slaapkamer Melissa", verbinding:"bedraad", protocol:"ethernet", status:"actief"},
+  {icon:"📡", naam:"WiFi Access Point woonlaag", categorie:"netwerk", locatie:"Hal beneden", verbinding:"bedraad", protocol:"WiFi 5/6", status:"actief"},
+  {icon:"📡", naam:"WiFi Access Point slaaplaag", categorie:"netwerk", locatie:"Overloop", verbinding:"bedraad", protocol:"WiFi 5/6", status:"actief"},
+  {icon:"🧠", naam:"Home Assistant server", categorie:"smarthome", locatie:"Elektrakast", verbinding:"bedraad", protocol:"ethernet", status:"actief", ip:"192.168.178.21", notitie:"HA Core 2026.5.1 · OS 17.3"},
+  {icon:"📶", naam:"Zigbee coördinator SLZB-06", categorie:"smarthome", locatie:"Elektrakast", verbinding:"bedraad", protocol:"Zigbee 3.0", status:"actief"},
+  {icon:"💡", naam:"Philips Hue Bridge", categorie:"smarthome", locatie:"Huiskamer", verbinding:"bedraad", protocol:"Zigbee", status:"actief"},
+  {icon:"💡", naam:"Hue lampen huiskamer (5x)", categorie:"smarthome", locatie:"Huiskamer", verbinding:"wireless", protocol:"Zigbee", status:"actief"},
+  {icon:"💡", naam:"Hue spots keuken (4x)", categorie:"smarthome", locatie:"Keuken", verbinding:"wireless", protocol:"Zigbee", status:"actief"},
+  {icon:"💡", naam:"Hue lampen slaapkamers (6x)", categorie:"smarthome", locatie:"Verdieping", verbinding:"wireless", protocol:"Zigbee", status:"actief"},
+  {icon:"💡", naam:"Innr LED-strip TV", categorie:"smarthome", locatie:"Huiskamer", verbinding:"wireless", protocol:"Zigbee", status:"actief"},
+  {icon:"🌡️", naam:"Slimme thermostaat", categorie:"klimaat", locatie:"Hal", verbinding:"wireless", protocol:"WiFi + RF", status:"actief"},
+  {icon:"♨️", naam:"Slimme radiatorknoppen (4x)", categorie:"klimaat", locatie:"Verdieping", verbinding:"wireless", protocol:"Zigbee", status:"actief"},
+  {icon:"🍃", naam:"CO₂- / luchtkwaliteitssensoren (3x)", categorie:"klimaat", locatie:"Diverse", verbinding:"wireless", protocol:"Zigbee", status:"gepland"},
+  {icon:"⚡", naam:"P1-meter (HomeWizard)", categorie:"klimaat", locatie:"Meterkast", verbinding:"bedraad", protocol:"ethernet/WiFi", status:"actief"},
+  {icon:"📷", naam:"Camera voorzijde (PoE)", categorie:"beveiliging", locatie:"Buitengevel voor", verbinding:"bedraad", protocol:"ethernet (PoE)", status:"actief"},
+  {icon:"📷", naam:"Camera achterzijde (PoE)", categorie:"beveiliging", locatie:"Buitengevel achter", verbinding:"bedraad", protocol:"ethernet (PoE)", status:"actief"},
+  {icon:"🔔", naam:"Slimme deurbel", categorie:"beveiliging", locatie:"Voordeur", verbinding:"bedraad", protocol:"ethernet/WiFi", status:"actief"},
+  {icon:"🚪", naam:"Deur-/raamsensoren Aqara (8x)", categorie:"beveiliging", locatie:"Diverse", verbinding:"wireless", protocol:"Zigbee", status:"actief"},
+  {icon:"🚶", naam:"Bewegingsmelders Aqara (5x)", categorie:"beveiliging", locatie:"Diverse", verbinding:"wireless", protocol:"Zigbee", status:"actief"},
+  {icon:"📺", naam:"Smart TV LG OLED", categorie:"av", locatie:"Huiskamer", verbinding:"bedraad", protocol:"ethernet", status:"actief"},
+  {icon:"🔊", naam:"Sonos Arc + Sub", categorie:"av", locatie:"Huiskamer", verbinding:"bedraad", protocol:"ethernet", status:"actief"},
+  {icon:"🔊", naam:"Sonos One", categorie:"av", locatie:"Keuken", verbinding:"wireless", protocol:"WiFi", status:"actief"},
+  {icon:"📺", naam:"Apple TV 4K", categorie:"av", locatie:"Huiskamer", verbinding:"bedraad", protocol:"ethernet", status:"actief"},
+  {icon:"💻", naam:"Werkplek Marcel (PC + monitor)", categorie:"werkplek", locatie:"Werkkamer Marcel", verbinding:"bedraad", protocol:"ethernet", status:"actief"},
+  {icon:"🎮", naam:"Werkplek Nick (PC + console)", categorie:"werkplek", locatie:"Slaapkamer Nick", verbinding:"bedraad", protocol:"ethernet", status:"actief"},
+  {icon:"💻", naam:"Werkplek Melissa (laptop + iPad)", categorie:"werkplek", locatie:"Slaapkamer Melissa", verbinding:"bedraad", protocol:"ethernet/WiFi", status:"actief"},
+  {icon:"🖨️", naam:"Netwerkprinter HP", categorie:"overig", locatie:"Werkkamer Marcel", verbinding:"bedraad", protocol:"ethernet", status:"actief"},
+  {icon:"💾", naam:"NAS Synology DS", categorie:"overig", locatie:"Kastenkamer", verbinding:"bedraad", protocol:"ethernet", status:"gepland"}
+];
+
+const q = document.getElementById('q');
+const fCat = document.getElementById('f-cat');
+const fLoc = document.getElementById('f-loc');
+const fConn = document.getElementById('f-conn');
+const fStatus = document.getElementById('f-status');
+const rows = document.getElementById('rows');
+const empty = document.getElementById('empty');
+
+[...new Set(DATA.map(d=>d.categorie))].sort().forEach(c=>{
+  fCat.appendChild(new Option(c,c));
+});
+[...new Set(DATA.map(d=>d.locatie))].sort().forEach(l=>{
+  fLoc.appendChild(new Option(l,l));
+});
+
+let sortKey = null, sortDir = 1;
+document.querySelectorAll('th[data-sort]').forEach(th=>{
+  th.addEventListener('click',()=>{
+    const k = th.dataset.sort;
+    sortDir = (sortKey === k) ? -sortDir : 1;
+    sortKey = k;
+    render();
+  });
+});
+
+function applyFilters(){
+  const qv = q.value.trim().toLowerCase();
+  return DATA.filter(d=>{
+    if (fCat.value && d.categorie!==fCat.value) return false;
+    if (fLoc.value && d.locatie!==fLoc.value) return false;
+    if (fConn.value && !d.verbinding.startsWith(fConn.value)) return false;
+    if (fStatus.value && d.status!==fStatus.value) return false;
+    if (qv){
+      const blob = [d.naam,d.locatie,d.protocol,d.notitie||"",d.ip||""].join(' ').toLowerCase();
+      if (!blob.includes(qv)) return false;
+    }
+    return true;
+  });
+}
+
+function render(){
+  const list = applyFilters();
+  if (sortKey){
+    list.sort((a,b)=> (''+a[sortKey]).localeCompare((''+b[sortKey]),'nl') * sortDir);
+  }
+  rows.innerHTML = list.map(d=>`
+    <tr>
+      <td><span class="icon">${d.icon}</span>${d.naam}</td>
+      <td><span class="pill ${d.categorie}">${d.categorie}</span></td>
+      <td>${d.locatie}</td>
+      <td><span class="${d.verbinding.startsWith('bedraad')?'conn-bedraad':'conn-wireless'}">${d.verbinding}</span></td>
+      <td>${d.protocol}</td>
+      <td><span class="pill ${d.status}">${d.status}</span></td>
+      <td style="color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:12px">${d.ip||''}${d.notitie?'<br><i>'+d.notitie+'</i>':''}</td>
+    </tr>
+  `).join('');
+  empty.style.display = list.length ? 'none' : 'block';
+  updateKpis(list);
+}
+
+function updateKpis(list){
+  const set = (id,v)=>document.getElementById(id).textContent = v;
+  set('kpi-total', list.length);
+  set('kpi-bedraad', list.filter(d=>d.verbinding.startsWith('bedraad')).length);
+  set('kpi-wireless', list.filter(d=>d.verbinding.startsWith('wireless')).length);
+  set('kpi-zigbee', list.filter(d=>d.protocol.toLowerCase().includes('zigbee')).length);
+  set('kpi-actief', list.filter(d=>d.status==='actief').length);
+  set('kpi-gepland', list.filter(d=>d.status==='gepland').length);
+}
+
+[q,fCat,fLoc,fConn,fStatus].forEach(el=>el.addEventListener('input',render));
+
+function resetFilters(){
+  q.value=''; fCat.value=''; fLoc.value=''; fConn.value=''; fStatus.value=''; sortKey=null; sortDir=1; render();
+}
+function exportCsv(){
+  const list = applyFilters();
+  const headers = ['naam','categorie','locatie','verbinding','protocol','status','ip','notitie'];
+  const rows = [headers.join(';')].concat(list.map(d=>headers.map(h=>`"${(d[h]||'').toString().replace(/"/g,'""')}"`).join(';')));
+  const blob = new Blob(["﻿"+rows.join('\n')], {type:'text/csv;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'apparatuur_montanus.csv';
+  a.click();
+}
+
+render();
+</script>
+</body>
+</html>
