@@ -30,10 +30,12 @@
   .node:hover rect{stroke:var(--accent);filter:drop-shadow(0 0 8px rgba(0,212,170,.4))}
   .node.modem rect{fill:#1a2940;stroke:var(--blauw)}
   .node.managed rect{stroke:var(--teal)}
+  .node.vol rect{stroke:var(--geel)}
   .node.bottleneck rect{stroke:var(--rood)}
   .node text.title{font-family:'IBM Plex Sans';font-weight:600;font-size:13px;fill:var(--text)}
   .node text.sub{font-family:'IBM Plex Mono';font-size:11px;fill:var(--muted)}
   .node text.meta{font-family:'IBM Plex Mono';font-size:11px;fill:var(--accent)}
+  .node.vol text.meta{fill:var(--geel)}
   .node.bottleneck text.meta{fill:var(--rood)}
   .edge{fill:none;stroke-width:2.4}
   .edge.buiten{stroke:var(--rood)}
@@ -73,7 +75,7 @@
     <h1>Netwerk topologie</h1>
     <div class="sub">M. Montanus · Rijnsburg · op basis van PDF + IP-tabel (15-05-2026)</div>
   </div>
-  <div class="meta">Cascade vanuit woonkamer · 6 switches · 26 apparaten<br>Klik op een switch voor inhoud</div>
+  <div class="meta">Cascade vanuit woonkamer · 6 switches · 25 apparaten<br>Klik op een switch voor inhoud</div>
 </header>
 
 <main>
@@ -81,6 +83,8 @@
     <span><i style="background:#e67e22"></i>Coax (Ziggo)</span>
     <span><i style="background:var(--rood)"></i>Buitenkabel Cat7 S/FTP</span>
     <span><i style="background:var(--blauw)"></i>Binnenkabel Cat7 S/FTP</span>
+    <span><i style="background:var(--geel)"></i>Switch vol</span>
+    <span><i style="background:var(--teal)"></i>Managed switch</span>
     <span>·</span>
     <span class="zone" style="background:rgba(46,204,113,.18);color:#7ee0a0">Woonkamer</span>
     <span class="zone" style="background:rgba(241,196,15,.18);color:#ffe48a">Slaapk. Marcel</span>
@@ -142,19 +146,18 @@ const SWITCHES = [
     info:"Coax-binnenkomst · Gateway", clients:[] },
 
   { id:"sw-hk", naam:"Switch huiskamer", zone:"Woonkamer", x:680, y:185, w:240, h:70, type:"switch",
-    poorten_totaal:4, poorten_gebruikt:6, bottleneck:true,
-    info:"Onbeheerd · centrale hub onder modem",
+    poorten_totaal:8, poorten_gebruikt:4,
+    info:"Onbeheerd 8p · centrale hub onder modem",
     clients:[
-      {ip:"192.168.178.115", naam:"Archer AX55 (Hk voor)"},
-      {ip:"192.168.178.125", naam:"Archer AX23 (Hk achter)"},
       {ip:null, naam:"→ Switch Marcel (kabel #14, 30m buiten)"},
       {ip:null, naam:"→ Switch Nick (kabel #1, 15m buiten)"},
-      {ip:null, naam:"→ Switch elektrakast (kabel #5, 10m buiten)"}
+      {ip:null, naam:"→ Switch elektrakast (kabel #5, 10m buiten)"},
+      {ip:null, naam:"← uplink van Ziggo modem (coax + patch)"}
     ] },
 
   { id:"sw-marcel", naam:"Switch Marcel", zone:"Slaapkamer Marcel", x:120, y:380, w:220, h:70, type:"switch",
-    poorten_totaal:4, poorten_gebruikt:4,
-    info:"Onbeheerd · 4p",
+    poorten_totaal:8, poorten_gebruikt:4,
+    info:"Onbeheerd 8p",
     clients:[
       {ip:null,                naam:"IPTV Marcel"},
       {ip:"192.168.178.139",   naam:"Archer AX73 (Marcel) — WiFi"},
@@ -163,8 +166,8 @@ const SWITCHES = [
     ] },
 
   { id:"sw-nick", naam:"Switch Nick", zone:"Slaapkamer Nick", x:540, y:380, w:220, h:70, type:"switch",
-    poorten_totaal:6, poorten_gebruikt:6,
-    info:"Onbeheerd · 6p",
+    poorten_totaal:8, poorten_gebruikt:6,
+    info:"Onbeheerd 8p",
     clients:[
       {ip:null,                naam:"PC Nick"},
       {ip:null,                naam:"IPTV Nick"},
@@ -175,21 +178,22 @@ const SWITCHES = [
     ] },
 
   { id:"sw-elektra", naam:"Switch in elektrakast", zone:"Elektrakast", x:1160, y:380, w:240, h:70, type:"switch",
-    poorten_totaal:9, poorten_gebruikt:8,
-    info:"Onbeheerd · 9p · centraal in elektrakast",
+    poorten_totaal:12, poorten_gebruikt:8,
+    info:"Onbeheerd 12p · spil van bedrade infrastructuur",
     clients:[
       {ip:"192.168.178.21",  naam:"Home Assistant (Intel NUC)"},
+      {ip:"192.168.178.115", naam:"Archer AX55 (Hk voor) — via kruipruimte"},
+      {ip:"192.168.178.125", naam:"Archer AX23 (Hk achter) — via kruipruimte"},
       {ip:null,              naam:"TV huiskamer (kabel #7, 5m)"},
       {ip:null,              naam:"IPTV huiskamer (kabel #8, 5m)"},
-      {ip:null,              naam:"PC Marcel (lange kabel #4, 10m terug)"},
-      {ip:"192.168.178.15",  naam:"Archer AX55 (Extra) — locatie te bevestigen"},
+      {ip:null,              naam:"PC Marcel (lange kabel via kruipruimte)"},
       {ip:null,              naam:"→ TP-Link Switch kastenkamer (kabel #9, 3m)"},
       {ip:null,              naam:"← uplink van Switch huiskamer"}
     ] },
 
   { id:"sw-melissa", naam:"Switch Melissa", zone:"Slaapkamer Melissa", x:950, y:740, w:220, h:70, type:"switch",
-    poorten_totaal:3, poorten_gebruikt:3,
-    info:"Onbeheerd · 3p (vol)",
+    poorten_totaal:4, poorten_gebruikt:3,
+    info:"Onbeheerd 4p",
     clients:[
       {ip:null,                naam:"IPTV Melissa"},
       {ip:"192.168.178.143",   naam:"Archer AX55 (Melissa) — WiFi"},
@@ -260,12 +264,13 @@ SWITCHES.forEach(s=>{
   let cls = 'node';
   if (s.type==='modem') cls += ' modem';
   if (s.managed) cls += ' managed';
+  if (s.vol) cls += ' vol';
   if (s.bottleneck) cls += ' bottleneck';
   g.setAttribute('class', cls);
   g.setAttribute('data-id', s.id);
 
   const portInfo = s.poorten_totaal
-    ? `${s.poorten_gebruikt}/${s.poorten_totaal} poorten${s.bottleneck?' ⚠':''}`
+    ? `${s.poorten_gebruikt}/${s.poorten_totaal} poorten${s.bottleneck?' ⚠':''}${s.vol&&!s.bottleneck?' · vol':''}`
     : (s.ip || '');
 
   g.innerHTML = `
