@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1700" height="1500" viewBox="-1500 -1500 14500 12800"><line x1="-1200.0" y1="9200.0" x2="9200.0" y2="9200.0" stroke="#8a8170" stroke-width="40" stroke-linecap="square"/>
+<rect x="-1200.0" y="9200.0" width="10400.0" height="700.0" fill="#efe9dc" stroke="none" stroke-width="0" rx="0" opacity="1"/>
+<line x1="0.0" y1="9200.0" x2="8000.0" y2="9200.0" stroke="#2b2b2b" stroke-width="120" stroke-linecap="square"/>
+<line x1="0.0" y1="6500.0" x2="8000.0" y2="6500.0" stroke="#2b2b2b" stroke-width="120" stroke-linecap="square"/>
+<line x1="0.0" y1="3800.0" x2="8000.0" y2="3800.0" stroke="#2b2b2b" stroke-width="120" stroke-linecap="square"/>
+<line x1="0.0" y1="9200.0" x2="0.0" y2="5500.0" stroke="#2b2b2b" stroke-width="240" stroke-linecap="square"/>
+<line x1="8000.0" y1="9200.0" x2="8000.0" y2="5500.0" stroke="#2b2b2b" stroke-width="240" stroke-linecap="square"/>
+<polyline points="0.0,5500.0 4000.0,0.0 8000.0,5500.0" fill="none" stroke="#9a9a9a" stroke-width="70" stroke-linejoin="round" opacity="1" stroke-dasharray="200,140"/>
+<line x1="0.0" y1="5500.0" x2="0.0" y2="0.0" stroke="#c0532b" stroke-width="240" stroke-linecap="square"/>
+<line x1="0.0" y1="0.0" x2="4000.0" y2="0.0" stroke="#c0532b" stroke-width="70" stroke-linecap="square"/>
+<line x1="4000.0" y1="0.0" x2="8000.0" y2="5500.0" stroke="#2b2b2b" stroke-width="70" stroke-linecap="square"/>
+<rect x="5300.0" y="2300.0" width="1400.0" height="1500.0" fill="#dfe7ee" stroke="#3c5a72" stroke-width="50" rx="0" opacity="1"/>
+<line x1="5300.0" y1="2300.0" x2="6700.0" y2="2050.0" stroke="#3c5a72" stroke-width="50" stroke-linecap="square"/>
+<text x="6000.0" y="3050.0" font-family="Helvetica, Arial, sans-serif" font-size="140" fill="#3c5a72" text-anchor="middle" font-weight="400" font-style="normal">dakkapel</text>
+<line x1="0.0" y1="130.0" x2="4000.0" y2="130.0" stroke="#6f8a55" stroke-width="40" stroke-linecap="square" stroke-dasharray="120,90"/>
+<line x1="4000.0" y1="130.0" x2="8000.0" y2="5630.0" stroke="#6f8a55" stroke-width="40" stroke-linecap="square" stroke-dasharray="120,90"/>
+<text x="5500.0" y="700.0" font-family="Helvetica, Arial, sans-serif" font-size="150" fill="#6f8a55" text-anchor="middle" font-weight="700" font-style="normal">nieuwe dakisolatie Rc≥6,3</text>
+<polygon points="0.0,5500.0 0.0,0.0 4000.0,0.0" fill="#ffe2b0" stroke="none" stroke-width="0" stroke-linejoin="round" opacity="0.75"/>
+<polygon points="0.0,5500.0 4000.0,0.0 4000.0,0.0 0.0,5500.0" fill="none" stroke="none" stroke-width="0" stroke-linejoin="round" opacity="1"/>
+<line x1="8200.0" y1="9200.0" x2="8600.0" y2="9200.0" stroke="#7a6f5f" stroke-width="16" stroke-linecap="square"/>
+<text x="8700.0" y="9260.0" font-family="Helvetica, Arial, sans-serif" font-size="170" fill="#7a6f5f" text-anchor="start" font-weight="400" font-style="normal">±0,00 peil</text>
+<line x1="8200.0" y1="6500.0" x2="8600.0" y2="6500.0" stroke="#7a6f5f" stroke-width="16" stroke-linecap="square"/>
+<text x="8700.0" y="6560.0" font-family="Helvetica, Arial, sans-serif" font-size="170" fill="#7a6f5f" text-anchor="start" font-weight="400" font-style="normal">+2,70 verdieping</text>
+<line x1="8200.0" y1="5500.0" x2="8600.0" y2="5500.0" stroke="#7a6f5f" stroke-width="16" stroke-linecap="square"/>
+<text x="8700.0" y="5560.0" font-family="Helvetica, Arial, sans-serif" font-size="170" fill="#7a6f5f" text-anchor="start" font-weight="400" font-style="normal">+3,70 goot</text>
+<line x1="8200.0" y1="3800.0" x2="8600.0" y2="3800.0" stroke="#7a6f5f" stroke-width="16" stroke-linecap="square"/>
+<text x="8700.0" y="3860.0" font-family="Helvetica, Arial, sans-serif" font-size="170" fill="#7a6f5f" text-anchor="start" font-weight="400" font-style="normal">+5,40 zolder</text>
+<line x1="8200.0" y1="0.0" x2="8600.0" y2="0.0" stroke="#7a6f5f" stroke-width="16" stroke-linecap="square"/>
+<text x="8700.0" y="60.0" font-family="Helvetica, Arial, sans-serif" font-size="170" fill="#7a6f5f" text-anchor="start" font-weight="400" font-style="normal">+9,20 nok</text>
+<text x="4000.0" y="7900.0" font-family="Helvetica, Arial, sans-serif" font-size="200" fill="#888" text-anchor="middle" font-weight="400" font-style="normal">begane grond</text>
+<text x="4000.0" y="5600.0" font-family="Helvetica, Arial, sans-serif" font-size="200" fill="#888" text-anchor="middle" font-weight="400" font-style="normal">verdieping</text>
+<text x="1500.0" y="2500.0" font-family="Helvetica, Arial, sans-serif" font-size="230" fill="#c0532b" text-anchor="middle" font-weight="700" font-style="normal">winst</text>
+<text x="1500.0" y="2850.0" font-family="Helvetica, Arial, sans-serif" font-size="150" fill="#c0532b" text-anchor="middle" font-weight="400" font-style="normal">zolder → volwaardig</text>
+<text x="0.0" y="9720.0" font-family="Helvetica, Arial, sans-serif" font-size="180" fill="#c0532b" text-anchor="middle" font-weight="700" font-style="normal">ACHTERGEVEL (tuin)</text>
+<text x="8000.0" y="9720.0" font-family="Helvetica, Arial, sans-serif" font-size="180" fill="#666" text-anchor="middle" font-weight="700" font-style="normal">VOORGEVEL (straat)</text>
+<rect x="9300.0" y="1100.0" width="4600.0" height="2300.0" fill="white" stroke="#1b1b1b" stroke-width="16" rx="0" opacity="1"/>
+<text x="9500.0" y="1420.0" font-family="Helvetica, Arial, sans-serif" font-size="200" fill="#1b1b1b" text-anchor="start" font-weight="700" font-style="normal">Doorsnede over de diepte</text>
+<line x1="9540.0" y1="1720.0" x2="10000.0" y2="1720.0" stroke="#9a9a9a" stroke-width="60" stroke-linecap="square" stroke-dasharray="160,110"/>
+<text x="10100.0" y="1780.0" font-family="Helvetica, Arial, sans-serif" font-size="170" fill="#1b1b1b" text-anchor="start" font-weight="400" font-style="normal">bestaand dak</text>
+<line x1="9540.0" y1="2040.0" x2="10000.0" y2="2040.0" stroke="#c0532b" stroke-width="60" stroke-linecap="square"/>
+<text x="10100.0" y="2100.0" font-family="Helvetica, Arial, sans-serif" font-size="170" fill="#1b1b1b" text-anchor="start" font-weight="400" font-style="normal">nieuw: achtergevel opgetrokken</text>
+<rect x="9540.0" y="2280.0" width="460.0" height="240.0" fill="#ffe2b0" stroke="none" stroke-width="0" rx="0" opacity="1"/>
+<text x="10100.0" y="2470.0" font-family="Helvetica, Arial, sans-serif" font-size="170" fill="#1b1b1b" text-anchor="start" font-weight="400" font-style="normal">oppervlakte-/ruimtewinst</text>
+<text x="9500.0" y="2850.0" font-family="Helvetica, Arial, sans-serif" font-size="165" fill="#1b1b1b" text-anchor="start" font-weight="400" font-style="normal">Geschatte winst volwaardige</text>
+<text x="9500.0" y="3060.0" font-family="Helvetica, Arial, sans-serif" font-size="185" fill="#c0532b" text-anchor="start" font-weight="700" font-style="normal">vloer (≥2,3 m): ≈ +15 à +22 m²</text>
+<rect x="-1400.0" y="10500.0" width="14200.0" height="900.0" fill="white" stroke="#1b1b1b" stroke-width="18" rx="0" opacity="1"/>
+<line x1="-1400.0" y1="10800.0" x2="12800.0" y2="10800.0" stroke="#1b1b1b" stroke-width="12" stroke-linecap="square"/>
+<line x1="-1400.0" y1="11060.0" x2="12800.0" y2="11060.0" stroke="#1b1b1b" stroke-width="12" stroke-linecap="square"/>
+<text x="-1280.0" y="10700.0" font-family="Helvetica, Arial, sans-serif" font-size="185" fill="#1b1b1b" text-anchor="start" font-weight="700" font-style="normal">Kruidenschans 24, Voorhout</text>
+<text x="-1280.0" y="10960.0" font-family="Helvetica, Arial, sans-serif" font-size="240" fill="#c0532b" text-anchor="start" font-weight="700" font-style="normal">Doorsnede – voorstel achtergevel optrekken</text>
+<text x="-1280.0" y="11220.0" font-family="Helvetica, Arial, sans-serif" font-size="140" fill="#555" text-anchor="start" font-weight="400" font-style="normal">woningtype M4 – plan Oosthout B1 – herget. uit bestektek. 1986</text>
+<text x="12680.0" y="11220.0" font-family="Helvetica, Arial, sans-serif" font-size="140" fill="#555" text-anchor="end" font-weight="400" font-style="normal">schaal 1:100 (indicatief)</text>
+<text x="12680.0" y="10700.0" font-family="Helvetica, Arial, sans-serif" font-size="170" fill="#1b1b1b" text-anchor="end" font-weight="700" font-style="normal">blad 5 / 5</text></svg>

@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1700" viewBox="-1500 -2400 9000 14600"><text x="2700.0" y="-1900.0" font-family="Helvetica, Arial, sans-serif" font-size="190" fill="#6f8a55" text-anchor="middle" font-weight="700" font-style="normal">▲  achterzijde (tuin)</text>
+<rect x="0.0" y="0.0" width="5400.0" height="9400.0" fill="#faf8f2" stroke="#b6ab94" stroke-width="60" rx="0" opacity="1" stroke-dasharray="200,150"/>
+<rect x="0.0" y="1240.0" width="5400.0" height="6920.0" fill="#f7f4ee" stroke="none" stroke-width="0" rx="0" opacity="1"/>
+<line x1="0.0" y1="2330.0" x2="5400.0" y2="2330.0" stroke="#2b2b2b" stroke-width="100" stroke-linecap="square" stroke-dasharray="40,40"/>
+<line x1="0.0" y1="7070.0" x2="5400.0" y2="7070.0" stroke="#2b2b2b" stroke-width="100" stroke-linecap="square" stroke-dasharray="40,40"/>
+<text x="4200.0" y="2210.0" font-family="Helvetica, Arial, sans-serif" font-size="130" fill="#777" text-anchor="middle" font-weight="400" font-style="normal">knieschot</text>
+<text x="4200.0" y="7300.0" font-family="Helvetica, Arial, sans-serif" font-size="130" fill="#777" text-anchor="middle" font-weight="400" font-style="normal">knieschot</text>
+<line x1="0.0" y1="4700.0" x2="5400.0" y2="4700.0" stroke="#c0532b" stroke-width="60" stroke-linecap="square"/>
+<text x="1400.0" y="4580.0" font-family="Helvetica, Arial, sans-serif" font-size="150" fill="#c0532b" text-anchor="middle" font-weight="700" font-style="normal">nok +9,20</text>
+<line x1="0.0" y1="0.0" x2="0.0" y2="9400.0" stroke="#2b2b2b" stroke-width="300" stroke-linecap="square"/>
+<line x1="5400.0" y1="0.0" x2="5400.0" y2="9400.0" stroke="#2b2b2b" stroke-width="300" stroke-linecap="square"/>
+<rect x="2400.0" y="5400.0" width="1100.0" height="1900.0" fill="white" stroke="#2b2b2b" stroke-width="80" rx="0" opacity="1"/>
+<line x1="2400.0" y1="5400.0" x2="3500.0" y2="7300.0" stroke="#b3a892" stroke-width="24" stroke-linecap="square"/>
+<line x1="3500.0" y1="5400.0" x2="2400.0" y2="7300.0" stroke="#b3a892" stroke-width="24" stroke-linecap="square"/>
+<text x="2950.0" y="5250.0" font-family="Helvetica, Arial, sans-serif" font-size="150" fill="#777" text-anchor="middle" font-weight="400" font-style="normal">trapgat</text>
+<rect x="1100.0" y="1700.0" width="900.0" height="700.0" fill="#dfeaf2" stroke="#7a90a4" stroke-width="30" rx="0" opacity="1"/>
+<text x="1550.0" y="2120.0" font-family="Helvetica, Arial, sans-serif" font-size="120" fill="#5c6b78" text-anchor="middle" font-weight="400" font-style="normal">dakraam</text>
+<rect x="4000.0" y="1700.0" width="900.0" height="700.0" fill="#dfeaf2" stroke="#7a90a4" stroke-width="30" rx="0" opacity="1"/>
+<text x="4450.0" y="2120.0" font-family="Helvetica, Arial, sans-serif" font-size="120" fill="#5c6b78" text-anchor="middle" font-weight="400" font-style="normal">dakraam</text>
+<rect x="4300.0" y="4900.0" width="800.0" height="700.0" fill="#eee" stroke="#999" stroke-width="24" rx="0" opacity="1"/>
+<text x="4700.0" y="5300.0" font-family="Helvetica, Arial, sans-serif" font-size="140" fill="#666" text-anchor="middle" font-weight="400" font-style="normal">CV</text>
+<text x="2700.0" y="3650.0" font-family="Helvetica, Arial, sans-serif" font-size="280" fill="#7a6f5a" text-anchor="middle" font-weight="700" font-style="normal">ZOLDER</text>
+<text x="2700.0" y="4000.0" font-family="Helvetica, Arial, sans-serif" font-size="160" fill="#8a8170" text-anchor="middle" font-weight="400" font-style="normal">open bergzolder onder steil dak</text>
+<line x1="0.0" y1="-1500.0" x2="5400.0" y2="-1500.0" stroke="#7a6f5f" stroke-width="18" stroke-linecap="square"/>
+<text x="2700.0" y="-1560.0" font-family="Helvetica, Arial, sans-serif" font-size="150" fill="#7a6f5f" text-anchor="middle" font-weight="400" font-style="normal">≈ 5,40 m</text>
+<line x1="-40.0" y1="-1540.0" x2="40.0" y2="-1460.0" stroke="#7a6f5f" stroke-width="14" stroke-linecap="square"/>
+<line x1="5360.0" y1="-1540.0" x2="5440.0" y2="-1460.0" stroke="#7a6f5f" stroke-width="14" stroke-linecap="square"/>
+<line x1="6100.0" y1="0.0" x2="6100.0" y2="9400.0" stroke="#7a6f5f" stroke-width="18" stroke-linecap="square"/>
+<text x="6100.0" y="4640.0" font-family="Helvetica, Arial, sans-serif" font-size="150" fill="#7a6f5f" text-anchor="middle" font-weight="400" font-style="normal" transform="rotate(-90 6100.0 4640.0)">≈ 9,40 m</text>
+<line x1="6060.0" y1="-40.0" x2="6140.0" y2="40.0" stroke="#7a6f5f" stroke-width="14" stroke-linecap="square"/>
+<line x1="6060.0" y1="9360.0" x2="6140.0" y2="9440.0" stroke="#7a6f5f" stroke-width="14" stroke-linecap="square"/>
+<line x1="-800.0" y1="1240.0" x2="-800.0" y2="8160.0" stroke="#7a6f5f" stroke-width="18" stroke-linecap="square"/>
+<text x="-800.0" y="4640.0" font-family="Helvetica, Arial, sans-serif" font-size="150" fill="#7a6f5f" text-anchor="middle" font-weight="400" font-style="normal" transform="rotate(-90 -800.0 4640.0)">bruikbaar ≈ 6,9 m</text>
+<line x1="-840.0" y1="1200.0" x2="-760.0" y2="1280.0" stroke="#7a6f5f" stroke-width="14" stroke-linecap="square"/>
+<line x1="-840.0" y1="8120.0" x2="-760.0" y2="8200.0" stroke="#7a6f5f" stroke-width="14" stroke-linecap="square"/>
+<circle cx="7600.0" cy="-1400.0" r="320.0" fill="white" stroke="#1b1b1b" stroke-width="18"/>
+<polygon points="7600.0,-1649.6 7491.2,-1272.0 7600.0,-1361.6 7708.8,-1272.0" fill="#1b1b1b" stroke="none" stroke-width="0" stroke-linejoin="round" opacity="1"/>
+<text x="7600.0" y="-1780.0" font-family="Helvetica, Arial, sans-serif" font-size="210" fill="#1b1b1b" text-anchor="middle" font-weight="700" font-style="normal">N</text>
+<rect x="0.0" y="9900.0" width="1000.0" height="120.0" fill="#1b1b1b" stroke="#1b1b1b" stroke-width="12" rx="0" opacity="1"/>
+<rect x="1000.0" y="9900.0" width="1000.0" height="120.0" fill="white" stroke="#1b1b1b" stroke-width="12" rx="0" opacity="1"/>
+<rect x="2000.0" y="9900.0" width="1000.0" height="120.0" fill="#1b1b1b" stroke="#1b1b1b" stroke-width="12" rx="0" opacity="1"/>
+<rect x="3000.0" y="9900.0" width="1000.0" height="120.0" fill="white" stroke="#1b1b1b" stroke-width="12" rx="0" opacity="1"/>
+<rect x="4000.0" y="9900.0" width="1000.0" height="120.0" fill="#1b1b1b" stroke="#1b1b1b" stroke-width="12" rx="0" opacity="1"/>
+<text x="0.0" y="9840.0" font-family="Helvetica, Arial, sans-serif" font-size="120" fill="#1b1b1b" text-anchor="middle" font-weight="400" font-style="normal">0</text>
+<text x="5000.0" y="9840.0" font-family="Helvetica, Arial, sans-serif" font-size="120" fill="#1b1b1b" text-anchor="middle" font-weight="400" font-style="normal">5 m</text>
+<rect x="-1400.0" y="10900.0" width="8800.0" height="900.0" fill="white" stroke="#1b1b1b" stroke-width="18" rx="0" opacity="1"/>
+<line x1="-1400.0" y1="11200.0" x2="7400.0" y2="11200.0" stroke="#1b1b1b" stroke-width="12" stroke-linecap="square"/>
+<line x1="-1400.0" y1="11460.0" x2="7400.0" y2="11460.0" stroke="#1b1b1b" stroke-width="12" stroke-linecap="square"/>
+<text x="-1280.0" y="11100.0" font-family="Helvetica, Arial, sans-serif" font-size="185" fill="#1b1b1b" text-anchor="start" font-weight="700" font-style="normal">Kruidenschans 24, Voorhout</text>
+<text x="-1280.0" y="11360.0" font-family="Helvetica, Arial, sans-serif" font-size="240" fill="#c0532b" text-anchor="start" font-weight="700" font-style="normal">Zolder</text>
+<text x="-1280.0" y="11620.0" font-family="Helvetica, Arial, sans-serif" font-size="140" fill="#555" text-anchor="start" font-weight="400" font-style="normal">woningtype M4 – plan Oosthout B1 – herget. uit bestektek. 1986</text>
+<text x="7280.0" y="11620.0" font-family="Helvetica, Arial, sans-serif" font-size="140" fill="#555" text-anchor="end" font-weight="400" font-style="normal">schaal 1:100 (indicatief)</text>
+<text x="7280.0" y="11100.0" font-family="Helvetica, Arial, sans-serif" font-size="170" fill="#1b1b1b" text-anchor="end" font-weight="700" font-style="normal">blad 4 / 5</text></svg>
