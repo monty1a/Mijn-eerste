@@ -140,6 +140,73 @@ zijwaarts. Zijwaarts schuiven volgt de rib en levert steeds dezelfde weerstand.
 > aansluiting aan de vrijstaande kopgevel wijkt af van het middenblok op de
 > tekening. Zet de tekening uit tegen de werkelijke woning voordat je aftekent.
 
+### 3.4 Fundering, oplegging en de veldwaarneming
+
+**Veldwaarneming (bewoner/beheerder):** de buitenmuur ligt ca. 30–40 cm verder
+naar buiten dan de fundering. Bij een eerder geboord gat in de keukenvloer kwam
+de doorvoer in de kruipruimte **vlak langs de wand** uit.
+
+Dat is consistent met het funderingsontwerp. Uit `funderingsoverzicht.pdf` en
+`wapening_fundering_palen.pdf` (adviesburo H.C. Bogaards, werk 385-508,
+"Palenplan + matenplan fundering", 17-3-1986):
+
+| Gegeven | Waarde |
+|---|---|
+| Funderingsbalken | Doorlopend **van voor naar achter**, ter plaatse van de woningscheidende wanden; Balk 1 t/m 10 |
+| Hart-op-hart balken | **5100 mm** |
+| Dagmaat tussen de balken | **4740 mm** (handgeschreven navraag op BL 2: *"is dagmaat fundering altijd 474?"*) |
+| Balkbreedte | ca. **360 mm** (5100 − 4740) |
+| Palen | Voorgespannen beton ⌀ 290 mm, lengte 15,00 m (32 st.) en 15,50 m (51 st.) |
+| Betonkwaliteit fundering | B 17,5 (de vloer zelf B 37,5) |
+| Voor- en achtergevelbalken | *"zijn altijd 6 cm lager"* |
+| Oplegging vloerplaat | **8 cm** per zijde |
+
+**Sluitende controle op de geometrie:** 4740 mm dagmaat + 2 × 80 mm oplegging =
+**4900 mm**, en dat is exact de plaatlengte op de legtekening (490 cm). De
+vloerplaten overspannen dus de dagmaat tussen twee funderingsbalken. Daarmee is
+de ribrichting nu **tweemaal onafhankelijk bevestigd**: de balken lopen van voor
+naar achter, de platen overspannen daar haaks op, en de ribben lopen met de
+overspanning mee — parallel aan voor- en achtergevel, 600 mm h.o.h. gemeten in
+de richting voor-naar-achter.
+
+**Wat de veldwaarneming toevoegt — drie gevolgen:**
+
+1. **Houd afstand van de buitenwanden.** De 30–40 cm die de wand buiten de
+   fundering uitsteekt is precies de zone waar je de opleg (8 cm), de 6 cm lager
+   liggende gevelbalk en de spouw tegenkomt. Het keukengat kwam daar tegenaan:
+   het werkte, maar "vlak langs de wand" is de slechtste plek voor een
+   mantelbuis — geen buigradius, niets om een beugel aan te bevestigen, en de
+   buis staat in de weg in de kruipruimte.
+   **Richtlijn: minimaal ca. 50 cm uit de binnenzijde van een buitenwand boren.**
+2. **Er hoeft geen funderingsbalk gekruist te worden.** De dagmaat is 4740 mm —
+   een ruime, open travee. Liggen de meterkast en het woonkamerpunt binnen
+   dezelfde travee (tussen dezelfde twee woningscheidende wanden), dan kruist de
+   buis geen enkele funderingsbalk. Dat is belangrijk, want op de
+   funderingstekening staat in het betonstaat-overzicht:
+   **"Sparingen in nader overleg"** — een doorvoer door een funderingsbalk mag
+   niet zonder constructief overleg. Binnen één travee blijven omzeilt dat
+   volledig. **Controleer** dus eerst of de meterkast in dezelfde travee ligt.
+3. **Het keukengat is een meetpunt, gebruik het.** Het is een bewezen doorvoer
+   met bekende uitkomst. Meet daarin: werkelijke dekvloerdikte, pasplaatdikte en
+   totale pakketdikte. Dat vervangt de schatting "60–120 mm" uit §5.4 door een
+   gemeten getal. En meet van onderaf de afstand van dat gat tot de eerste rib:
+   dan heb je een vast referentiepunt om de ribposities in de woonkamer op af te
+   tekenen, zonder te prikken.
+
+**En de vraag die hierdoor opkomt — mogelijk vervalt één boring helemaal.** De
+legtekening vermeldt bij de platen *"sparingen spiegelbeeld van nr. 13"*: de
+Manta-platen zijn destijds **met sparingen geleverd**, oftewel met
+ontwerpdoorvoeren. In een woning uit 1986 komen water, gas en elektra in de
+meterkast van onderen door de vloer, dus daar zit vrijwel zeker al een opening
+of mantelbuis.
+
+**Doen vóór je iets boort:** kijk in de meterkast (en van onderaf in de
+kruipruimte) of er een bestaande doorvoer of restsparing zit die je kunt
+gebruiken of oprekken. Zo ja, dan vervalt aan de meterkastzijde de hele
+kernboring — inclusief de 52 mm boorkroon van € 49,25, de ribzoekactie en het
+grootste onomkeerbare risico van dit project. Dat is de goedkoopste
+projectwinst die er te halen valt.
+
 ---
 
 ## 4. Materiaaloverzicht & bestellinks
@@ -556,6 +623,13 @@ plan — het is het verschil tussen een boodschappenlijst en een projectbegrotin
        en specificatie/prijs van de GigaPlus controleren (§6.11).
 5. [ ] **Boormaat definitief kiezen** — 68 mm kroon + 50 mm buis, óf 52 mm
        kroon + 40 mm buis (§5.3).
+5a. [ ] **Bestaande doorvoer zoeken in de meterkast** — mogelijk vervalt de
+       kernboring aan die zijde helemaal (§3.4). Doe dit vóór je de boorkroon
+       bestelt.
+5b. [ ] **Keukengat opmeten** — werkelijke laagdiktes en de afstand tot de eerste
+       rib, als referentiepunt voor de woonkamer (§3.4).
+5c. [ ] **Travee controleren** — liggen meterkast en woonkamerpunt tussen dezelfde
+       woningscheidende wanden? Zo ja: geen funderingsbalk te kruisen (§3.4).
 6. [ ] **Leidingdetectie in de dekvloer** — leidingzoeker + warmtebeeld (§6.1).
 7. [ ] **Uitkomstlocatie woonkamer bepalen** inclusief route vloer → wand (§6.3).
 8. [ ] **Kruipruimte inspecteren** — luik, hoogte, water, buisondersteuning (§6.4).
@@ -595,6 +669,8 @@ dossier **Kruidenschans 24, Voorhout** in deze repo.
 | `bouwtekeningen/funderingsplan_vloer.pdf` | Titelblok "MANTA systeemvloer voor de begane grond, woningtype M4", B 37,5 / FeB 500, oplegging, legplan en ribrichting, notities *"geen sparing in rib"* en *"betonnokken in isolatie onder rib max. 150 cm h.o.h."* |
 | `berekeningen/berekening_belastingen_pasplaat.pdf` | ht 255 mm, breedte per rib 600 mm, breukmomententabel Manta, betonkwaliteit B 37,5 |
 | `berekeningen/berekening_vloerplaten_filigraan.pdf` | Vaststelling dat filigraan de **verdiepings- en zoldervloer** betreft, niet de begane grond |
+| `bouwtekeningen/funderingsoverzicht.pdf` (Manta BL 2) | Plaatlengte 490 cm, handgeschreven *"is dagmaat fundering altijd 474?"*, *"voor- en achtergevelbalken zijn 6 cm lager"*, *"sparingen spiegelbeeld van nr. 13"* → §3.4 |
+| `bouwtekeningen/wapening_fundering_palen.pdf` | Palenplan + matenplan: balken voor-naar-achter, 5100 mm h.o.h., dagmaat 4740 mm, palen ⌀ 290 mm, B 17,5, *"sparingen in nader overleg"* → §3.4 |
 | `gespreksverslag.md`, `README.md`, `tekeningen/` | Verbouwplannen (achtergevel, dakkapellen, zolder) → §6.20 |
 
 De scans hebben een OCR-tekstlaag en zijn daarnaast als afbeelding uitgelezen
