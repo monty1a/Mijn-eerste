@@ -10,9 +10,12 @@
 > punten, ontbrekende posten en een actielijst. **Niet boren voordat §8 is
 > afgewerkt** — een verkeerd gat in de vloer is niet terug te draaien.
 >
-> **Woning:** Kruidenschans 24, Voorhout (type M4, 1986). Bewoond door Pamela;
-> de verbouwing volgt over minimaal twee jaar. Zie §6.19 en §6.20 — dat verschil
-> tussen bewoner en beheerder is maatgevend voor het ontwerp.
+> **Woning:** Kruidenschans 24, Voorhout (type M4, 1986). Eigendom van en
+> bewoond door Pamela; de beheerder komt dagelijks, verzorgt de techniek en gaat
+> inwonen zodra het eigen huis wordt verkocht — het startsein daarvoor is het uit huis gaan van het oudste kind, dus
+> **een onbepaalde datum, minimaal twee jaar**. Zie §6.19 t/m §6.21: die
+> onzekere datum en het samenvoegen van twee huishoudens zijn maatgevend voor
+> het ontwerp.
 
 ---
 
@@ -62,6 +65,33 @@ mantelbuis door de kruipruimte.
 > waarden kloppen. Zie §3.3 voor de brongegevens en de constructieve
 > randvoorwaarde die daaruit volgt.
 
+### 3.2 Boor- en installatieprocedure (stapsgewijs)
+
+1. **Afwerkvloer / laminaat:** met een 60 mm bi-metaal gatenzaag een ruim gat in
+   het laminaat zagen t.b.v. de werking/uitzetting van de houten vloer.
+2. **Proefboring (ribben vermijden):** met een lange 6 mm steenboor door de
+   dekvloer prikken. Bij zachte weerstand zit je tussen de betonribben (in de
+   pasplaat/isolatie). Bij keiharde weerstand stop je en schuif je 7–10 cm haaks
+   op.
+3. **Betonboorgat:** met een 52 mm diamant boorkroonset (nuttige lengte 200 mm,
+   SDS-Plus aansluiting) op de Makita boormachine (**uitsluitend roterend boren,
+   klopstand UIT**) door de dekvloer boren tot doorbraak.
+4. **Buisborging:** rode dubbelwandige PE-mantelbuis (50 mm) door het gat
+   steken. Vlak boven de vloer borgen met een 50 mm RVS slangklem om wegzakken
+   in de kruipruimte te voorkomen.
+5. **Kabeldoorvoer:** 2x Cat6a Outdoor netwerkkabel + 1x Belden H125 coax via de
+   geïntegreerde trekdraad door de mantelbuis trekken.
+6. **Afdichting & afwerking:** binnenzijde buis afdichten met Filoform
+   afdichtingspasta tegen tocht en bodemgassen; ringspleet tussen buis en beton
+   eveneens afdichten. Het gat in het laminaat afdekken met een 50 mm
+   afdekrozet.
+
+> ⚠️ **Twee correcties t.o.v. het oorspronkelijke plan, bewust doorgevoerd:**
+> stap 3 luidde "in één beweging 20 cm diep boren" (inconsistent met de eigen
+> vloeropbouw — zie §5.4) en stap 5 ging uit van vooraf gemonteerde,
+> aan elkaar getapete RJ45-stekkers (zie §6.9). Stap 6 dichtte alleen de
+> binnenzijde van de buis af (§6.15).
+
 ### 3.3 Verificatie vloerconstructie tegen de originele stukken
 
 Nageslagen in `huizen/Voorhout-Kruidenschans-24/` (BSF BV / bouwkundig
@@ -109,33 +139,6 @@ zijwaarts. Zijwaarts schuiven volgt de rib en levert steeds dezelfde weerstand.
 > variant is, bepaalt de maatvoering — en #24 is een **hoekwoning**, dus de
 > aansluiting aan de vrijstaande kopgevel wijkt af van het middenblok op de
 > tekening. Zet de tekening uit tegen de werkelijke woning voordat je aftekent.
-
-### 3.2 Boor- en installatieprocedure (stapsgewijs)
-
-1. **Afwerkvloer / laminaat:** met een 60 mm bi-metaal gatenzaag een ruim gat in
-   het laminaat zagen t.b.v. de werking/uitzetting van de houten vloer.
-2. **Proefboring (ribben vermijden):** met een lange 6 mm steenboor door de
-   dekvloer prikken. Bij zachte weerstand zit je tussen de betonribben (in de
-   pasplaat/isolatie). Bij keiharde weerstand stop je en schuif je 7–10 cm haaks
-   op.
-3. **Betonboorgat:** met een 52 mm diamant boorkroonset (nuttige lengte 200 mm,
-   SDS-Plus aansluiting) op de Makita boormachine (**uitsluitend roterend boren,
-   klopstand UIT**) door de dekvloer boren tot doorbraak.
-4. **Buisborging:** rode dubbelwandige PE-mantelbuis (50 mm) door het gat
-   steken. Vlak boven de vloer borgen met een 50 mm RVS slangklem om wegzakken
-   in de kruipruimte te voorkomen.
-5. **Kabeldoorvoer:** 2x Cat6a Outdoor netwerkkabel + 1x Belden H125 coax via de
-   geïntegreerde trekdraad door de mantelbuis trekken.
-6. **Afdichting & afwerking:** binnenzijde buis afdichten met Filoform
-   afdichtingspasta tegen tocht en bodemgassen; ringspleet tussen buis en beton
-   eveneens afdichten. Het gat in het laminaat afdekken met een 50 mm
-   afdekrozet.
-
-> ⚠️ **Twee correcties t.o.v. het oorspronkelijke plan, bewust doorgevoerd:**
-> stap 3 luidde "in één beweging 20 cm diep boren" (inconsistent met de eigen
-> vloeropbouw — zie §5.4) en stap 5 ging uit van vooraf gemonteerde,
-> aan elkaar getapete RJ45-stekkers (zie §6.9). Stap 6 dichtte alleen de
-> binnenzijde van de buis af (§6.15).
 
 ---
 
@@ -381,36 +384,52 @@ buis en beton blijft dan open als tocht- en bodemgasweg. Beide afdichten.
 
 ### Bewoning, eigendom en beheer
 
-6.19 **De woning wordt bewoond door iemand anders dan de beheerder — en dat
-blijft ruim twee jaar zo.** De bewoner (Pamela) woont er nu; de ontwerper van
-deze installatie komt pas bij de verbouwing inwonen, over minimaal twee jaar.
-Het plan is echter geschreven alsof beheerder en bewoner dezelfde persoon zijn.
-Dat is de grootste onuitgesproken aanname in het hele document.
+6.19 **Beheerder en bewoner zijn niet dezelfde persoon — maar de beheerder is
+er dagelijks.** De bewoner (Pamela) woont er; de beheerder komt elke dag langs
+en gaat pas inwonen als het eigen huis wordt verkocht. Dagelijkse aanwezigheid
+neemt het grootste deel van het beheerrisico weg: fysieke toegang is er, een
+storing kan binnen een dag ter plaatse worden opgelost, en beheer op afstand
+(out-of-band toegang, remote-reboot-stekkers) is daarmee **niet nodig** — dat
+zou overengineering zijn.
 
-**Wat dat concreet betekent:**
+Wat wél overblijft, en dat is het punt dat blijft staan:
 
-* **Alles moet op afstand beheerbaar zijn.** Twee jaar lang is er niemand ter
-  plaatse die weet hoe het in elkaar zit. Elke storing die eindigt in "even de
-  switch uit en weer aan" wordt een telefoontje, en elke storing die ligt bij
-  het apparaat dat je toegang geeft (de router, de hoofdswitch, de HA-server)
-  is niet op afstand te verhelpen.
-  **Doen:** out-of-band toegang regelen (bijv. een los 4G/LTE-kanaal of een
-  remote-reboot-stekker op de hoofdswitch en de server), automatisch herstel na
-  spanningsterugkeer inschakelen in het BIOS van de T630 (*restore on AC power
-  loss*), en HA zo configureren dat een herstart geen handmatige stappen vraagt.
-* **Storingen raken haar dagelijks leven, niet dat van de beheerder.** Als de
-  verlichting, de deurbel of het slot via HA loopt en HA valt uit, zit zij in
-  het donker. **Doen:** geen enkele basisfunctie (licht, bel, slot, verwarming)
-  uitsluitend via HA laten lopen; fysieke schakelaars en de bestaande bedrading
-  functioneel houden als terugvaloptie.
-* **Toestemming en aansprakelijkheid.** Een gat van 52–68 mm door een dragende
-  vloer, een nieuwe groep in de meterkast en een buis door de kruipruimte zijn
-  permanente ingrepen aan iemand anders' woning. **Vast te stellen:** is de
-  woning eigendom van de bewoner of gehuurd? Bij huur is een doorvoer door de
-  constructievloer zonder schriftelijke toestemming van de verhuurder geen
-  optie. Ook bij eigendom: leg vast wie opdrachtgever is voor het werk aan de
-  elektrische installatie.
-* **De zolderlijn hoort bij de verbouwing, niet bij dit project.** Zie 6.20.
+* **Dagelijks aanwezig is niet aanwezig op het moment van storing.** Valt HA om
+  22:00 uit op een avond dat de beheerder thuis is, dan zit de bewoner tot de
+  volgende dag met het probleem. **Doen:** geen enkele basisfunctie — licht,
+  deurbel, slot, verwarming — uitsluitend via HA laten lopen. Fysieke
+  schakelaars en de bestaande bedrading functioneel houden als terugval. Dit is
+  geen comfortpunt maar de scheidslijn tussen "leuk project" en "het huis werkt
+  niet meer zonder mij".
+* **Gratis en zinvol:** in het BIOS van de T630 *restore on AC power loss*
+  aanzetten, zodat de server na spanningsterugkeer zelf opstart zonder dat er
+  iemand op een knop moet.
+* **Toestemming: geregeld.** De bewoner is eigenaar (gekocht), dus er is geen
+  verhuurder in het spel en de ingrepen zijn haar beslissing. Blijft staan als
+  praktische notitie: leg bij de eerste ingreep vast wat er is aangepast, zodat
+  het bij een eventuele verkoop of verzekeringskwestie navolgbaar is.
+
+**En dan het punt dat met de bewoner zelf te maken heeft.** De bewoner heeft
+naar eigen zeggen weinig affiniteit met elektronica; de beheerder vult dat aan.
+Dat is geen bijzaak maar een **harde ontwerprandvoorwaarde**, en hij wijst twee
+kanten op:
+
+* **De terugvaleis hierboven wordt hiermee dwingend, niet optioneel.** Iemand
+  die het systeem niet kan doorgronden, kan ook niet improviseren als het faalt.
+  Een bewoner met gevoel voor techniek trekt zelf een stekker; deze bewoner
+  staat in het donker. Alles wat zij dagelijks gebruikt moet dus **ook zonder
+  HA, zonder netwerk en zonder stroom op de serverkant** blijven werken, via de
+  gewone schakelaar op de gewone plek. Voeg niets toe dat de bestaande manier
+  van bedienen vervangt — alleen dingen die er een laag bovenop leggen.
+* **De bus factor is 1.** Kennis over deze installatie zit bij één persoon. Valt
+  die weg — ziekte, een week weg, iets ernstigers — dan zit de bewoner met een
+  huis dat zij niet kan bedienen en niemand die het kan overnemen.
+  **Doen:** (a) een geprint A4 in de meterkast: wat is wat, welke groep hoort
+  bij welk apparaat, hoe zet je de smarthome-laag uit en houd je het huis
+  werkend; (b) kiezen voor gangbare, vervangbare componenten in plaats van
+  exotische, zodat een willekeurige installateur het kan overnemen; (c) de
+  HA-configuratie en backups op een plek waar zij erbij kan, niet alleen op het
+  eigen laptop.
 
 6.20 **De zolderlijn is nu weggegooid geld — de verbouwing sloopt precies dat
 deel.** Volgens het dossier gaan bij de verbouwing de achtergevel omhoog, komen
@@ -426,10 +445,54 @@ vier aansluitpunten.
 |---|---|---|
 | Zolderlijn nu volledig uitvoeren | € 25 kabel + arbeid | Alleen als er de komende twee jaar echt een vast aansluitpunt of access point op zolder nodig is; beschouw het als tijdelijk en wegwerpbaar |
 | Alleen mantelbuis + trekdraad naar zolder leggen | buis + arbeid | Voorkeur als het tracé nu open ligt: je trekt later de definitieve kabels zonder opnieuw te slopen |
-| Zolderlijn uitstellen tot de verbouwing | € 0 | Voorkeur als er nu geen behoefte is — tijdens de dakwerkzaamheden liggen de leidingwegen open en kost het een fractie |
+| Zolderlijn uitstellen tot de verbouwing | € 0 | Alleen als er nu geen behoefte is — en je accepteert dat "nu" onbepaald lang duurt |
+
+**En hier zit de kern: de verbouwdatum is niet bekend.** Het startsein is niet
+een datum maar een gebeurtenis — het uit huis gaan van het oudste kind, waarna
+het eigen huis wordt verkocht. Dat kan twee jaar zijn, het kan vijf jaar zijn.
+Een keuze die alleen goed uitpakt bij "over twee jaar" is dus een gok.
+
+**Advies: mantelbuis met trekdraad, nu.** Dat is de enige optie die goed is
+ongeacht wanneer de verbouwing komt. Kost nu weinig, je trekt er over twee jaar
+kabel door of over zes, en je hoeft nooit opnieuw een tracé te zoeken. Volledig
+uitvoeren gokt op laat; helemaal uitstellen gokt op vroeg.
 
 De vloerdoorgang meterkast ↔ woonkamer staat hier los van: die raakt de
 verbouwplannen niet en kan vooruit.
+
+6.21 **Twee huishoudens gaan samen — en dan botsen twee identieke subnetten.**
+Bij verkoop van het eigen huis verhuist niet alleen de beheerder maar ook diens
+bestaande netwerk en smarthome: een eigen router en een reeks WiFi-apparaten
+(smart plugs, lampen) met vaste of gereserveerde adressen. Beide huishoudens
+gebruiken vermoedelijk het **AVM-standaardbereik `192.168.178.0/24`**, want dat
+is wat een Fritz!Box uit de doos doet.
+
+**Waarom dat een probleem is:** apparaten die je meeneemt uit een
+`192.168.178.0/24`-netwerk naar een ander `192.168.178.0/24`-netwerk leveren
+dubbele adressen op. Je mag dan elk meegenomen apparaat opnieuw adresseren,
+elke reservering opnieuw invoeren en elke HA-integratie opnieuw koppelen — voor
+tientallen apparaten, op het moment dat je net verhuisd bent. Datzelfde geldt
+als je ooit beide netwerken tijdelijk wilt koppelen (VPN of site-to-site):
+identieke subnetten aan beide kanten zijn dan niet routeerbaar zonder NAT.
+
+**Oplossing, en die is nu gratis:** geef het netwerk in deze woning **nu** een
+eigen bereik, bijvoorbeeld `192.168.20.0/24` of `10.20.0.0/24` — niet
+`192.168.178.0/24` en niet `192.168.1.0/24`. Eenmalig omnummeren nu, met een
+handvol apparaten, kost een avond. Hetzelfde later doen met twee samengevoegde
+huishoudens kost een weekend en een hoop irritatie. Dit hangt samen met het
+IP-plan uit §5.1 — maak die keuze in één keer goed.
+
+**Tweede gevolg van het samenvoegen:** de 2,4 GHz-band wordt bij de verhuizing
+drukker, want de meegenomen WiFi-apparaten komen erbij. Dat maakt de
+kanaalkeuze uit §6.13 belangrijker, en het maakt het aantrekkelijk om
+meegenomen WiFi-smartplugs op termijn te vervangen door Zigbee-equivalenten:
+die ontlasten de band in plaats van hem te vullen.
+
+**Derde gevolg — bekijk de materiaallijst opnieuw.** Er komt hardware mee uit
+het eigen huis (router, mogelijk een switch, access point, smart devices).
+Inventariseer eerst wat meeverhuist voordat je bestelt; de meegenomen router kan
+bijvoorbeeld dienen als access point of mesh-punt in plaats van een nieuwe
+aankoop.
 
 ### Overig
 
@@ -476,10 +539,11 @@ plan — het is het verschil tussen een boodschappenlijst en een projectbegrotin
 
 ## 8. Actielijst vóór de eerste boring
 
-0. [ ] **Toestemming en rolverdeling vastleggen** — eigendom of huur, wie is
-       opdrachtgever voor het werk aan de elektrische installatie en de
-       vloerdoorvoer, en wie is aanspreekbaar bij storing zolang de beheerder er
-       niet woont (§6.19).
+0. [x] ~~Toestemming vastleggen~~ — **geregeld**: de bewoner is eigenaar, geen
+       verhuurder in het spel (§6.19).
+0a. [ ] **Terugvallaag en overdraagbaarheid inrichten** — niets dat de bestaande
+       bediening vervangt, een geprint overzicht in de meterkast, gangbare
+       componenten, backups op een plek waar de bewoner erbij kan (§6.19).
 1. [x] ~~Vloertype vaststellen~~ — **gedaan**: Manta systeemvloer begane grond,
        255 mm, B 37,5, ribben 600 mm h.o.h., geverifieerd tegen de stukken uit
        1986 (§3.3). Resteert: ribpositie van onderaf uitmeten en op de vloer
@@ -500,9 +564,14 @@ plan — het is het verschil tussen een boodschappenlijst en een projectbegrotin
         bevestigen of schrappen (§6.14, §6.17).
 10a. [ ] **Beslissen over de zolderlijn** — nu uitvoeren, alleen buis + trekdraad,
         of uitstellen tot de verbouwing (§6.20).
-10b. [ ] **Beheer op afstand inrichten** — out-of-band toegang, automatisch
-        herstel na spanningsuitval, en geen basisfunctie uitsluitend via HA
-        (§6.19).
+10b. [ ] **Terugval regelen** — geen basisfunctie (licht, bel, slot, verwarming)
+        uitsluitend via HA; *restore on AC power loss* aan in het BIOS van de
+        T630 (§6.19).
+10c. [ ] **Subnet kiezen dat niet `192.168.178.0/24` is** — voorkomt een
+        adresbotsing bij het samenvoegen van beide huishoudens. Nu omnummeren
+        kost een avond, later een weekend (§6.21).
+10d. [ ] **Inventariseren wat meeverhuist** uit het eigen huis (router, switch,
+        access point, smart devices) vóór het bestellen (§6.21).
 11. [ ] **Ontbrekende posten bijbestellen** volgens §7, inclusief afmontage
         en UPS.
 12. [ ] **Ventilatie/temperatuurbewaking meterkast regelen** (§6.6, §6.7).
