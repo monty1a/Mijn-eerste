@@ -33,8 +33,9 @@ mantelbuis door de kruipruimte.
 * **Topologie:** stertopologie vanuit de hoofdswitch in de meterkast.
 * **Meterkast hub:**
   * **Server:** HP T630 Mini-PC met Home Assistant OS (vast IP `.21`).
-  * **Hoofdswitch:** GigaPlus 10-Port 2.5Gb Switch (8x 2.5G PoE, 2x 10G SFP+)
-    op een eigen dedicated B16 aardlekautomaatgroep.
+  * **Hoofdswitch:** GigaPlus 10-Port 2.5Gb Switch (8x 2.5G Base-T,
+    2x 10G SFP+) op een eigen dedicated B16 aardlekautomaatgroep.
+    ⚠️ **Zonder PoE** — zie §2.2.
 * **Woonkamer sub-hub:**
   * **Switch:** TP-Link TL-SG108PE 8-Port Gigabit PoE Switch.
   * **Zigbee / Thread:** SMLIGHT SLZB-06M PoE Ethernet Coordinator, direct
@@ -42,12 +43,61 @@ mantelbuis door de kruipruimte.
     Home Assistant).
 * **Bekabeling:**
   * **Huiskamer:** 2x S/FTP Cat6a Outdoor PE netwerkkabel (1x hoofdverbinding,
-    1x reserve/extra punt) + 1x Belden H125 PE Outdoor coaxkabel.
+    1x reserve/extra punt) + 1x Belden H125 PE Outdoor coaxkabel. De coax heeft
+    een eigen doel: hij brengt het **Ziggo-AOP van achterin de woning naar het
+    modem in de meterkast** — het is geen TV-kabel naar de woonkamer.
   * **Zolder:** 1x S/FTP Cat6a Outdoor PE netwerkkabel (25 m).
 
-> ⚠️ **Openstaand in deze architectuur:** het internet-aansluitpunt (modem/ONT),
-> de router, DHCP-autoriteit en gateway zijn niet benoemd, en de voeding van de
-> woonkamerswitch is onjuist aangenomen. Zie §5.1 en §5.2.
+### 2.2 Fasering, aansluitpunten en de PoE-correctie
+
+**Twee internetintredes, en dat verklaart het ontwerp.** Glasvezel komt binnen
+**in de meterkast (voorzijde)**; Ziggo komt binnen **achterin de woning**, ca.
+10 m verder. De keuze is: de Ziggo-coax doortrekken naar de meterkast, zodat
+alle modems en routers op één plek staan. Daarmee is de meterkast werkelijk het
+sterpunt en is de coaxpost in §4 geen luxe maar de kern van het plan.
+
+**Fase 1 (dit project) versus de eindsituatie (bij de verbouwing).** De
+materiaallijst in §4 en het budget in §7 horen bij **fase 1**. Het poortplan
+hieronder is de beoogde **eindsituatie**; de vrije poorten zijn bewuste reserve
+voor de verbouwing en hoeven nu niet begroot te worden.
+
+| Poort | Bestemming | Fase |
+|---|---|---|
+| 1 | Router / modem (uplink) | 1 |
+| 2 | PoE-switch woonkamer | 1 |
+| 3 | PoE-switch schuur / buiten | later |
+| 4 | Switch zolder | later |
+| 5 | Switch 1e verdieping | later |
+| 6 | Home Assistant (HP T630) | 1 |
+| 7 | NAS | 1 of later |
+| 8 | Reserve — overkapping / tuin | later |
+| SFP+ 1–2 | Reserve | later |
+
+**Correctie 1 — de hoofdswitch levert géén PoE.** De productomschrijving van de
+GigaPlus luidt: *"10 Port 2.5Gb Unmanaged Ethernet Switch met 8× 2.5G Base-T
+Poorten, 2× 10G SFP+ Poorten"* — geen PoE. In de overzichtstabellen waaruit deze
+documentatie is overgenomen staat consequent "8x 2.5G PoE"; dat is er onderweg
+bij gekomen en klopt niet. De oorspronkelijke opzet was ook expliciet "in de
+meterkast komt een normale switch".
+**Gevolg:** de meterkast kan nergens PoE leveren. Alle PoE komt uit de
+TL-SG108PE in de woonkamer. Elke latere PoE-locatie (AP schuur, AP buiten,
+camera, deurbel) heeft dus een eigen PoE-switch op die plek nodig, of een losse
+injector. Een vrije poort lost dat niet op. **Verifieer de PoE-specificatie vóór
+je bestelt.**
+
+**Correctie 2 — reken met 8 poorten, niet 10.** De 2× SFP+ zijn geen
+RJ45-poorten: die nemen alleen een SFP+-module of DAC-kabel, en die staan niet in
+de begroting. Een laadpaal of deurbel kan daar dus niet op; dat zijn
+twisted-pair-apparaten die een gewone poort nodig hebben.
+
+**Correctie 3 — de NAS staat in het poortplan maar niet in de materiaallijst.**
+Bepaal of die bij fase 1 hoort; zo ja, begroot hem (en zijn voeding en warmte in
+de meterkast, §6.6).
+
+> ⚠️ **Nog openstaand in de architectuur:** welk apparaat routert en firewall't
+> (KPN-router of eigen router), wie DHCP-server en gateway is, en het IP-plan —
+> het geplande vaste `.21` moet buiten het DHCP-uitgiftebereik vallen (§5.1).
+> Daarnaast de voeding van de woonkamerswitch: die kan niet via PoE (§5.2).
 
 ---
 
@@ -284,7 +334,7 @@ aantrekkelijker. Die raken de nieuwe isolatie niet.
 | Apparaat / component | Type / specificatie | Prijs | Bestellink |
 | :--- | :--- | :--- | :--- |
 | **Meterkast groep** | ABB aardlekautomaat B16 (DS201 B16) | € 49,90 | [Amazon](https://amzn.eu/d/036ACNSG) |
-| **Hoofdswitch meterkast** | GigaPlus 10-Port 2.5Gb Switch (8x 2.5G PoE, 2x 10G SFP+) | € 69,99 | [Amazon](https://amzn.eu/d/09yBrpMB) |
+| **Hoofdswitch meterkast** | GigaPlus 10-Port 2.5Gb Switch (8x 2.5G Base-T, 2x 10G SFP+) — **geen PoE**, zie §2.2 | € 69,99 | [Amazon](https://amzn.eu/d/09yBrpMB) |
 | **Home Assistant server** | HP T630 Mini-PC (8 GB RAM, 128 GB SSD + HA OS) | € 64,95 | [Marktplaats](https://link.marktplaats.nl/m2438138358) |
 | **PoE switch woonkamer** | TP-Link TL-SG108PE 8-Port Gigabit (4x PoE) | € 59,90 | [Amazon](https://amzn.eu/d/03xGOamO) |
 | **Zigbee/Thread antenne** | SMLIGHT SLZB-06M (PoE Ethernet Coordinator) | € 39,95 | [SMLIGHT](https://smlight.tech/product/slzb-06m/) |
@@ -317,19 +367,17 @@ apparaat gateway en DHCP-server is, of welk subnet er gebruikt wordt — terwijl
 er wel een vast IP `.21` wordt uitgedeeld. Een stertopologie is pas een
 topologie als je weet waar de bron staat.
 
-**Doorslaggevend:** staat het modem/de ONT in de woonkamer (in NL heel gewoon —
-coax- of glasintrede zit vaak bij de TV-wand), dan is de meterkast niet het
-hart van de ster maar een aftakking, en loopt al je verkeer twee keer door de
-vloerdoorvoer. Dat is geen ramp, maar het verandert de bekabelingsbehoefte
-(je hebt dan minimaal één kabel als uplink *naar* de meterkast nodig, en de
-2,5G-switch staat aan de verkeerde kant van de bottleneck).
+**Deels opgelost (§2.2):** de **glasvezelintrede zit in de meterkast**, dus de
+meterkast is werkelijk het sterpunt en de topologie is correct. De Ziggo-coax
+komt achterin binnen en wordt naar de meterkast doorgetrokken. Wat resteert is
+niet de locatie maar het **apparaat**: welk kastje routert en firewall't
+(KPN-router? eigen router?), en welk apparaat is DHCP-server en gateway.
 
-**Oplossing:** vóór alles vastleggen (a) fysieke locatie van de WAN-intrede,
-(b) welk apparaat routert/firewall't, (c) IP-plan (subnet, gateway, DHCP-range,
-reserveringen). Als de intrede in de woonkamer zit: overweeg de 2,5G-switch en
-de router daar te plaatsen en de meterkast als sub-hub te behandelen, of
-verplaats de intrede (bij glas kan de ONT vaak verhuizen, bij coax kun je met
-de bestaande coax het modem naar de meterkast halen).
+**Oplossing:** vastleggen (a) welk apparaat routert/firewall't, (b) het IP-plan
+(subnet, gateway, DHCP-range, reserveringen). Houd er rekening mee dat je op
+termijn van Ziggo naar glasvezel of omgekeerd kunt wisselen: met beide intredes
+in de meterkast is dat een kwestie van omprikken en hoeft er in de woonkamer
+niets te veranderen. Dat is precies de winst van dit ontwerp.
 
 **Let bij (c) specifiek op de DHCP-pool.** Een handmatig ingesteld vast IP dat
 binnen het uitgiftebereik van de router valt, levert een IP-conflict op zodra de
