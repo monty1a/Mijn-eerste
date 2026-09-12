@@ -5,9 +5,14 @@
 **Laatst bijgewerkt:** 12 september 2026
 
 > Dit bestand bevat in §1–§4 de projectdocumentatie en materiaallijst zoals
-> aangeleverd, en in §5–§8 een kritische review met blokkerende punten,
-> ontbrekende posten en een actielijst. **Niet boren voordat §8 is afgewerkt** —
-> een verkeerd gat in de vloer is niet terug te draaien.
+> aangeleverd (§3.3 voegt de verificatie van de vloerconstructie tegen de
+> originele bouwstukken toe), en in §5–§8 een kritische review met blokkerende
+> punten, ontbrekende posten en een actielijst. **Niet boren voordat §8 is
+> afgewerkt** — een verkeerd gat in de vloer is niet terug te draaien.
+>
+> **Woning:** Kruidenschans 24, Voorhout (type M4, 1986). Bewoond door Pamela;
+> de verbouwing volgt over minimaal twee jaar. Zie §6.19 en §6.20 — dat verschil
+> tussen bewoner en beheerder is maatgevend voor het ontwerp.
 
 ---
 
@@ -53,10 +58,57 @@ mantelbuis door de kruipruimte.
   pasplaten/vulelementen van piepschuim/bimsbeton en een dekvloer van ca.
   3–5 cm.
 
-> ⚠️ **Te verifiëren aanname.** Het bestaande dossier
-> (`huizen/Voorhout-Kruidenschans-24/`) documenteert **breedplaatvloeren
-> (filigraan)**. Klopt het vloertype hier niet, dan vervalt de hele
-> boorprocedure in §3.2 — zie §5.5.
+> ✅ **Geverifieerd tegen de originele bouwstukken (1986).** Alle opgegeven
+> waarden kloppen. Zie §3.3 voor de brongegevens en de constructieve
+> randvoorwaarde die daaruit volgt.
+
+### 3.3 Verificatie vloerconstructie tegen de originele stukken
+
+Nageslagen in `huizen/Voorhout-Kruidenschans-24/` (BSF BV / bouwkundig
+adviesburo H.C. Bogaards, werk 1341 R2B, 19 woningen plan Oosthout B1 te
+Voorhout, Noorlander Bouw, dec. 1985 – feb. 1986):
+
+| Opgegeven in §3.1 | Bron | Uitkomst |
+|---|---|---|
+| Manta systeemvloer, begane grond | `funderingsplan_vloer.pdf`, titelblok: *"„MANTA" systeemvloer voor de begane grond, woningtype M4"* | ✅ bevestigd, en expliciet voor **type M4** |
+| Totale dikte 255 mm | `berekening_belastingen_pasplaat.pdf` blad 1 (*"ht 255 mm"*) en blad 3 (breukmomententabel met kolom ht = 255 mm) | ✅ bevestigd |
+| Betonkwaliteit B 37,5 | `funderingsplan_vloer.pdf` titelblok en `…pasplaat.pdf` blad 3: *"Beton: B 37,5, f'b 30 N/mm²"*; wapening FeB 500 | ✅ bevestigd |
+| Ribben 600 mm h.o.h. | `…pasplaat.pdf` blad 3: *"Breedte per rib = 600 mm"* | ✅ bevestigd |
+| Pasplaten tussen de ribben | `…pasplaat.pdf`: Manta pasplaat-berekening; doorsnede op het funderingsplan | ✅ bevestigd |
+
+**De tegenspraak met het dossier bestaat niet.** De repo-README noemt
+"breedplaatvloeren (filigraan)"; dat klopt voor de **verdiepings- en
+zoldervloer** (`berekening_vloerplaten_filigraan.pdf`, 53 blz., "FILIGRANPLATEN
+… type M4", 16-5-1986). De **begane grondvloer** is een Manta ribbenvloer.
+Beide zijn waar; de README was onvolledig, niet onjuist.
+
+**Twee aanvullende gegevens van de tekening die het plan raken:**
+
+1. **"GEEN SPARING IN RIB"** — handgeschreven bij de vloerdoorsnede op het
+   funderingsplan. De constructeur heeft in 1986 dus expliciet vastgelegd dat er
+   geen doorvoeren in de rib mogen. Ribben vermijden is daarmee geen voorzorg
+   maar een constructieve eis. Boren in een rib snijdt de hoofdwapening van het
+   dragende element door.
+2. **"Betonnokken in isolatie onder rib, max. 150 cm h.o.h., niet t.p.v.
+   opleg"** — onder de ribben zitten extra betonnokken. Die zitten *onder de
+   rib*, dus wie tussen de ribben blijft, mijdt ze automatisch. Wel relevant bij
+   inspectie van onderaf: een nok is geen rib.
+
+**Ribrichting (afgeleid, te controleren bij inspectie).** Op de legtekening
+liggen de vloerplaten als banden van ca. 120 cm breed, overspannend ca. 580 cm
+tussen de woningscheidende wanden. De ribben lopen dus in de overspanningsrichting
+— **haaks op de woningscheidende wanden, parallel aan voor- en achtergevel** — en
+de hart-op-hart-afstand van 600 mm ligt in de richting voor-naar-achter.
+
+*Praktisch gevolg voor §3.2 stap 2:* zoek de ribvrije zone door je proefboringen
+**in een lijn van voor naar achter** te verschuiven (haaks op de gevel), niet
+zijwaarts. Zijwaarts schuiven volgt de rib en levert steeds dezelfde weerstand.
+
+> ⚠️ Let op bij het uitzetten: het blad vermeldt *"2x uitvoeren (getekend), 2x
+> uitvoeren (gespiegeld)"*. Of Kruidenschans 24 de getekende of de gespiegelde
+> variant is, bepaalt de maatvoering — en #24 is een **hoekwoning**, dus de
+> aansluiting aan de vrijstaande kopgevel wijkt af van het middenblok op de
+> tekening. Zet de tekening uit tegen de werkelijke woning voordat je aftekent.
 
 ### 3.2 Boor- en installatieprocedure (stapsgewijs)
 
@@ -114,8 +166,9 @@ mantelbuis door de kruipruimte.
 
 ## 5. Blokkerende punten
 
-Deze vijf moeten opgelost zijn voordat er materiaal wordt besteld of geboord
-wordt. Elk punt laat het plan in de huidige vorm falen.
+Deze vier moeten opgelost zijn voordat er materiaal wordt besteld of geboord
+wordt. Elk punt laat het plan in de huidige vorm falen. Een vijfde punt — het
+vloertype — is inmiddels **opgelost**; zie §5.5.
 
 ### 5.1 Er zit geen router in de architectuur
 
@@ -199,29 +252,27 @@ stap 2 om de werkelijke pakketdikte te meten vóór je de kroon pakt. Gebruik
 altijd de centreerpen bij het aanzetten; een eenmaal aangezet gat opnieuw
 starten zonder centrering ruïneert de kroon.
 
-### 5.5 Het vloertype spreekt het bestaande dossier tegen
+### 5.5 ~~Het vloertype spreekt het bestaande dossier tegen~~ — OPGELOST
 
-§3.1 gaat uit van een Manta ribbenvloer met pasplaten. Het dossier
-`huizen/Voorhout-Kruidenschans-24/` documenteert **breedplaatvloeren
-(filigraan)**. Dat kan beide waar zijn — een begane grondvloer over de
-kruipruimte kan een ribbenvloer zijn terwijl verdieping en zolder breedplaat
-zijn — maar het is nu een aanname, niet een vaststelling.
+**Vervallen als blokkerend punt.** De opgave in §3.1 is volledig bevestigd door
+de originele bouwstukken uit 1985–1986: Manta systeemvloer voor de begane grond
+van woningtype M4, 255 mm, B 37,5, ribben 600 mm h.o.h., pasplaten ertussen. De
+volledige verificatie staat in §3.3. De "tegenspraak" met de repo-README was een
+onvolledige README: filigraan geldt voor de verdiepings- en zoldervloer, Manta
+voor de begane grond.
 
-**Waarom dit blokkerend is:** is de begane grondvloer een massieve
-breedplaat/kanaalplaat, dan bestaat "zachte weerstand tussen de ribben" niet en
-is stap 2 van de procedure zinloos. Je boort dan door 200+ mm gewapend beton
-B37,5, raakt vrijwel zeker wapening, en een 52 mm droog-diamantkroon op een
-SDS-Plus hamer is daar niet het juiste gereedschap voor (dan: kernboormachine,
-nat, met vacuümstatief — of doorvoer via een andere route zoals een bestaande
-leidingschacht of kruipluik).
+De boorprocedure in §3.2 blijft dus geldig — en wordt door de tekening
+aangescherpt op twee punten die §3.3 uitwerkt: de rib mag constructief niet
+worden doorboord (*"geen sparing in rib"*, 1986), en de proefboringen moeten
+**van voor naar achter** verschuiven omdat de ribben parallel aan de gevels
+lopen.
 
-**Oplossing:** `bouwtekeningen/funderingsplan_vloer.pdf` en
-`berekeningen/berekening_belastingen_pasplaat.pdf` erop naslaan (het bestaan van
-een *pasplaat*-berekening ondersteunt de ribbenvloer-aanname, maar bewijst hem
-niet voor de begane grond) en desnoods vanuit de kruipruimte visueel
-vaststellen hoe de vloer is opgebouwd en waar de ribben lopen. Vanaf de
-onderzijde is ribafstand exact zichtbaar — dat maakt de hele gok-en-prik-stap
-overbodig.
+**Wat hier nog wél open staat** (geen blokkade, wel uitzoekwerk vóór het
+aftekenen): of Kruidenschans 24 de getekende of de gespiegelde variant van het
+legplan is, en hoe de hoekwoning-situatie afwijkt van het middenblok op de
+tekening. Visuele controle vanuit de kruipruimte blijft de snelste route: van
+onderaf is de ribrichting en -afstand direct zichtbaar, en dan hoef je helemaal
+niet te prikken.
 
 ---
 
@@ -328,6 +379,58 @@ exercitie opnieuw. De buis heeft de ruimte (mits §5.3 is opgelost).
 6.15 **Afdichting alleen aan de binnenzijde van de buis.** De ringspleet tussen
 buis en beton blijft dan open als tocht- en bodemgasweg. Beide afdichten.
 
+### Bewoning, eigendom en beheer
+
+6.19 **De woning wordt bewoond door iemand anders dan de beheerder — en dat
+blijft ruim twee jaar zo.** De bewoner (Pamela) woont er nu; de ontwerper van
+deze installatie komt pas bij de verbouwing inwonen, over minimaal twee jaar.
+Het plan is echter geschreven alsof beheerder en bewoner dezelfde persoon zijn.
+Dat is de grootste onuitgesproken aanname in het hele document.
+
+**Wat dat concreet betekent:**
+
+* **Alles moet op afstand beheerbaar zijn.** Twee jaar lang is er niemand ter
+  plaatse die weet hoe het in elkaar zit. Elke storing die eindigt in "even de
+  switch uit en weer aan" wordt een telefoontje, en elke storing die ligt bij
+  het apparaat dat je toegang geeft (de router, de hoofdswitch, de HA-server)
+  is niet op afstand te verhelpen.
+  **Doen:** out-of-band toegang regelen (bijv. een los 4G/LTE-kanaal of een
+  remote-reboot-stekker op de hoofdswitch en de server), automatisch herstel na
+  spanningsterugkeer inschakelen in het BIOS van de T630 (*restore on AC power
+  loss*), en HA zo configureren dat een herstart geen handmatige stappen vraagt.
+* **Storingen raken haar dagelijks leven, niet dat van de beheerder.** Als de
+  verlichting, de deurbel of het slot via HA loopt en HA valt uit, zit zij in
+  het donker. **Doen:** geen enkele basisfunctie (licht, bel, slot, verwarming)
+  uitsluitend via HA laten lopen; fysieke schakelaars en de bestaande bedrading
+  functioneel houden als terugvaloptie.
+* **Toestemming en aansprakelijkheid.** Een gat van 52–68 mm door een dragende
+  vloer, een nieuwe groep in de meterkast en een buis door de kruipruimte zijn
+  permanente ingrepen aan iemand anders' woning. **Vast te stellen:** is de
+  woning eigendom van de bewoner of gehuurd? Bij huur is een doorvoer door de
+  constructievloer zonder schriftelijke toestemming van de verhuurder geen
+  optie. Ook bij eigendom: leg vast wie opdrachtgever is voor het werk aan de
+  elektrische installatie.
+* **De zolderlijn hoort bij de verbouwing, niet bij dit project.** Zie 6.20.
+
+6.20 **De zolderlijn is nu weggegooid geld — de verbouwing sloopt precies dat
+deel.** Volgens het dossier gaan bij de verbouwing de achtergevel omhoog, komen
+er twee dakkapellen, wordt het dak opnieuw geïsoleerd en wordt de zolder een
+volwaardige verdieping. Een Cat6a die je nu naar zolder trekt, ligt daar twee
+jaar en wordt dan ingebouwd of gesloopt. En wordt die zolder een volwaardige
+verdieping met kamers, dan is één kabel hoe dan ook te weinig: reken op drie à
+vier aansluitpunten.
+
+**Doen — kies bewust:**
+
+| Optie | Kosten nu | Wanneer verstandig |
+|---|---|---|
+| Zolderlijn nu volledig uitvoeren | € 25 kabel + arbeid | Alleen als er de komende twee jaar echt een vast aansluitpunt of access point op zolder nodig is; beschouw het als tijdelijk en wegwerpbaar |
+| Alleen mantelbuis + trekdraad naar zolder leggen | buis + arbeid | Voorkeur als het tracé nu open ligt: je trekt later de definitieve kabels zonder opnieuw te slopen |
+| Zolderlijn uitstellen tot de verbouwing | € 0 | Voorkeur als er nu geen behoefte is — tijdens de dakwerkzaamheden liggen de leidingwegen open en kost het een fractie |
+
+De vloerdoorgang meterkast ↔ woonkamer staat hier los van: die raakt de
+verbouwplannen niet en kan vooruit.
+
 ### Overig
 
 6.16 **Tweedehands server zonder fallback.** Een Marktplaats-T630 zonder
@@ -373,8 +476,14 @@ plan — het is het verschil tussen een boodschappenlijst en een projectbegrotin
 
 ## 8. Actielijst vóór de eerste boring
 
-1. [ ] **Vloertype vaststellen** — funderingsplan + kruipruimte-inspectie;
-       ribpositie van onderaf uitmeten en op de vloer aftekenen (§5.5).
+0. [ ] **Toestemming en rolverdeling vastleggen** — eigendom of huur, wie is
+       opdrachtgever voor het werk aan de elektrische installatie en de
+       vloerdoorvoer, en wie is aanspreekbaar bij storing zolang de beheerder er
+       niet woont (§6.19).
+1. [x] ~~Vloertype vaststellen~~ — **gedaan**: Manta systeemvloer begane grond,
+       255 mm, B 37,5, ribben 600 mm h.o.h., geverifieerd tegen de stukken uit
+       1986 (§3.3). Resteert: ribpositie van onderaf uitmeten en op de vloer
+       aftekenen, en vaststellen of #24 de getekende of gespiegelde variant is.
 2. [ ] **WAN-intrede, router en IP-plan vastleggen** — pas daarna is de
        topologie bepaald (§5.1).
 3. [ ] **Voeding woonkamerswitch beslissen** — WCD, PoE-powered switch, of
@@ -389,6 +498,11 @@ plan — het is het verschil tussen een boodschappenlijst en een projectbegrotin
 9. [ ] **Zoldertracé uittekenen** en kabellengte definitief maken (§6.5).
 10. [ ] **Aantal kabels vaststellen** (advies: 4 naar de woonkamer) en coax
         bevestigen of schrappen (§6.14, §6.17).
+10a. [ ] **Beslissen over de zolderlijn** — nu uitvoeren, alleen buis + trekdraad,
+        of uitstellen tot de verbouwing (§6.20).
+10b. [ ] **Beheer op afstand inrichten** — out-of-band toegang, automatisch
+        herstel na spanningsuitval, en geen basisfunctie uitsluitend via HA
+        (§6.19).
 11. [ ] **Ontbrekende posten bijbestellen** volgens §7, inclusief afmontage
         en UPS.
 12. [ ] **Ventilatie/temperatuurbewaking meterkast regelen** (§6.6, §6.7).
@@ -403,9 +517,19 @@ HA configureren → laminaat afwerken.
 ## 9. Bronverantwoording
 
 Dit document is gebaseerd op de aangeleverde projecttekst, aangevuld met het
-dossier **Kruidenschans 24, Voorhout** in deze repo
-(`huizen/Voorhout-Kruidenschans-24/` — bouwtekeningen, berekeningen,
-gespreksverslag), gebruikt voor de vloertype-tegenspraak in §5.5.
+dossier **Kruidenschans 24, Voorhout** in deze repo.
+
+**Gebruikt voor de verificatie in §3.3** (originele stukken, 1985–1986):
+
+| bron | gebruikt voor |
+|---|---|
+| `bouwtekeningen/funderingsplan_vloer.pdf` | Titelblok "MANTA systeemvloer voor de begane grond, woningtype M4", B 37,5 / FeB 500, oplegging, legplan en ribrichting, notities *"geen sparing in rib"* en *"betonnokken in isolatie onder rib max. 150 cm h.o.h."* |
+| `berekeningen/berekening_belastingen_pasplaat.pdf` | ht 255 mm, breedte per rib 600 mm, breukmomententabel Manta, betonkwaliteit B 37,5 |
+| `berekeningen/berekening_vloerplaten_filigraan.pdf` | Vaststelling dat filigraan de **verdiepings- en zoldervloer** betreft, niet de begane grond |
+| `gespreksverslag.md`, `README.md`, `tekeningen/` | Verbouwplannen (achtergevel, dakkapellen, zolder) → §6.20 |
+
+De scans hebben een OCR-tekstlaag en zijn daarnaast als afbeelding uitgelezen
+voor de handschriftnotities en de doorsnedes.
 
 **Niet gebruikt, en waarom:**
 
