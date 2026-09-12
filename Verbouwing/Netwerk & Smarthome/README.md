@@ -6,7 +6,7 @@ verbouwtraject.
 ## Inhoud van deze map
 | bestand | inhoud |
 |---|---|
-| `Smarthome_Netwerk_Meterkast_Huiskamer.md` | Projectdocumentatie centralisatie smarthome/netwerk (meterkast ↔ huiskamer ↔ zolder): netwerkarchitectuur, boor- en installatieprocedure vloerdoorgang, materiaallijst met bestellinks, kritische review met blokkerende punten en actielijst |
+| `Smarthome_Netwerk_Meterkast_Huiskamer.md` | Projectdocumentatie centralisatie smarthome/netwerk (meterkast ↔ huiskamer ↔ zolder): netwerkarchitectuur, vastgestelde bestaande situatie (subnet, groepenkast), boor- en installatieprocedure vloerdoorgang, materiaallijst met bestellinks, kritische review met blokkerende punten, actielijst en bronverantwoording |
 
 ## Status
 **Ontwerp — nog niet uitvoeringsgereed.** Zie §5 (blokkerende punten) en §8

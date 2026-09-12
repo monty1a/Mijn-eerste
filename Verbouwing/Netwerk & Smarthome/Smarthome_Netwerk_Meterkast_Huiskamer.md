@@ -37,9 +37,36 @@ mantelbuis door de kruipruimte.
     1x reserve/extra punt) + 1x Belden H125 PE Outdoor coaxkabel.
   * **Zolder:** 1x S/FTP Cat6a Outdoor PE netwerkkabel (25 m).
 
-> ⚠️ **Openstaand in deze architectuur:** het internet-aansluitpunt (modem/ONT),
-> de router, DHCP-autoriteit en gateway zijn niet benoemd, en de voeding van de
-> woonkamerswitch is onjuist aangenomen. Zie §5.1 en §5.2.
+### 2.1 Bestaande situatie (vastgesteld uit eigen documentatie)
+
+Deze gegevens komen niet uit het ontwerp maar uit bestaande bronnen (zie §9) en
+zijn maatgevend voor de architectuur.
+
+**Netwerk — huidig:**
+
+| | |
+|---|---|
+| Subnet | `192.168.178.0/24` — het AVM/Fritz!Box-standaardbereik |
+| Router / gateway | Vrijwel zeker een Fritz!Box op `192.168.178.1` (te bevestigen) |
+| DHCP | Door de Fritz!Box; standaardpool `192.168.178.20 – .200` |
+| Bestaande smart devices | 8 stuks op 2,4 GHz WiFi (Tapo P100/P110, lampen, voordeur) |
+
+**Meterkast — huidig (12 groepen, twee kasten):**
+
+| Kast | Zone | Groepen |
+|---|---|---|
+| 1 (links) | Groene zone — ALS 1 | 1 t/m 4 |
+| 1 (links) | Blauwe zone — ALS 2 | 5 Droger · 6 Algemeen licht 1 · 7 Algemeen licht 2 · 8 Meterkast & bel · B Beltrafo |
+| 2 (rechts) | Gele zone — ALS 3 | 9 Bovenverdieping · **10 Reserve/uitbreiding (vrij)** · **11 Reserve/uitbreiding (vrij)** · 12 Airco |
+| 1 (links) | OVP overspanning | "Beschermt uitsluitend groep 1 t/m 1…" — **tekst afgekapt, te controleren** |
+
+Er zijn dus **twee vrije groepsposities** (10 en 11) en er is al
+overspanningsbeveiliging aanwezig. Beide feiten veranderen de afweging rond de
+begrote aardlekautomaat — zie §6.8.
+
+> ⚠️ **Nog openstaand in de architectuur:** de fysieke locatie van de
+> Fritz!Box (§5.1), de voeding van de woonkamerswitch (§5.2) en de
+> reikwijdte van de overspanningsbeveiliging (§6.8).
 
 ---
 
@@ -117,26 +144,35 @@ mantelbuis door de kruipruimte.
 Deze vijf moeten opgelost zijn voordat er materiaal wordt besteld of geboord
 wordt. Elk punt laat het plan in de huidige vorm falen.
 
-### 5.1 Er zit geen router in de architectuur
+### 5.1 De router staat niet in de architectuur — en `.21` botst met de DHCP-pool
 
-De hele §2 beschrijft switches, maar niet waar het internet binnenkomt, welk
-apparaat gateway en DHCP-server is, of welk subnet er gebruikt wordt — terwijl
-er wel een vast IP `.21` wordt uitgedeeld. Een stertopologie is pas een
-topologie als je weet waar de bron staat.
+§2 beschrijft drie lagen switches, maar noemt de router niet, terwijl er wel een
+vast IP `.21` wordt uitgedeeld. Uit de bestaande IP-lijst (§9) blijkt het subnet
+`192.168.178.0/24` — het AVM-standaardbereik — dus de router is vrijwel zeker een
+**Fritz!Box op `192.168.178.1`**, die ook DHCP doet. Dat vult het gat deels, maar
+laat twee harde problemen open.
 
-**Doorslaggevend:** staat het modem/de ONT in de woonkamer (in NL heel gewoon —
-coax- of glasintrede zit vaak bij de TV-wand), dan is de meterkast niet het
-hart van de ster maar een aftakking, en loopt al je verkeer twee keer door de
-vloerdoorvoer. Dat is geen ramp, maar het verandert de bekabelingsbehoefte
-(je hebt dan minimaal één kabel als uplink *naar* de meterkast nodig, en de
-2,5G-switch staat aan de verkeerde kant van de bottleneck).
+**Probleem 1 — `.21` valt binnen de DHCP-pool.** De Fritz!Box deelt standaard uit
+vanaf `192.168.178.20` tot `.200`. Een handmatig ingesteld vast IP `192.168.178.21`
+zit daar middenin: zodra de Fritz!Box `.21` aan een ander apparaat uitdeelt, heb
+je een IP-conflict op precies het apparaat waar je hele smarthome op leunt, en
+dat gebeurt pas na een herstart of een nieuw apparaat — dus niet tijdens de
+installatie, maar weken later.
+**Oplossing, kies één:** (a) reserveer `.21` in de Fritz!Box als vaste
+toewijzing op MAC-adres (netjes: DHCP blijft de autoriteit), of (b) verklein de
+DHCP-pool tot bijv. `.50 – .200` en leg statische adressen daarbuiten. Doe (a)
+of (b) vóór je HA installeert, niet erna.
 
-**Oplossing:** vóór alles vastleggen (a) fysieke locatie van de WAN-intrede,
-(b) welk apparaat routert/firewall't, (c) IP-plan (subnet, gateway, DHCP-range,
-reserveringen). Als de intrede in de woonkamer zit: overweeg de 2,5G-switch en
-de router daar te plaatsen en de meterkast als sub-hub te behandelen, of
-verplaats de intrede (bij glas kan de ONT vaak verhuizen, bij coax kun je met
-de bestaande coax het modem naar de meterkast halen).
+**Probleem 2 — de locatie van de Fritz!Box is onbekend, en die bepaalt de
+topologie.** Staat hij in de woonkamer (in NL heel gewoon — de coax- of
+glasintrede zit vaak bij de TV-wand), dan is de meterkast niet het hart van de
+ster maar een aftakking, loopt al je verkeer twee keer door de vloerdoorvoer, en
+staat je 2,5G-switch aan de verkeerde kant van de bottleneck.
+**Oplossing:** locatie van de WAN-intrede vastleggen. Zit die in de woonkamer,
+overweeg dan de 2,5G-switch daar te zetten en de meterkast als sub-hub te
+behandelen — of verplaats de intrede (bij glas kan de ONT vaak verhuizen; bij
+coax kun je juist de coax die je toch al trekt gebruiken om het modem naar de
+meterkast te halen, wat de coaxpost in §4 alsnog rechtvaardigt).
 
 ### 5.2 De TL-SG108PE kan niet via PoE gevoed worden
 
@@ -260,19 +296,45 @@ niet meteen, maar na de eerste zomer. **Doen:** temperatuurmeting begroten
 fan), en apparatuur niet gestapeld monteren.
 
 6.7 **Toegankelijkheid en ruimte.** De meterkast moet toegankelijk blijven voor
-de netbeheerder en is doorgaans 60 cm breed en vol. Controleer of er fysiek
-ruimte is voor switch + mini-PC + montagemateriaal, en of de groepenkast een
-vrije modulepositie heeft voor de DS201.
+de netbeheerder. Ruimte in de groepenkast is wél aanwezig: groepen 10 en 11 zijn
+vrij (§2.1). Controleer nog of er fysiek ruimte is voor switch + mini-PC +
+montagemateriaal naast de twee kasten.
 
-6.8 **Geen UPS — en de dedicated groep koopt géén uptime.** € 49,90 aan een
-eigen B16 aardlekautomaat beschermt tegen een *andere* groep die uitvalt, maar
-niet tegen spanningsuitval, en niet tegen de eigen groep. Zodra de spanning
-wegvalt liggen netwerk én Home Assistant plat — inclusief wat daarvan afhangt.
-Erger: HA OS dat hard uitvalt corrumpeert op termijn zijn database.
-**Doen:** € 60–90 aan een kleine line-interactive UPS levert meer
-beschikbaarheid dan die aparte groep, en geeft HA de kans netjes af te sluiten
-(USB/NUT-integratie). Overweeg de aparte groep te schrappen of te
-verantwoorden op een andere grond dan uptime.
+6.8 **De aardlekautomaat: goede uitkomst, verkeerde onderbouwing — en de
+montage is niet triviaal.** Nu er twee vrije groepsposities blijken te zijn
+(10 en 11, §2.1), verdient deze post een scherpere afweging dan "dedicated
+groep".
+
+*Waarom een gewone B16 niet volstaat, en de RCBO dus tóch verdedigbaar is:*
+groep 10 en 11 hangen achter **ALS 3 (gele zone), samen met groep 12 = de
+airco**. Een airco-buitenunit met frequentieregelaar is precies de last die
+lekstromen produceert en een gedeelde 30 mA-aardlekschakelaar laat vlaggen. Zet
+je je HA-server en netwerk daar gewoon met een B16 van € 12 naast, dan valt je
+hele smarthome uit elke keer dat de airco de zone uitschakelt. Dat is een
+concrete, terugkerende storingsbron — niet een theoretische.
+
+*Maar:* een DS201 RCBO die je in positie 10 of 11 klikt, hangt nog steeds
+**achter** ALS 3. Dan heb je aardlekbeveiliging in serie: de selectiviteit
+verbetert wel (jouw groep vlagt bij een eigen fout), maar een fout elders in de
+gele zone gooit ALS 3 er nog steeds uit en dus jouw groep mee. Voor échte
+onafhankelijkheid moet de RCBO gevoed worden van *vóór* ALS 3, direct van de
+hoofdverdeling. Dat is omdraadwerk in de kast, geen module-inklik-klus.
+
+*En het punt dat zwaarder weegt dan de groep:* de OVP-regel leest "beschermt
+uitsluitend groep 1 t/m 1…" — afgekapt in de bron. Als de
+overspanningsbeveiliging de **gele zone niet dekt**, hangt je gevoeligste
+elektronica (mini-PC, switches, coördinator) straks aan de enige zone zonder
+overspanningsbeveiliging. Dat is een groter risico dan een vlaggende
+aardlekschakelaar.
+
+**Doen:** (a) volledige OVP-regel uitlezen en vaststellen of groep 9–12 gedekt
+is — zo niet, OVP uitbreiden vóór je apparatuur plaatst; (b) met een installateur
+bepalen of de RCBO vóór ALS 3 gevoed kan worden, anders is de meerprijs boven
+een gewone B16 grotendeels weg; (c) **een UPS begroten** — € 49,90 aan
+groepsbeveiliging beschermt niet tegen spanningsuitval en niet tegen de eigen
+groep, en HA OS dat hard uitvalt corrumpeert op termijn zijn database. € 60–90
+aan een kleine line-interactive UPS levert meer beschikbaarheid dan de aparte
+groep, en laat HA netjes afsluiten via USB/NUT.
 
 ### Netwerk
 
@@ -304,11 +366,17 @@ plat L2-domein komt te staan. **Doen:** minimaal een VLAN-plan opstellen
 (IoT / vertrouwd / gast) en daar de switchkeuze op baseren — of expliciet
 vastleggen dat je dit bewust niet doet en waarom.
 
-6.13 **Zigbee-coördinator op een slechte plek.** In of naast een kast met een
-switch en een TV zit hij tussen metaal, 2,4 GHz WiFi en USB3/HDMI-ruis.
+6.13 **Zigbee-coördinator op een slechte plek, in een al bezet 2,4 GHz-spectrum.**
+In of naast een kast met een switch en een TV zit hij tussen metaal, WiFi en
+USB3/HDMI-ruis. Bovendien hangen er al **8 smart devices op 2,4 GHz WiFi**
+(§2.1) — die concurreren rechtstreeks met Zigbee om dezelfde band.
 **Doen:** SLZB-06M vrij ophangen (niet in een kast, niet tegen metaal), en het
-Zigbee-kanaal expliciet kiezen t.o.v. je WiFi-kanalen (Zigbee 15/20/25 naast
-WiFi 1/6/11). Controleer ook de prijs: € 39,95 lijkt laag voor de 06M.
+Zigbee-kanaal expliciet kiezen t.o.v. het WiFi-kanaal van de Fritz!Box
+(Zigbee 15/20/25 naast WiFi 1/6/11 — en zet de Fritz!Box op een vast
+2,4 GHz-kanaal in plaats van automatisch, anders schuift hij onder je Zigbee-net
+vandaan). Overweeg de bestaande WiFi-apparaten op termijn te vervangen door
+Zigbee-equivalenten; dat ontlast de band in plaats van hem te vullen.
+Controleer ook de prijs: € 39,95 lijkt laag voor de 06M.
 
 6.14 **Maar 2 kabels naar de woonkamer.** De marginale kosten van een derde en
 vierde kabel zijn nu ~€ 25 per stuk; later opnieuw moeten boren kost de hele
@@ -365,8 +433,12 @@ plan — het is het verschil tussen een boodschappenlijst en een projectbegrotin
 
 1. [ ] **Vloertype vaststellen** — funderingsplan + kruipruimte-inspectie;
        ribpositie van onderaf uitmeten en op de vloer aftekenen (§5.5).
-2. [ ] **WAN-intrede, router en IP-plan vastleggen** — pas daarna is de
+2. [ ] **Locatie Fritz!Box / WAN-intrede vastleggen** — pas daarna is de
        topologie bepaald (§5.1).
+2a. [ ] **`.21` uit de DHCP-pool halen** — reserveren op MAC in de Fritz!Box,
+       of de pool verkleinen (§5.1). Vóór de HA-installatie.
+2b. [ ] **Volledige OVP-regel uitlezen** — dekt de overspanningsbeveiliging
+       groep 9 t/m 12? Zo niet: uitbreiden vóór apparatuur plaatsen (§6.8).
 3. [ ] **Voeding woonkamerswitch beslissen** — WCD, PoE-powered switch, of
        sub-switch schrappen (§5.2).
 4. [ ] **PoE-budget hoofdswitch verifiëren** (watt, aantal poorten, af/at)
@@ -387,3 +459,22 @@ plan — het is het verschil tussen een boodschappenlijst en een projectbegrotin
 Uitvoeringsvolgorde daarna: meterkastgroep → WCD woonkamer → boren →
 mantelbuis + kabels → afmonteren + testen → apparatuur plaatsen →
 HA configureren → laminaat afwerken.
+
+---
+
+## 9. Bronnen
+
+Naast de aangeleverde projecttekst is §2.1 vastgesteld uit bestaande eigen
+documentatie:
+
+| bron | gebruikt voor |
+|---|---|
+| Google Drive — *Overzicht Netwerkapparaten en Slimme Apparaten* (spreadsheet, jan. 2026) | Subnet `192.168.178.0/24`, 8 bestaande 2,4 GHz smart devices → §5.1, §6.13 |
+| Google Drive — *Screenshot_20260826_193434_Adobe Acrobat.jpg* (groepenkastoverzicht) | Groepenindeling, ALS 1–3, vrije groepen 10/11, OVP-reikwijdte → §2.1, §6.7, §6.8 |
+| Repo — `huizen/Voorhout-Kruidenschans-24/` (bouwtekeningen, berekeningen, gespreksverslag) | Vloertype-tegenspraak → §5.5 |
+
+Niet ingezien: het Gemini-gesprek en het NotebookLM-notebook. Het netwerkbeleid
+van de werkomgeving blokkeert `share.gemini.google`, en NotebookLM-notebooks
+zijn geen Drive-bestanden en dus niet via de Drive-koppeling te lezen. Als daar
+nog beslissingen in staan die hier niet terugkomen, moeten die apart worden
+aangeleverd.
