@@ -138,6 +138,16 @@ de router daar te plaatsen en de meterkast als sub-hub te behandelen, of
 verplaats de intrede (bij glas kan de ONT vaak verhuizen, bij coax kun je met
 de bestaande coax het modem naar de meterkast halen).
 
+**Let bij (c) specifiek op de DHCP-pool.** Een handmatig ingesteld vast IP dat
+binnen het uitgiftebereik van de router valt, levert een IP-conflict op zodra de
+router datzelfde adres aan een ander apparaat uitdeelt. Dat gebeurt niet tijdens
+de installatie maar weken later, na een herstart of bij een nieuw apparaat — op
+precies het apparaat waar je hele smarthome op leunt. Veel consumentenrouters
+beginnen hun pool laag (bij AVM/Fritz!Box standaard op `.20`), dus een `.21`
+zit daar al in. **Doen:** het adres reserveren op MAC-adres in de router (DHCP
+blijft dan de autoriteit), of de pool verkleinen en statische adressen
+daarbuiten leggen. Regel dit vóór de HA-installatie, niet erna.
+
 ### 5.2 De TL-SG108PE kan niet via PoE gevoed worden
 
 §2 noemt een "PoE-gevoede sub-hub in de huiskamer". De TL-SG108PE is een
@@ -387,3 +397,26 @@ plan — het is het verschil tussen een boodschappenlijst en een projectbegrotin
 Uitvoeringsvolgorde daarna: meterkastgroep → WCD woonkamer → boren →
 mantelbuis + kabels → afmonteren + testen → apparatuur plaatsen →
 HA configureren → laminaat afwerken.
+
+---
+
+## 9. Bronverantwoording
+
+Dit document is gebaseerd op de aangeleverde projecttekst, aangevuld met het
+dossier **Kruidenschans 24, Voorhout** in deze repo
+(`huizen/Voorhout-Kruidenschans-24/` — bouwtekeningen, berekeningen,
+gespreksverslag), gebruikt voor de vloertype-tegenspraak in §5.5.
+
+**Niet gebruikt, en waarom:**
+
+| bron | reden |
+|---|---|
+| Groepenkastoverzicht en IP-/apparatenlijst in Google Drive | Horen bij een **ander adres (Oranjelaan)**, niet bij Kruidenschans. In een eerdere versie van dit document waren ze wel verwerkt; dat is teruggedraaid omdat conclusies over groepsindeling, aardlekzones, overspanningsbeveiliging en subnet dan van het verkeerde gebouw kwamen. |
+| Gemini-gesprek (`share.gemini.google`) | Niet op te halen: het netwerkbeleid van de werkomgeving blokkeert dat domein. |
+| NotebookLM-notebook | NotebookLM-notebooks zijn geen Drive-bestanden en dus niet via de Drive-koppeling te lezen. |
+
+> ⚠️ **Vaststaande regel voor dit dossier:** gegevens over de bestaande
+> installatie (meterkast, groepenindeling, router, subnet, bestaande apparatuur)
+> gelden **per adres**. Voor Kruidenschans 24 is daarvan nu niets vastgesteld —
+> zie de actielijst in §8. Materiaal van een ander adres is hier geen
+> uitgangspunt, ook niet als referentie.
