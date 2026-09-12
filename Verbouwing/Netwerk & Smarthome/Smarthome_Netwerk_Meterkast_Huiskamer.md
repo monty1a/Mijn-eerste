@@ -186,7 +186,8 @@ de richting voor-naar-achter.
    **"Sparingen in nader overleg"** — een doorvoer door een funderingsbalk mag
    niet zonder constructief overleg. Binnen één travee blijven omzeilt dat
    volledig. **Controleer** dus eerst of de meterkast in dezelfde travee ligt.
-3. **Het keukengat is een meetpunt, gebruik het.** Het is een bewezen doorvoer
+3. **Het keukengat is een meetpunt, gebruik het** (voor zover het schuim dat
+   nog toelaat, zie §3.6)**.** Het is een bewezen doorvoer
    met bekende uitkomst. Meet daarin: werkelijke dekvloerdikte, pasplaatdikte en
    totale pakketdikte. Dat vervangt de schatting "60–120 mm" uit §5.4 door een
    gemeten getal. En meet van onderaf de afstand van dat gat tot de eerste rib:
@@ -242,6 +243,39 @@ tracé. De verleiding is om het plan (tracé C) als vaststaand te behandelen omd
 het al is uitgewerkt en het materiaal al is begroot — maar het is het duurste en
 het enige onomkeerbare van de drie. Kabel langs een plint is lelijker dan een
 vloerpunt; een verkeerd gat in een dragende vloer is erger dan lelijk.
+
+### 3.6 Recente vloerisolatie aan de onderzijde — gevolgen
+
+**Veldgegeven:** de onderzijde van de begane grondvloer is recent voorzien van
+opgespoten isolatieschuim. Het beton is daardoor niet meer zichtbaar vanuit de
+kruipruimte.
+
+**Vier gevolgen:**
+
+1. **Van onderaf uitmeten kan niet meer.** Dat was de snelste en veiligste
+   manier om de ribben te vinden. De informatie uit §3.3 en §3.4 — ribben
+   parallel aan voor- en achtergevel, 600 mm h.o.h. in de richting
+   voor-naar-achter — is daarmee niet langer een handige bevestiging maar je
+   **enige leidraad** bij het aftekenen.
+2. **Maar de ribben hangen naar beneden uit.** Opgespoten schuim volgt de vorm
+   van het oppervlak, dus de ribben tekenen zich waarschijnlijk nog af als
+   **ribbels of verhogingen in het schuimoppervlak**. Vóór je iets anders doet:
+   voel en kijk of die topografie zichtbaar is. Zo ja, dan heb je de ribpositie
+   alsnog zonder te prikken.
+3. **Boren gaat nu ook door nieuw schuim.** Twee praktische gevolgen: (a) je
+   krijgt geen helder doorbraakmoment meer — het schuim geeft een zachte
+   weerstand die je kunt verwarren met de pasplaat, dus meet de pakketdikte
+   vooraf en werk met tape op de kroon; (b) het schuim blokkeert de uitmonding,
+   dus je moet het openwerken om de mantelbuis door te voeren, en daarna rond de
+   buis netjes dichtzetten. Anders maak je een koudebrug en een vochtpad in
+   brandnieuwe isolatie.
+4. **Controleer de garantie op het isolatiewerk.** Het is recent uitgevoerd,
+   vermoedelijk door een bedrijf. Doorboren van een net opgeleverde
+   isolatielaag kan de garantie raken. Eén telefoontje vooraf is goedkoper dan
+   een discussie achteraf.
+
+**Gevolg voor de tracékeuze (§3.5):** dit maakt de wandroutes A en B relatief
+aantrekkelijker. Die raken de nieuwe isolatie niet.
 
 ---
 
@@ -376,9 +410,12 @@ lopen.
 **Wat hier nog wél open staat** (geen blokkade, wel uitzoekwerk vóór het
 aftekenen): of Kruidenschans 24 de getekende of de gespiegelde variant van het
 legplan is, en hoe de hoekwoning-situatie afwijkt van het middenblok op de
-tekening. Visuele controle vanuit de kruipruimte blijft de snelste route: van
-onderaf is de ribrichting en -afstand direct zichtbaar, en dan hoef je helemaal
-niet te prikken.
+tekening.
+
+> ⚠️ **De vloer is aan de onderzijde recent geïsoleerd met opgespoten schuim.**
+> Visuele inspectie van het beton vanuit de kruipruimte is daarmee niet meer
+> mogelijk — zie §3.6. Het "even van onderaf kijken" dat elders in dit document
+> als snelste route werd genoemd, vervalt.
 
 ---
 
@@ -649,8 +686,12 @@ plan — het is het verschil tussen een boodschappenlijst en een projectbegrotin
        componenten, backups op een plek waar de bewoner erbij kan (§6.19).
 1. [x] ~~Vloertype vaststellen~~ — **gedaan**: Manta systeemvloer begane grond,
        255 mm, B 37,5, ribben 600 mm h.o.h., geverifieerd tegen de stukken uit
-       1986 (§3.3). Resteert: ribpositie van onderaf uitmeten en op de vloer
-       aftekenen, en vaststellen of #24 de getekende of gespiegelde variant is.
+       1986 (§3.3).
+1a. [ ] **Ribben localiseren zonder zicht op het beton** — de onderzijde is
+       geïsoleerd (§3.6). Eerst kijken of de ribben zich aftekenen in het
+       schuimoppervlak; zo niet, aftekenen op basis van §3.3/§3.4 en prikken van
+       voor naar achter.
+1b. [ ] **Garantie isolatiewerk navragen** vóór je door de vloer boort (§3.6).
 2. [ ] **WAN-intrede, router en IP-plan vastleggen** — pas daarna is de
        topologie bepaald (§5.1).
 3. [ ] **Voeding woonkamerswitch beslissen** — WCD, PoE-powered switch, of
