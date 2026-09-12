@@ -207,6 +207,42 @@ kernboring — inclusief de 52 mm boorkroon van € 49,25, de ribzoekactie en he
 grootste onomkeerbare risico van dit project. Dat is de goedkoopste
 projectwinst die er te halen valt.
 
+### 3.5 Tracékeuze — is een gat in de woonkamervloer nodig?
+
+**Niet noodzakelijk.** Uit de plattegrond (`tekeningen/2_begane_grond.*`) blijkt
+de indeling: **meterkast vóór** (hoek naast toilet, aan de hal), keuken en trap
+in het midden, **woonkamer achter** over de volle breedte (± 28 m²). Meterkast
+en woonkamer grenzen dus **niet** aan elkaar; ertussen zitten toilet/keuken en
+de hal met de trap. Afstand meterkast → woonkamer ± 4 m, tot midden woonkamer
+± 6 m.
+
+Dat betekent dat er drie tracés mogelijk zijn, en de vloerdoorvoer is er maar
+één van:
+
+| Tracé | Vloerdoorvoer nodig? | Wanneer de beste keuze |
+|---|---|---|
+| **A. Binnendoor via de hal** — meterkast → hal → door de binnenwand hal/woonkamer, op plint- of wandhoogte | **Nee, geen enkele** | Als het aansluitpunt tegen de hal-zijde van de woonkamer mag zitten. Goedkoopst en risicoloos: geen kruipruimte, geen kernboring, geen constructie geraakt |
+| **B. Via het bestaande keukengat** — omhoog in de keuken, dan door de binnenwand keuken/woonkamer | **Nee, geen nieuwe** | Als het punt aan de keukenzijde van de woonkamer mag zitten en het bestaande gat bruikbaar/vrij is. Benut een doorvoer die er al is |
+| **C. Kruipruimte met mantelbuis** (het oorspronkelijke plan) | **Ja, twee** (meterkast + woonkamer) | Alleen als het punt **midden in de woonkamer** of aan de tuinzijde moet uitkomen, los van elke wand, en een kabel langs de plint onacceptabel is |
+
+**De keuze hangt dus volledig af van één nog onbeantwoorde vraag:** waar in de
+woonkamer moet de kabel uitkomen? (Openstaand punt §6.3.) Zolang dat niet
+vastligt, is niet te zeggen of er überhaupt geboord moet worden.
+
+**Gunstig voor tracé C, als het daarop uitkomt:** de funderingsbalken lopen van
+voor naar achter bij de woningscheidende wanden, 5100 mm h.o.h., en de woning is
+± 5,40 m breed. De hele vloer is dus **één travee** van 4740 mm dagmaat, en een
+route van voor naar achter kruist **geen enkele funderingsbalk** — het voorbehoud
+*"sparingen in nader overleg"* komt daarmee niet in het spel. Let alleen op de
+korte dwarselementen bij de voorzijde op het palenplan (balk 5/6/7 met dsn. III);
+controleer die zone bij de inspectie.
+
+**Advies:** bepaal eerst het aansluitpunt in de woonkamer, en kies dan het
+tracé. De verleiding is om het plan (tracé C) als vaststaand te behandelen omdat
+het al is uitgewerkt en het materiaal al is begroot — maar het is het duurste en
+het enige onomkeerbare van de drie. Kabel langs een plint is lelijker dan een
+vloerpunt; een verkeerd gat in een dragende vloer is erger dan lelijk.
+
 ---
 
 ## 4. Materiaaloverzicht & bestellinks
@@ -628,10 +664,14 @@ plan — het is het verschil tussen een boodschappenlijst en een projectbegrotin
        bestelt.
 5b. [ ] **Keukengat opmeten** — werkelijke laagdiktes en de afstand tot de eerste
        rib, als referentiepunt voor de woonkamer (§3.4).
-5c. [ ] **Travee controleren** — liggen meterkast en woonkamerpunt tussen dezelfde
-       woningscheidende wanden? Zo ja: geen funderingsbalk te kruisen (§3.4).
+5c. [x] ~~Travee controleren~~ — **gedaan**: de woning is één travee van 4740 mm
+       dagmaat, een route voor-naar-achter kruist geen funderingsbalk. Resteert:
+       de dwarselementen bij de voorzijde controleren (§3.4, §3.5).
 6. [ ] **Leidingdetectie in de dekvloer** — leidingzoeker + warmtebeeld (§6.1).
-7. [ ] **Uitkomstlocatie woonkamer bepalen** inclusief route vloer → wand (§6.3).
+7. [ ] **Uitkomstlocatie woonkamer bepalen — dit is nu het beslispunt.** Het
+       bepaalt of er geboord moet worden of niet: tegen een wand → tracé A of B
+       zonder enige vloerdoorvoer; midden in de ruimte → tracé C met twee
+       doorvoeren (§3.5, §6.3).
 8. [ ] **Kruipruimte inspecteren** — luik, hoogte, water, buisondersteuning (§6.4).
 9. [ ] **Zoldertracé uittekenen** en kabellengte definitief maken (§6.5).
 10. [ ] **Aantal kabels vaststellen** (advies: 4 naar de woonkamer) en coax
